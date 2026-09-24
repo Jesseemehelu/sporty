@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+>
+
+<title>Login — SportyMine</title>
+
+<style>
+:root{
+  --red:#e51b2f;
+  --dark-red:#c91427;
+  --bg:#f6f7f9;
+  --white:#ffffff;
+  --text:#171717;
+  --muted:#777;
+  --border:#e2e2e2;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html,
+body{
+  width:100%;
+  min-height:100%;
+}
+
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:35px 18px;
+}
+
+/* MAIN */
+
+.page{
+  width:100%;
+  max-width:350px;
+}
+
+/* TOP IMAGE */
+
+.top-image{
+  width:95px;
+  height:95px;
+  margin:0 auto 12px;
+  border-radius:22px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.top-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* LOGO */
+
+.logo{
+  text-align:center;
+  margin-bottom:18px;
+}
+
+.logo h1{
+  font-size:27px;
+  font-weight:900;
+  color:var(--red);
+  letter-spacing:-1px;
+}
+
+.logo p{
+  margin-top:4px;
+  color:#777;
+  font-size:13px;
+}
+
+/* CARD */
+
+.card{
+  background:var(--white);
+  border-radius:18px;
+  padding:22px 18px;
+  box-shadow:0 6px 25px rgba(0,0,0,.07);
+}
+
+.card h2{
+  font-size:22px;
+  font-weight:800;
+  margin-bottom:5px;
+}
+
+.subtitle{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:20px;
+}
+
+/* FORM */
+
+.form-group{
+  margin-bottom:15px;
+}
+
+label{
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:7px;
+}
+
+.input-wrap{
+  position:relative;
+}
+
+input{
+  width:100%;
+  height:48px;
+  border:1px solid var(--border);
+  border-radius:11px;
+  outline:none;
+  padding:0 13px;
+  font-size:15px;
+  background:#fff;
+  color:#111;
+  transition:.2s;
+}
+
+input:focus{
+  border-color:var(--red);
+  box-shadow:0 0 0 3px rgba(229,27,47,.10);
+}
+
+.password-input{
+  padding-right:50px;
+}
+
+/* SHOW PASSWORD */
+
+.show-password{
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  border:0;
+  background:none;
+  color:#777;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* BUTTON */
+
+.login-btn{
+  width:100%;
+  height:48px;
+  border:none;
+  border-radius:11px;
+  background:var(--red);
+  color:white;
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.2s;
+  margin-top:3px;
+}
+
+.login-btn:active{
+  transform:scale(.98);
+  background:var(--dark-red);
+}
+
+.login-btn:disabled{
+  opacity:.7;
+  cursor:not-allowed;
+}
+
+/* MESSAGE */
+
+.message{
+  display:none;
+  padding:10px 12px;
+  border-radius:9px;
+  font-size:12px;
+  font-weight:600;
+  margin-bottom:15px;
+  line-height:1.4;
+}
+
+.message.error{
+  display:block;
+  background:#fff0f2;
+  color:#c91427;
+  border:1px solid #ffd1d7;
+}
+
+.message.success{
+  display:block;
+  background:#effcf3;
+  color:#16803c;
+  border:1px solid #c9efd5;
+}
+
+/* SIGNUP */
+
+.signup-text{
+  text-align:center;
+  margin-top:18px;
+  font-size:13px;
+  color:#777;
+}
+
+.signup-text a{
+  color:var(--red);
+  text-decoration:none;
+  font-weight:800;
+}
+
+/* FOOTER */
+
+.footer{
+  text-align:center;
+  margin-top:18px;
+  color:#999;
+  font-size:11px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <!-- TOP IMAGE -->
+  <div class="top-image">
+    <img
+      src="70443.webp"
+      alt="SportyMine"
+    >
+  </div>
+
+
+  <!-- LOGO -->
+  <div class="logo">
+    <h1>SportyMine</h1>
+    <p>Welcome back</p>
+  </div>
+
+
+  <!-- LOGIN CARD -->
+  <div class="card">
+
+    <h2>Login</h2>
+
+    <p class="subtitle">
+      Enter your details to access your account.
+    </p>
+
+
+    <div id="message" class="message"></div>
+
+
+    <form id="loginForm">
+
+      <!-- PHONE -->
+
+      <div class="form-group">
+
+        <label for="phone">
+          Phone Number
+        </label>
+
+        <input
+          type="tel"
+          id="phone"
+          placeholder="Enter your phone number"
+          autocomplete="tel"
+          inputmode="tel"
+          required
+        >
+
+      </div>
+
+
+      <!-- PASSWORD -->
+
+      <div class="form-group">
+
+        <label for="password">
+          Password
+        </label>
+
+        <div class="input-wrap">
+
+          <input
+            type="password"
+            id="password"
+            class="password-input"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+          >
+
+          <button
+            type="button"
+            class="show-password"
+            id="showPassword"
+          >
+            Show
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- LOGIN BUTTON -->
+
+      <button
+        type="submit"
+        class="login-btn"
+        id="loginBtn"
+      >
+        Login
+      </button>
+
+    </form>
+
+
+    <!-- SIGNUP -->
+
+    <div class="signup-text">
+
+      Don't have an account?
+
+      <a href="signup.html">
+        Create account
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer">
+    © 2026 SportyMine. All rights reserved.
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   LOCAL STORAGE KEYS
+========================= */
+
+const USERS_KEY = 'sportymine_users';
+const CURRENT_USER_KEY = 'sportymine_current_user';
+
+
+/* =========================
+   GET USERS
+========================= */
+
+function getUsers(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(USERS_KEY)
+    ) || {};
+
+  }catch(err){
+
+    return {};
+
+  }
+
+}
+
+
+/* =========================
+   SAVE USERS
+========================= */
+
+function saveUsers(users){
+
+  localStorage.setItem(
+    USERS_KEY,
+    JSON.stringify(users)
+  );
+
+}
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const loginForm =
+  document.getElementById('loginForm');
+
+const phoneInput =
+  document.getElementById('phone');
+
+const passwordInput =
+  document.getElementById('password');
+
+const loginBtn =
+  document.getElementById('loginBtn');
+
+const message =
+  document.getElementById('message');
+
+const showPassword =
+  document.getElementById('showPassword');
+
+
+/* =========================
+   SHOW MESSAGE
+========================= */
+
+function showMessage(text, type){
+
+  message.textContent = text;
+
+  message.className =
+    'message ' + type;
+
+}
+
+
+/* =========================
+   HIDE MESSAGE
+========================= */
+
+function hideMessage(){
+
+  message.textContent = '';
+
+  message.className =
+    'message';
+
+}
+
+
+/* =========================
+   SHOW / HIDE PASSWORD
+========================= */
+
+showPassword.addEventListener(
+  'click',
+  function(){
+
+    if(passwordInput.type === 'password'){
+
+      passwordInput.type = 'text';
+
+      showPassword.textContent = 'Hide';
+
+    }else{
+
+      passwordInput.type = 'password';
+
+      showPassword.textContent = 'Show';
+
+    }
+
+  }
+);
+
+
+/* =========================
+   LOGIN
+========================= */
+
+loginForm.addEventListener(
+  'submit',
+  function(e){
+
+    e.preventDefault();
+
+    hideMessage();
+
+
+    const phone =
+      phoneInput.value.trim();
+
+    const password =
+      passwordInput.value;
+
+
+    if(!phone || !password){
+
+      showMessage(
+        'Please enter your phone number and password.',
+        'error'
+      );
+
+      return;
+
+    }
+
+
+    const users = getUsers();
+
+    const user = users[phone];
+
+
+    /* =========================
+       USER NOT FOUND
+    ========================= */
+
+    if(!user){
+
+      showMessage(
+        'No account was found with this phone number.',
+        'error'
+      );
+
+      return;
+
+    }
+
+
+    /* =========================
+       WRONG PASSWORD
+    ========================= */
+
+    if(user.password !== password){
+
+      showMessage(
+        'Incorrect password. Please try again.',
+        'error'
+      );
+
+      return;
+
+    }
+
+
+    /* =========================
+       LOGIN SUCCESSFUL
+    ========================= */
+
+    loginBtn.disabled = true;
+
+    loginBtn.textContent =
+      'Logging in...';
+
+
+    localStorage.setItem(
+      CURRENT_USER_KEY,
+      phone
+    );
+
+
+    showMessage(
+      'Login successful. Redirecting...',
+      'success'
+    );
+
+
+    /*
+      replace() prevents the login
+      page from remaining in history.
+    */
+
+    setTimeout(function(){
+
+      window.location.replace(
+        'dashboard.html'
+      );
+
+    }, 500);
+
+  }
+);
+
+
+/* =========================
+   CHECK EXISTING LOGIN
+========================= */
+
+(function checkExistingLogin(){
+
+  const currentUser =
+    localStorage.getItem(
+      CURRENT_USER_KEY
+    );
+
+  const users =
+    getUsers();
+
+
+  if(
+    currentUser &&
+    users[currentUser]
+  ){
+
+    window.location.replace(
+      'dashboard.html'
+    );
+
+  }
+
+})();
+
+</script>
+
+</body>
+</html>
