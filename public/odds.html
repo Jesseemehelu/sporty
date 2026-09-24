@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+>
 
 <title>Odds — SportyMine</title>
 
@@ -773,7 +776,7 @@ a{
 
 
 /* =====================================================
-   ACTIVATION MODAL
+   BET SLIP ACTIVATION MODAL
 ===================================================== */
 
 .modal{
@@ -781,13 +784,17 @@ a{
 
   inset:0;
 
-  background:rgba(0,0,0,.62);
+  background:rgba(0,0,0,.48);
 
   z-index:200;
 
   display:none;
 
   align-items:flex-end;
+
+  justify-content:center;
+
+  padding:0;
 }
 
 .modal.show{
@@ -799,18 +806,20 @@ a{
 
   max-width:620px;
 
-  margin:auto;
+  margin:0 auto;
 
   background:#fff;
 
   border-radius:18px 18px 0 0;
 
-  padding:22px 18px 26px;
+  padding:0 16px 22px;
+
+  box-shadow:
+    0 -8px 30px rgba(0,0,0,.28);
 
   animation:slideUp .25s ease;
 
-  box-shadow:
-    0 -8px 30px rgba(0,0,0,.3);
+  position:relative;
 }
 
 @keyframes slideUp{
@@ -825,6 +834,27 @@ a{
 
 }
 
+
+/* BET SLIP HANDLE */
+
+.sheet:before{
+  content:"";
+
+  display:block;
+
+  width:42px;
+  height:4px;
+
+  margin:8px auto 14px;
+
+  border-radius:10px;
+
+  background:#d7d8da;
+}
+
+
+/* SHEET HEADER */
+
 .sheet-top{
   display:flex;
 
@@ -832,63 +862,95 @@ a{
 
   align-items:center;
 
-  margin-bottom:17px;
+  margin-bottom:14px;
+
+  padding-bottom:11px;
+
+  border-bottom:1px solid #ededed;
 }
 
 .sheet-title{
-  font-size:19px;
+  font-size:18px;
 
   font-weight:900;
+
+  color:#22262b;
 }
 
-.close{
-  width:34px;
-  height:34px;
+.sheet-title:before{
+  content:"⚡";
 
-  border-radius:50%;
+  display:inline-flex;
 
-  background:#f0f0f0;
+  align-items:center;
+  justify-content:center;
 
-  color:#555;
+  width:28px;
+  height:28px;
 
-  font-size:22px;
-}
+  margin-right:8px;
 
-.modal-icon{
-  width:50px;
-  height:50px;
+  border-radius:7px;
 
   background:#fff0f2;
 
   color:#ed132d;
 
-  border-radius:12px;
+  font-size:14px;
+
+  vertical-align:middle;
+}
+
+.close{
+  width:32px;
+  height:32px;
+
+  border-radius:50%;
+
+  background:#f0f1f2;
+
+  color:#555;
+
+  font-size:21px;
 
   display:grid;
 
   place-items:center;
+}
 
-  font-size:23px;
+
+/* HIDE OLD MODAL ICON */
+
+.modal-icon{
+  display:none;
+}
+
+
+/* DESCRIPTION */
+
+.sheet p{
+  color:#70757c;
+
+  font-size:12px;
+
+  line-height:1.45;
 
   margin-bottom:12px;
 }
 
-.sheet p{
-  color:#777;
 
-  font-size:13px;
-
-  line-height:1.5;
-}
+/* SELECTED ODD */
 
 .selected-plan{
-  margin-top:15px;
+  margin-top:0;
 
   padding:13px;
 
-  background:#f5f5f5;
+  background:#f7f8f9;
 
-  border:1px solid #e5e5e5;
+  border:1px solid #e2e4e7;
+
+  border-radius:7px;
 
   display:flex;
 
@@ -900,11 +962,13 @@ a{
 .selected-plan small{
   display:block;
 
-  color:#999;
+  color:#92969c;
 
-  font-size:9px;
+  font-size:8px;
 
   font-weight:800;
+
+  letter-spacing:.4px;
 }
 
 .selected-plan strong{
@@ -913,20 +977,64 @@ a{
   margin-top:4px;
 
   font-size:16px;
+
+  color:#22262b;
+
+  font-weight:900;
 }
+
+
+/* CURRENT BALANCE */
+
+.bet-slip-balance{
+  margin-top:9px;
+
+  padding:10px 13px;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  border-radius:6px;
+
+  background:#fff5f6;
+
+  border:1px solid #f5dfe2;
+}
+
+.bet-slip-balance span{
+  color:#777c83;
+
+  font-size:10px;
+
+  font-weight:700;
+}
+
+.bet-slip-balance strong{
+  color:#ed132d;
+
+  font-size:13px;
+
+  font-weight:900;
+}
+
+
+/* ACTIONS */
 
 .modal-actions{
   display:grid;
 
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:1fr 1.4fr;
 
-  gap:9px;
+  gap:8px;
 
-  margin-top:15px;
+  margin-top:12px;
 }
 
 .modal-actions a{
-  height:45px;
+  height:44px;
 
   display:flex;
 
@@ -934,23 +1042,26 @@ a{
 
   align-items:center;
 
-  border-radius:4px;
+  border-radius:5px;
 
-  font-size:12px;
+  font-size:11px;
 
   font-weight:900;
 }
 
 .secondary{
-  background:#eee;
+  background:#eceeef;
 
-  color:#444;
+  color:#44484d;
 }
 
 .primary{
   background:#ed132d;
 
   color:#fff;
+
+  box-shadow:
+    0 4px 10px rgba(237,19,45,.2);
 }
 
 
@@ -1154,6 +1265,32 @@ a{
     font-size:9px;
   }
 
+
+  /* BET SLIP */
+
+  .sheet{
+    padding:
+      0
+      13px
+      calc(18px + env(safe-area-inset-bottom));
+  }
+
+  .sheet-title{
+    font-size:17px;
+  }
+
+  .sheet p{
+    font-size:11px;
+  }
+
+  .selected-plan{
+    padding:11px;
+  }
+
+  .selected-plan strong{
+    font-size:15px;
+  }
+
 }
 
 
@@ -1302,8 +1439,6 @@ a{
 
 
 
-
-
 <!-- =====================================================
      PAGE INFO
 ===================================================== -->
@@ -1341,9 +1476,7 @@ a{
 <div class="plan-list">
 
 
-  <!-- ===================================================
-       ODD 1
-  ==================================================== -->
+  <!-- ODD 1 -->
 
   <div
     class="plan"
@@ -1394,41 +1527,18 @@ a{
       <div class="odds">
 
         <div class="odd">
-
-          <small>
-            Daily
-          </small>
-
-          <strong>
-            ₦500
-          </strong>
-
+          <small>Daily</small>
+          <strong>₦500</strong>
         </div>
 
-
         <div class="odd">
-
-          <small>
-            Days
-          </small>
-
-          <strong>
-            60
-          </strong>
-
+          <small>Days</small>
+          <strong>60</strong>
         </div>
 
-
         <div class="odd">
-
-          <small>
-            Total
-          </small>
-
-          <strong>
-            ₦30K
-          </strong>
-
+          <small>Total</small>
+          <strong>₦30K</strong>
         </div>
 
       </div>
@@ -1453,9 +1563,7 @@ a{
 
 
 
-  <!-- ===================================================
-       ODD 2
-  ==================================================== -->
+  <!-- ODD 2 -->
 
   <div
     class="plan"
@@ -1506,41 +1614,18 @@ a{
       <div class="odds">
 
         <div class="odd">
-
-          <small>
-            Daily
-          </small>
-
-          <strong>
-            ₦1K
-          </strong>
-
+          <small>Daily</small>
+          <strong>₦1K</strong>
         </div>
 
-
         <div class="odd">
-
-          <small>
-            Days
-          </small>
-
-          <strong>
-            60
-          </strong>
-
+          <small>Days</small>
+          <strong>60</strong>
         </div>
 
-
         <div class="odd">
-
-          <small>
-            Total
-          </small>
-
-          <strong>
-            ₦60K
-          </strong>
-
+          <small>Total</small>
+          <strong>₦60K</strong>
         </div>
 
       </div>
@@ -1565,9 +1650,7 @@ a{
 
 
 
-  <!-- ===================================================
-       ODD 3
-  ==================================================== -->
+  <!-- ODD 3 -->
 
   <div
     class="plan"
@@ -1575,7 +1658,6 @@ a{
   >
 
     <div class="popular-line"></div>
-
 
     <div class="plan-top">
 
@@ -1621,41 +1703,18 @@ a{
       <div class="odds">
 
         <div class="odd">
-
-          <small>
-            Daily
-          </small>
-
-          <strong>
-            ₦2.2K
-          </strong>
-
+          <small>Daily</small>
+          <strong>₦2.2K</strong>
         </div>
 
-
         <div class="odd">
-
-          <small>
-            Days
-          </small>
-
-          <strong>
-            60
-          </strong>
-
+          <small>Days</small>
+          <strong>60</strong>
         </div>
 
-
         <div class="odd">
-
-          <small>
-            Total
-          </small>
-
-          <strong>
-            ₦132K
-          </strong>
-
+          <small>Total</small>
+          <strong>₦132K</strong>
         </div>
 
       </div>
@@ -1680,9 +1739,7 @@ a{
 
 
 
-  <!-- ===================================================
-       ODD 4
-  ==================================================== -->
+  <!-- ODD 4 -->
 
   <div
     class="plan"
@@ -1733,41 +1790,18 @@ a{
       <div class="odds">
 
         <div class="odd">
-
-          <small>
-            Daily
-          </small>
-
-          <strong>
-            ₦8.2K
-          </strong>
-
+          <small>Daily</small>
+          <strong>₦8.2K</strong>
         </div>
 
-
         <div class="odd">
-
-          <small>
-            Days
-          </small>
-
-          <strong>
-            65
-          </strong>
-
+          <small>Days</small>
+          <strong>65</strong>
         </div>
 
-
         <div class="odd">
-
-          <small>
-            Total
-          </small>
-
-          <strong>
-            ₦533K
-          </strong>
-
+          <small>Total</small>
+          <strong>₦533K</strong>
         </div>
 
       </div>
@@ -1792,9 +1826,7 @@ a{
 
 
 
-  <!-- ===================================================
-       ODD 5
-  ==================================================== -->
+  <!-- ODD 5 -->
 
   <div
     class="plan"
@@ -1845,41 +1877,18 @@ a{
       <div class="odds">
 
         <div class="odd">
-
-          <small>
-            Daily
-          </small>
-
-          <strong>
-            ₦17.4K
-          </strong>
-
+          <small>Daily</small>
+          <strong>₦17.4K</strong>
         </div>
 
-
         <div class="odd">
-
-          <small>
-            Days
-          </small>
-
-          <strong>
-            70
-          </strong>
-
+          <small>Days</small>
+          <strong>70</strong>
         </div>
 
-
         <div class="odd">
-
-          <small>
-            Total
-          </small>
-
-          <strong>
-            ₦1.218M
-          </strong>
-
+          <small>Total</small>
+          <strong>₦1.218M</strong>
         </div>
 
       </div>
@@ -1904,9 +1913,7 @@ a{
 
 
 
-  <!-- ===================================================
-       ODD 6
-  ==================================================== -->
+  <!-- ODD 6 -->
 
   <div
     class="plan"
@@ -1957,41 +1964,18 @@ a{
       <div class="odds">
 
         <div class="odd">
-
-          <small>
-            Daily
-          </small>
-
-          <strong>
-            ₦43.5K
-          </strong>
-
+          <small>Daily</small>
+          <strong>₦43.5K</strong>
         </div>
 
-
         <div class="odd">
-
-          <small>
-            Days
-          </small>
-
-          <strong>
-            90
-          </strong>
-
+          <small>Days</small>
+          <strong>90</strong>
         </div>
 
-
         <div class="odd">
-
-          <small>
-            Total
-          </small>
-
-          <strong>
-            ₦3.915M
-          </strong>
-
+          <small>Total</small>
+          <strong>₦3.915M</strong>
         </div>
 
       </div>
@@ -2016,9 +2000,7 @@ a{
 
 
 
-  <!-- ===================================================
-       ODD 7
-  ==================================================== -->
+  <!-- ODD 7 -->
 
   <div
     class="plan"
@@ -2069,41 +2051,18 @@ a{
       <div class="odds">
 
         <div class="odd">
-
-          <small>
-            Daily
-          </small>
-
-          <strong>
-            ₦97K
-          </strong>
-
+          <small>Daily</small>
+          <strong>₦97K</strong>
         </div>
 
-
         <div class="odd">
-
-          <small>
-            Days
-          </small>
-
-          <strong>
-            180
-          </strong>
-
+          <small>Days</small>
+          <strong>180</strong>
         </div>
 
-
         <div class="odd">
-
-          <small>
-            Total
-          </small>
-
-          <strong>
-            ₦17.46M
-          </strong>
-
+          <small>Total</small>
+          <strong>₦17.46M</strong>
         </div>
 
       </div>
@@ -2197,7 +2156,7 @@ a{
 
 
 <!-- =====================================================
-     ACTIVATION MODAL
+     BET SLIP
 ===================================================== -->
 
 <div
@@ -2211,22 +2170,18 @@ a{
     <div class="sheet-top">
 
       <div class="sheet-title">
-        Activate Odd
+      Odd Slip
       </div>
 
 
       <button
         class="close"
         id="close"
+        type="button"
       >
         ×
       </button>
 
-    </div>
-
-
-    <div class="modal-icon">
-      ⚡
     </div>
 
 
@@ -2254,7 +2209,7 @@ a{
       <div style="text-align:right">
 
         <small>
-          REQUIRED
+          ACTIVATION
         </small>
 
         <strong id="selectedPrice">
@@ -2266,13 +2221,26 @@ a{
     </div>
 
 
+    <div class="bet-slip-balance">
+
+      <span>
+        Current wallet balance
+      </span>
+
+      <strong>
+        ₦500.00
+      </strong>
+
+    </div>
+
+
     <div class="modal-actions">
 
       <a
         class="secondary"
         href="dashboard.html"
       >
-        Go back
+        GO BACK
       </a>
 
 
@@ -2280,7 +2248,7 @@ a{
         class="primary"
         href="fund.html"
       >
-        Fund wallet
+        FUND WALLET
       </a>
 
     </div>
@@ -2314,62 +2282,81 @@ document
   .querySelectorAll(".activate")
   .forEach(button => {
 
-    button.addEventListener("click", function(){
+    button.addEventListener(
+      "click",
+      function(){
 
-      const price =
-        Number(this.dataset.price);
+        const price =
+          Number(
+            this.dataset.price
+          );
 
-      const name =
-        this.dataset.name;
+        const name =
+          this.dataset.name;
 
-      const formatted =
-        price.toLocaleString("en-NG");
-
-
-      selectedName.textContent =
-        name;
-
-
-      selectedPrice.textContent =
-        "₦" + formatted;
+        const formatted =
+          price.toLocaleString("en-NG");
 
 
-      modalText.textContent =
-        "Your current balance is ₦500.00. You need ₦"
-        + formatted
-        + " to activate this Odd. Fund your wallet to continue.";
+        selectedName.textContent =
+          name;
 
 
-      modal.classList.add("show");
+        selectedPrice.textContent =
+          "₦" + formatted;
 
-    });
+
+        modalText.textContent =
+          "Your current balance is ₦500.00. You need ₦"
+          + formatted
+          + " to activate this Odd. Fund your wallet to continue.";
+
+
+        modal.classList.add(
+          "show"
+        );
+
+      }
+    );
 
   });
 
 
 
 /* =====================================================
-   CLOSE ACTIVATION MODAL
+   CLOSE BET SLIP
 ===================================================== */
 
 document
   .getElementById("close")
-  .addEventListener("click", function(){
+  .addEventListener(
+    "click",
+    function(){
 
-    modal.classList.remove("show");
+      modal.classList.remove(
+        "show"
+      );
 
-  });
+    }
+  );
 
 
-modal.addEventListener("click", function(event){
+modal.addEventListener(
+  "click",
+  function(event){
 
-  if(event.target === modal){
+    if(
+      event.target === modal
+    ){
 
-    modal.classList.remove("show");
+      modal.classList.remove(
+        "show"
+      );
+
+    }
 
   }
-
-});
+);
 
 
 
@@ -2378,16 +2365,24 @@ modal.addEventListener("click", function(event){
 ===================================================== */
 
 const categoryButtons =
-  document.querySelectorAll(".category");
+  document.querySelectorAll(
+    ".category"
+  );
 
 const plans =
-  document.querySelectorAll(".plan");
+  document.querySelectorAll(
+    ".plan"
+  );
 
 const planList =
-  document.querySelector(".plan-list");
+  document.querySelector(
+    ".plan-list"
+  );
 
 const sectionTitle =
-  document.getElementById("sectionTitle");
+  document.getElementById(
+    "sectionTitle"
+  );
 
 
 
@@ -2396,7 +2391,9 @@ const sectionTitle =
 ===================================================== */
 
 const emptyState =
-  document.createElement("div");
+  document.createElement(
+    "div"
+  );
 
 emptyState.className =
   "empty-state";
@@ -2421,7 +2418,9 @@ emptyState.innerHTML = `
 
 `;
 
-planList.appendChild(emptyState);
+planList.appendChild(
+  emptyState
+);
 
 
 
@@ -2437,7 +2436,9 @@ function filterOdds(filter){
   plans.forEach(plan => {
 
     const categories =
-      (plan.dataset.category || "")
+      (
+        plan.dataset.category || ""
+      )
       .toLowerCase()
       .split(" ");
 
@@ -2445,7 +2446,7 @@ function filterOdds(filter){
     let show = false;
 
 
-    /* ALL ODDS */
+    /* ALL */
 
     if(
       filter === "all" ||
@@ -2459,43 +2460,51 @@ function filterOdds(filter){
 
     /* POPULAR */
 
-    else if(filter === "popular"){
+    else if(
+      filter === "popular"
+    ){
 
       show =
-        categories.includes("popular");
+        categories.includes(
+          "popular"
+        );
 
     }
 
 
     /* STARTER */
 
-    else if(filter === "starter"){
+    else if(
+      filter === "starter"
+    ){
 
       show =
-        categories.includes("starter");
+        categories.includes(
+          "starter"
+        );
 
     }
 
 
     /* HIGH RETURN */
 
-    else if(filter === "high-return"){
+    else if(
+      filter === "high-return"
+    ){
 
       show =
-        categories.includes("high-return");
+        categories.includes(
+          "high-return"
+        );
 
     }
 
 
     /* MY ODDS */
 
-    else if(filter === "my-odds"){
-
-      /*
-        No real activated-Odds database is
-        connected to this page yet, so My Odds
-        correctly shows the empty state.
-      */
+    else if(
+      filter === "my-odds"
+    ){
 
       show = false;
 
@@ -2504,7 +2513,8 @@ function filterOdds(filter){
 
     if(show){
 
-      plan.style.display = "";
+      plan.style.display =
+        "";
 
       visibleCount++;
 
@@ -2512,7 +2522,8 @@ function filterOdds(filter){
 
     else{
 
-      plan.style.display = "none";
+      plan.style.display =
+        "none";
 
     }
 
@@ -2521,7 +2532,9 @@ function filterOdds(filter){
 
   /* EMPTY STATE */
 
-  if(visibleCount === 0){
+  if(
+    visibleCount === 0
+  ){
 
     emptyState.style.display =
       "flex";
@@ -2538,28 +2551,36 @@ function filterOdds(filter){
 
   /* SECTION TITLE */
 
-  if(filter === "popular"){
+  if(
+    filter === "popular"
+  ){
 
     sectionTitle.textContent =
       "Popular Odds";
 
   }
 
-  else if(filter === "starter"){
+  else if(
+    filter === "starter"
+  ){
 
     sectionTitle.textContent =
       "Starter Odds";
 
   }
 
-  else if(filter === "high-return"){
+  else if(
+    filter === "high-return"
+  ){
 
     sectionTitle.textContent =
       "High Return Odds";
 
   }
 
-  else if(filter === "my-odds"){
+  else if(
+    filter === "my-odds"
+  ){
 
     sectionTitle.textContent =
       "My Odds";
@@ -2581,32 +2602,43 @@ function filterOdds(filter){
    CATEGORY BUTTON CLICK
 ===================================================== */
 
-categoryButtons.forEach(button => {
+categoryButtons.forEach(
+  button => {
 
-  button.addEventListener(
-    "click",
-    function(){
+    button.addEventListener(
+      "click",
+      function(){
 
-      categoryButtons.forEach(item => {
+        categoryButtons.forEach(
+          item => {
 
-        item.classList.remove("active");
+            item.classList.remove(
+              "active"
+            );
 
-      });
-
-
-      this.classList.add("active");
-
-
-      const filter =
-        this.dataset.filter || "all";
+          }
+        );
 
 
-      filterOdds(filter);
+        this.classList.add(
+          "active"
+        );
 
-    }
-  );
 
-});
+        const filter =
+          this.dataset.filter ||
+          "all";
+
+
+        filterOdds(
+          filter
+        );
+
+      }
+    );
+
+  }
+);
 
 
 
@@ -2614,7 +2646,9 @@ categoryButtons.forEach(button => {
    INITIAL STATE
 ===================================================== */
 
-filterOdds("all");
+filterOdds(
+  "all"
+);
 
 
 
@@ -2631,15 +2665,21 @@ document
       function(){
 
         document
-          .querySelectorAll(".market")
+          .querySelectorAll(
+            ".market"
+          )
           .forEach(x => {
 
-            x.classList.remove("active");
+            x.classList.remove(
+              "active"
+            );
 
           });
 
 
-        this.classList.add("active");
+        this.classList.add(
+          "active"
+        );
 
       }
     );
