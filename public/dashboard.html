@@ -949,7 +949,7 @@ h1{
 ===================================================== */
 
 .trophy-area{
-  width:330px;
+  width:380px;
   height:365px;
 
   margin-top:0;
@@ -1069,262 +1069,54 @@ h1{
 
 
 /* =========================
-   TROPHY BODY
+   TROPHY IMAGE
 ========================= */
 
-.trophy{
+.trophy-image{
   position:relative;
 
   z-index:5;
 
-  width:205px;
-  height:255px;
+  width:700px;
 
-  margin-top:22px;
+  height:auto;
+
+  max-width:none;
+
+  object-fit:contain;
+
+  margin-top:10px;
 
   filter:
     drop-shadow(0 17px 20px rgba(0,0,0,.55))
     drop-shadow(0 0 28px rgba(255,219,58,.65));
+
+  animation:
+    trophyImageIn
+    .65s
+    .12s
+    cubic-bezier(.2,.8,.2,1)
+    both;
 }
 
+@keyframes trophyImageIn{
 
-/* Handles */
+  from{
+    opacity:0;
 
-.trophy-handle{
-  position:absolute;
+    transform:
+      translateY(35px)
+      scale(.75);
+  }
 
-  top:45px;
+  to{
+    opacity:1;
 
-  width:72px;
-  height:91px;
+    transform:
+      translateY(0)
+      scale(1);
+  }
 
-  border:15px solid #d99816;
-
-  border-radius:50%;
-
-  z-index:-1;
-
-  background:transparent;
-
-  box-shadow:
-    inset 0 0 5px rgba(255,244,158,.5);
-}
-
-.trophy-handle.left{
-  left:0;
-  transform:rotate(-7deg);
-}
-
-.trophy-handle.right{
-  right:0;
-  transform:rotate(7deg);
-}
-
-
-/* Cup */
-
-.trophy-cup{
-  position:absolute;
-
-  top:28px;
-  left:51px;
-
-  width:103px;
-  height:139px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #713800 0%,
-      #a85c04 7%,
-      #e1a21f 16%,
-      #fff1a0 31%,
-      #f4c23d 45%,
-      #fff4ac 61%,
-      #e4a221 76%,
-      #a85b04 91%,
-      #673200 100%
-    );
-
-  border-radius:
-    12px
-    12px
-    50px
-    50px;
-
-  border:3px solid #f5c94b;
-
-  box-shadow:
-    inset 7px 0 12px rgba(255,255,255,.35),
-    inset -8px 0 12px rgba(84,39,0,.25),
-    0 7px 14px rgba(0,0,0,.32);
-}
-
-
-/* Cup top rim */
-
-.trophy-cup:before{
-  content:"";
-
-  position:absolute;
-
-  left:-9px;
-  top:-8px;
-
-  width:113px;
-  height:23px;
-
-  border-radius:50%;
-
-  background:
-    linear-gradient(
-      90deg,
-      #8b4802,
-      #d99416,
-      #fff09a,
-      #e4a324,
-      #8a4702
-    );
-
-  border:3px solid #f6cc4c;
-
-  box-shadow:
-    inset 0 2px 4px rgba(255,255,255,.45);
-}
-
-
-/* Inner rim */
-
-.trophy-cup:after{
-  content:"";
-
-  position:absolute;
-
-  left:12px;
-  top:2px;
-
-  width:73px;
-  height:10px;
-
-  border-radius:50%;
-
-  background:
-    linear-gradient(
-      90deg,
-      #9a5706,
-      #6d3500
-    );
-
-  opacity:.7;
-}
-
-
-/* Trophy stem */
-
-.trophy-stem{
-  position:absolute;
-
-  left:84px;
-  top:160px;
-
-  width:34px;
-  height:62px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #8d4802,
-      #d89618,
-      #fff0a0,
-      #d8971a,
-      #8b4702
-    );
-
-  border-left:2px solid #f4c744;
-  border-right:2px solid #f4c744;
-}
-
-
-/* Base */
-
-.trophy-base{
-  position:absolute;
-
-  left:48px;
-  bottom:4px;
-
-  width:109px;
-  height:28px;
-
-  border-radius:
-    5px
-    5px
-    13px
-    13px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #713700,
-      #bd7310,
-      #f6c943,
-      #fff0a0,
-      #d28a15,
-      #743900
-    );
-
-  border:3px solid #d99b21;
-
-  box-shadow:
-    0 8px 12px rgba(0,0,0,.4),
-    inset 0 2px 3px rgba(255,255,255,.3);
-}
-
-
-/* =========================
-   TROPHY S MARK
-========================= */
-
-.trophy-mark{
-  position:absolute;
-
-  top:69px;
-  left:50%;
-
-  transform:translateX(-50%);
-
-  font-size:43px;
-
-  line-height:1;
-
-  font-weight:950;
-
-  color:#8a4700;
-
-  text-shadow:
-    0 1px 1px rgba(255,255,255,.45),
-    0 -1px 1px rgba(96,45,0,.35);
-}
-
-
-/* Highlight */
-
-.trophy-cup .highlight{
-  position:absolute;
-
-  left:17px;
-  top:30px;
-
-  width:9px;
-  height:74px;
-
-  border-radius:50%;
-
-  background:rgba(255,255,255,.3);
-
-  transform:rotate(7deg);
-
-  filter:blur(1px);
 }
 
 
@@ -1396,6 +1188,7 @@ h1{
 ========================= */
 
 @keyframes winFadeIn{
+
   from{
     opacity:0;
   }
@@ -1403,9 +1196,11 @@ h1{
   to{
     opacity:1;
   }
+
 }
 
 @keyframes winTitleIn{
+
   from{
     opacity:0;
     transform:translateY(-12px);
@@ -1415,9 +1210,11 @@ h1{
     opacity:1;
     transform:translateY(0);
   }
+
 }
 
 @keyframes amountIn{
+
   from{
     opacity:0;
     transform:scale(.88);
@@ -1427,21 +1224,29 @@ h1{
     opacity:1;
     transform:scale(1);
   }
+
 }
 
 @keyframes trophyIn{
+
   from{
     opacity:0;
-    transform:translateY(35px) scale(.75);
+    transform:
+      translateY(35px)
+      scale(.75);
   }
 
   to{
     opacity:1;
-    transform:translateY(0) scale(1);
+    transform:
+      translateY(0)
+      scale(1);
   }
+
 }
 
 @keyframes trophyGlow{
+
   0%,100%{
     transform:scale(.9);
     opacity:.58;
@@ -1451,9 +1256,11 @@ h1{
     transform:scale(1.08);
     opacity:1;
   }
+
 }
 
 @keyframes raysPulse{
+
   0%,100%{
     transform:scale(.93);
     opacity:.55;
@@ -1463,9 +1270,11 @@ h1{
     transform:scale(1.06);
     opacity:1;
   }
+
 }
 
 @keyframes footerIn{
+
   from{
     opacity:0;
     transform:translateY(15px);
@@ -1475,6 +1284,7 @@ h1{
     opacity:1;
     transform:translateY(0);
   }
+
 }
 
 
@@ -1551,8 +1361,15 @@ h1{
     margin-top:22px;
   }
 
+  /* =========================
+     LARGE MOBILE TROPHY
+  ========================= */
+
   .trophy-area{
-    transform:scale(.82);
+    transform:none;
+
+    width:380px;
+    height:365px;
 
     margin-top:-13px;
     margin-bottom:-45px;
@@ -1599,6 +1416,18 @@ h1{
     height:53px;
   }
 
+  /* Keep trophy large on very small phones */
+  .trophy-area{
+    width:360px;
+    height:355px;
+
+    transform:none;
+  }
+
+  .trophy-image{
+    width:660px;
+  }
+
 }
 
 </style>
@@ -1613,14 +1442,6 @@ h1{
 
 <script>
 (function(){
-
-  /*
-    Add a dashboard history state.
-
-    When the user presses the normal browser
-    Back button, popstate fires and we immediately
-    put the dashboard state back.
-  */
 
   history.pushState(
     {page:'dashboard'},
@@ -2121,35 +1942,11 @@ h1{
       </div>
 
 
-      <div class="trophy">
-
-
-        <div class="trophy-handle left"></div>
-
-        <div class="trophy-handle right"></div>
-
-
-        <div class="trophy-cup">
-
-
-          <div class="trophy-mark">
-            S
-          </div>
-
-
-          <div class="highlight"></div>
-
-
-        </div>
-
-
-        <div class="trophy-stem"></div>
-
-
-        <div class="trophy-base"></div>
-
-
-      </div>
+      <img
+        class="trophy-image"
+        src="trophy2.png"
+        alt="SportyMine trophy"
+      >
 
 
     </div>
@@ -2340,9 +2137,6 @@ const user =
 /*
   If there is no valid current user,
   send the visitor to signup.html.
-
-  replace() is used so the dashboard
-  does not remain in browser history.
 */
 
 if(!user){
@@ -2680,12 +2474,6 @@ else{
 
     stopWinningSong();
 
-
-    /*
-      Mark the welcome bonus popup
-      as seen and save it permanently
-      for this account.
-    */
 
     user.bonusSeen = true;
 
