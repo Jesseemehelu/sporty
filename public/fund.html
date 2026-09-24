@@ -1,0 +1,2794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+>
+
+<title>Fund Wallet — SportyMine</title>
+
+<style>
+
+:root{
+  --red:#e51b2f;
+  --red-dark:#c90d20;
+  --red-soft:#fff1f3;
+  --green:#12a05a;
+  --bg:#f5f6f8;
+  --text:#17191d;
+  --muted:#747981;
+  --line:#e7e8eb;
+  --white:#fff;
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html,
+body{
+  width:100%;
+  height:100%;
+  min-height:100%;
+  overflow:hidden;
+}
+
+body{
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+
+  background:#f5f6f8;
+  color:var(--text);
+
+  -webkit-font-smoothing:antialiased;
+
+  overscroll-behavior:none;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+
+button:disabled{
+  cursor:not-allowed;
+}
+
+.hidden{
+  display:none !important;
+}
+
+
+/* =====================================================
+   APP
+===================================================== */
+
+.app{
+  width:100%;
+  height:100dvh;
+  min-height:100dvh;
+
+  overflow:hidden;
+
+  background:#f5f6f8;
+}
+
+.page{
+  width:100%;
+  height:100dvh;
+  min-height:100dvh;
+
+  margin:auto;
+
+  background:#f5f6f8;
+
+  overflow:hidden;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+  height:62px;
+  min-height:62px;
+
+  background:var(--red);
+  color:#fff;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 18px;
+
+  position:relative;
+  z-index:100;
+
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.12);
+}
+
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.back-btn{
+  width:34px;
+  height:34px;
+
+  display:grid;
+  place-items:center;
+
+  background:transparent;
+  color:#fff;
+
+  font-size:29px;
+  font-weight:300;
+  line-height:1;
+}
+
+.header-title{
+  font-size:20px;
+  font-weight:700;
+  letter-spacing:-.3px;
+}
+
+.header-help{
+  width:31px;
+  height:31px;
+
+  display:grid;
+  place-items:center;
+
+  border:2px solid rgba(255,255,255,.9);
+  border-radius:50%;
+
+  color:#fff;
+  font-size:17px;
+  font-weight:700;
+
+  background:transparent;
+}
+
+
+/* =====================================================
+   INITIAL FUND SCREEN
+===================================================== */
+
+.amount-screen{
+  width:100%;
+  height:calc(100dvh - 62px);
+  min-height:calc(100dvh - 62px);
+
+  padding:
+    18px
+    18px
+    max(14px, env(safe-area-inset-bottom));
+
+  display:flex;
+  flex-direction:column;
+
+  overflow:hidden;
+}
+
+.amount-top{
+  margin-top:4px;
+}
+
+.small-label{
+  color:#8a8f96;
+
+  font-size:11px;
+  font-weight:600;
+
+  text-transform:uppercase;
+  letter-spacing:.5px;
+}
+
+.amount-title{
+  margin-top:4px;
+
+  font-size:26px;
+  line-height:1.05;
+
+  font-weight:800;
+  letter-spacing:-.9px;
+}
+
+.amount-description{
+  margin-top:7px;
+
+  color:#777d85;
+
+  font-size:12px;
+  line-height:1.4;
+
+  font-weight:400;
+
+  max-width:420px;
+}
+
+
+/* =====================================================
+   BALANCE
+===================================================== */
+
+.current-balance{
+  margin-top:15px;
+
+  padding:11px 14px;
+
+  background:#fff;
+
+  border:1px solid #e9eaed;
+  border-radius:8px;
+}
+
+.balance-label{
+  color:#858a91;
+
+  font-size:10px;
+  font-weight:500;
+}
+
+.balance-value{
+  margin-top:2px;
+
+  font-size:19px;
+  font-weight:800;
+}
+
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+.amount-form{
+  margin-top:15px;
+}
+
+.amount-label{
+  display:block;
+
+  margin-bottom:6px;
+
+  color:#40444a;
+
+  font-size:12px;
+  font-weight:700;
+}
+
+.amount-input-wrap{
+  height:50px;
+
+  display:flex;
+  align-items:center;
+
+  background:#fff;
+
+  border:1.5px solid #dfe1e5;
+  border-radius:8px;
+
+  transition:.2s ease;
+}
+
+.amount-input-wrap:focus-within{
+  border-color:var(--red);
+
+  box-shadow:
+    0 0 0 3px rgba(229,27,47,.08);
+}
+
+.currency{
+  padding-left:14px;
+
+  color:#26292d;
+
+  font-size:19px;
+  font-weight:700;
+}
+
+.amount-input{
+  width:100%;
+  height:100%;
+
+  padding:0 13px 0 8px;
+
+  border:0;
+  outline:0;
+
+  background:transparent;
+
+  color:#15171a;
+
+  font-size:18px;
+  font-weight:700;
+}
+
+.amount-input::placeholder{
+  color:#b2b5ba;
+  font-weight:400;
+}
+
+
+/* =====================================================
+   QUICK AMOUNTS
+===================================================== */
+
+.quick-title{
+  margin-top:12px;
+  margin-bottom:7px;
+
+  color:#777d85;
+
+  font-size:10px;
+  font-weight:600;
+}
+
+.quick-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:6px;
+}
+
+.quick-btn{
+  height:36px;
+
+  border:1px solid #dedfe3;
+  border-radius:7px;
+
+  background:#fff;
+
+  color:#33373c;
+
+  font-size:11px;
+  font-weight:700;
+
+  transition:.15s ease;
+}
+
+.quick-btn:active{
+  transform:scale(.97);
+}
+
+.quick-btn.selected{
+  color:var(--red);
+
+  border-color:var(--red);
+
+  background:var(--red-soft);
+}
+
+
+/* =====================================================
+   MAIN BUTTON
+===================================================== */
+
+.fund-now{
+  width:100%;
+  height:48px;
+
+  margin-top:15px;
+
+  border-radius:6px;
+
+  color:#fff;
+  background:var(--red);
+
+  font-size:14px;
+  font-weight:800;
+
+  box-shadow:
+    0 5px 12px rgba(229,27,47,.18);
+
+  transition:.15s ease;
+}
+
+.fund-now:active{
+  transform:scale(.985);
+}
+
+.fund-now:disabled{
+  opacity:.45;
+
+  box-shadow:none;
+}
+
+
+/* =====================================================
+   SECURITY NOTE
+===================================================== */
+
+.security-note{
+  margin-top:auto;
+
+  padding-top:12px;
+
+  text-align:center;
+}
+
+.security-icon{
+  width:27px;
+  height:27px;
+
+  margin:0 auto 5px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:50%;
+
+  color:var(--red);
+  background:var(--red-soft);
+
+  font-size:12px;
+}
+
+.security-note strong{
+  display:block;
+
+  font-size:10px;
+  font-weight:700;
+}
+
+.security-note span{
+  display:block;
+
+  margin-top:2px;
+
+  color:#969ba2;
+
+  font-size:9px;
+  font-weight:400;
+}
+
+
+/* =====================================================
+   SPORTYBET LOGO
+===================================================== */
+
+.sporty-logo{
+  display:block;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+}
+
+
+/* =====================================================
+   REDIRECT SCREEN
+===================================================== */
+
+.redirect-screen{
+  width:100%;
+
+  height:calc(100dvh - 62px);
+  min-height:calc(100dvh - 62px);
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  padding:25px;
+
+  text-align:center;
+
+  background:#fff;
+
+  overflow:hidden;
+}
+
+.gateway-logo{
+  width:70px;
+  height:70px;
+
+  margin-bottom:20px;
+
+  overflow:hidden;
+
+  border-radius:20px;
+
+  background:#fff;
+
+  box-shadow:
+    0 5px 25px rgba(0,0,0,.08);
+}
+
+.redirect-title{
+  font-size:20px;
+  font-weight:700;
+}
+
+.redirect-text{
+  margin-top:7px;
+
+  color:#858990;
+
+  font-size:12px;
+  font-weight:400;
+}
+
+.loader{
+  width:40px;
+  height:40px;
+
+  margin-top:24px;
+
+  border-radius:50%;
+
+  border:4px solid #e5e6e8;
+  border-top-color:var(--red);
+
+  animation:spin .8s linear infinite;
+}
+
+.redirect-small{
+  margin-top:22px;
+
+  color:#a0a4aa;
+
+  font-size:9px;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+
+/* =====================================================
+   PAYMENT SCREEN
+===================================================== */
+
+.payment-screen{
+  width:100%;
+
+  height:calc(100dvh - 62px);
+  min-height:calc(100dvh - 62px);
+
+  background:#f5f6f8;
+
+  overflow:hidden;
+}
+
+
+/* =====================================================
+   GATEWAY HEADER
+===================================================== */
+
+.gateway-header{
+  height:54px;
+  min-height:54px;
+
+  display:flex;
+  align-items:center;
+
+  padding:0 16px;
+
+  background:#fff;
+
+  border-bottom:1px solid #e6e7e9;
+}
+
+.gateway-back{
+  width:32px;
+  height:32px;
+
+  display:grid;
+  place-items:center;
+
+  background:transparent;
+
+  color:#596069;
+
+  font-size:27px;
+}
+
+.gateway-title{
+  margin-left:9px;
+
+  font-size:16px;
+  font-weight:750;
+}
+
+.gateway-language{
+  margin-left:auto;
+
+  color:#686e75;
+
+  font-size:12px;
+  font-weight:600;
+}
+
+
+/* =====================================================
+   PAYMENT BODY
+===================================================== */
+
+.payment-body{
+  height:calc(100% - 54px);
+
+  padding:12px 13px 13px;
+
+  overflow:hidden;
+}
+
+
+/* =====================================================
+   DESTINATION
+===================================================== */
+
+.destination{
+  text-align:center;
+
+  padding:6px 0 10px;
+}
+
+.destination-brand{
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:7px;
+}
+
+.destination-logo{
+  width:30px;
+  height:30px;
+
+  overflow:hidden;
+
+  border-radius:7px;
+
+  background:#fff;
+
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.09);
+}
+
+.destination-brand-name{
+  font-size:19px;
+  font-weight:800;
+
+  letter-spacing:-.5px;
+}
+
+.destination-powered{
+  margin-top:5px;
+
+  color:#969ba2;
+
+  font-size:10px;
+}
+
+
+/* =====================================================
+   PAYMENT CARD
+===================================================== */
+
+.payment-card{
+  overflow:hidden;
+
+  background:#fff;
+
+  border-radius:11px;
+
+  box-shadow:
+    0 2px 12px rgba(20,25,30,.06);
+}
+
+
+/* =====================================================
+   AMOUNT
+===================================================== */
+
+.amount-section{
+  padding:14px 15px 13px;
+
+  text-align:center;
+
+  border-bottom:1px solid #eeeeef;
+}
+
+.pay-to{
+  color:#858b92;
+
+  font-size:11px;
+  font-weight:500;
+}
+
+.payment-amount{
+  margin-top:6px;
+
+  font-size:31px;
+  line-height:1;
+
+  font-weight:800;
+
+  letter-spacing:-.9px;
+}
+
+.timer{
+  display:inline-flex;
+
+  align-items:center;
+  gap:5px;
+
+  margin-top:9px;
+
+  padding:6px 9px;
+
+  border-radius:5px;
+
+  background:#fff0f2;
+  color:#d91a2d;
+
+  font-size:10px;
+  font-weight:700;
+}
+
+.timer-icon{
+  font-size:11px;
+}
+
+
+/* =====================================================
+   STEPS
+===================================================== */
+
+.steps-heading{
+  padding:14px 15px 8px;
+
+  font-size:15px;
+  font-weight:850;
+
+  color:#17191d;
+}
+
+.step-row{
+  display:flex;
+
+  align-items:flex-start;
+
+  gap:10px;
+
+  padding:9px 15px;
+
+  border-top:1px solid #f0f0f1;
+}
+
+.step-number{
+  flex:0 0 27px;
+
+  width:27px;
+  height:27px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:50%;
+
+  background:#fcecef;
+  color:var(--red);
+
+  font-size:11px;
+  font-weight:850;
+}
+
+.step-content{
+  padding-top:1px;
+}
+
+.step-content strong{
+  display:block;
+
+  font-size:13px;
+  font-weight:800;
+
+  color:#202328;
+}
+
+.step-content p{
+  margin-top:3px;
+
+  color:#686e75;
+
+  font-size:10.5px;
+  line-height:1.4;
+
+  font-weight:500;
+}
+
+
+/* =====================================================
+   ACCOUNT
+===================================================== */
+
+.account-box{
+  margin:10px 15px 0;
+
+  padding:10px 12px;
+
+  border-radius:7px;
+
+  background:#f7f8f9;
+
+  border:1px solid #e8e9eb;
+}
+
+.account-label{
+  color:#8b9096;
+
+  font-size:9px;
+  font-weight:750;
+
+  letter-spacing:.3px;
+}
+
+.account-row{
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  gap:8px;
+
+  margin-top:5px;
+}
+
+.account-number{
+  font-size:20px;
+
+  font-weight:850;
+
+  letter-spacing:.6px;
+}
+
+.copy-account{
+  height:30px;
+
+  padding:0 11px;
+
+  border-radius:5px;
+
+  background:#fff;
+
+  border:1px solid #dfe1e4;
+
+  color:#33373c;
+
+  font-size:9px;
+  font-weight:850;
+}
+
+
+/* =====================================================
+   WARNING
+===================================================== */
+
+.warning{
+  margin:8px 15px 0;
+
+  padding:9px;
+
+  border-radius:6px;
+
+  background:#fff8e9;
+
+  border:1px solid #f5e5bc;
+
+  color:#765a1d;
+
+  font-size:9px;
+
+  line-height:1.45;
+
+  font-weight:600;
+}
+
+
+/* =====================================================
+   PAID BUTTON
+===================================================== */
+
+.paid-button{
+  width:calc(100% - 30px);
+
+  height:46px;
+
+  margin:10px 15px 11px;
+
+  border-radius:6px;
+
+  background:var(--red);
+
+  color:#fff;
+
+  font-size:13px;
+  font-weight:850;
+
+  box-shadow:
+    0 5px 13px rgba(229,27,47,.18);
+}
+
+.paid-button:active{
+  transform:scale(.985);
+}
+
+.paid-button:disabled{
+  opacity:.55;
+}
+
+
+/* =====================================================
+   GATEWAY FOOTER
+===================================================== */
+
+.gateway-footer{
+  padding:3px 15px 0;
+
+  text-align:center;
+
+  color:#9da1a7;
+
+  font-size:8px;
+
+  line-height:1.4;
+}
+
+
+/* =====================================================
+   OVERLAY
+===================================================== */
+
+.overlay{
+  position:fixed;
+
+  inset:0;
+
+  z-index:500;
+
+  display:none;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
+  background:rgba(20,23,28,.48);
+
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+}
+
+.overlay.show{
+  display:flex;
+}
+
+
+/* =====================================================
+   CHECK MODAL
+===================================================== */
+
+.check-modal{
+  width:min(340px,100%);
+
+  padding:25px 18px 20px;
+
+  text-align:center;
+
+  background:#fff;
+
+  border-radius:13px;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.22);
+
+  animation:modalIn .22s ease;
+}
+
+.check-loader{
+  width:50px;
+  height:50px;
+
+  margin:0 auto 16px;
+
+  border-radius:50%;
+
+  border:5px solid #f2dce0;
+
+  border-top-color:var(--red);
+
+  animation:spin .75s linear infinite;
+}
+
+.check-title{
+  font-size:17px;
+  font-weight:800;
+}
+
+.check-description{
+  margin-top:6px;
+
+  color:#81868d;
+
+  font-size:10px;
+
+  line-height:1.5;
+}
+
+.check-amount{
+  margin-top:13px;
+
+  padding:9px;
+
+  border-radius:7px;
+
+  background:#f7f7f8;
+
+  color:#333;
+
+  font-size:11px;
+  font-weight:700;
+}
+
+@keyframes modalIn{
+
+  from{
+    opacity:0;
+
+    transform:
+      translateY(12px)
+      scale(.97);
+  }
+
+  to{
+    opacity:1;
+
+    transform:none;
+  }
+
+}
+
+
+/* =====================================================
+   FAILURE MODAL
+===================================================== */
+
+.failure-icon{
+  width:58px;
+  height:58px;
+
+  margin:0 auto 14px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:50%;
+
+  background:#fff0f2;
+
+  color:var(--red);
+
+  font-size:32px;
+  font-weight:400;
+}
+
+.failure-title{
+  font-size:19px;
+  font-weight:800;
+}
+
+.failure-message{
+  margin-top:7px;
+
+  color:#737980;
+
+  font-size:10px;
+
+  line-height:1.5;
+}
+
+.failure-support{
+  margin-top:9px;
+
+  color:#737980;
+
+  font-size:10px;
+
+  line-height:1.5;
+}
+
+.failure-support a{
+  color:var(--red);
+
+  font-weight:800;
+
+  text-decoration:none;
+}
+
+.failure-support a:hover{
+  text-decoration:underline;
+}
+
+.failure-amount{
+  margin-top:14px;
+
+  padding:10px;
+
+  border-radius:7px;
+
+  background:#f7f7f8;
+
+  text-align:left;
+}
+
+.failure-amount span{
+  display:block;
+
+  color:#898e95;
+
+  font-size:8px;
+}
+
+.failure-amount strong{
+  display:block;
+
+  margin-top:3px;
+
+  font-size:14px;
+}
+
+.failure-actions{
+  display:flex;
+
+  gap:8px;
+
+  margin-top:15px;
+}
+
+.failure-actions button{
+  flex:1;
+
+  height:42px;
+
+  border-radius:6px;
+
+  font-size:10px;
+  font-weight:800;
+}
+
+.try-again{
+  color:#fff;
+
+  background:var(--red);
+}
+
+.close-btn{
+  color:#44484e;
+
+  background:#eceef0;
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast{
+  position:fixed;
+
+  left:50%;
+  bottom:20px;
+
+  z-index:800;
+
+  transform:
+    translate(-50%,20px);
+
+  padding:8px 12px;
+
+  border-radius:6px;
+
+  background:rgba(20,23,27,.94);
+
+  color:#fff;
+
+  font-size:9px;
+  font-weight:600;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:.22s ease;
+}
+
+.toast.show{
+  opacity:1;
+
+  transform:
+    translate(-50%,0);
+}
+
+
+/* =====================================================
+   SHORT PHONES
+===================================================== */
+
+@media(max-height:700px){
+
+  .header{
+    height:56px;
+    min-height:56px;
+  }
+
+  .amount-screen{
+    height:calc(100dvh - 56px);
+    min-height:calc(100dvh - 56px);
+
+    padding-top:12px;
+  }
+
+  .amount-title{
+    font-size:23px;
+  }
+
+  .amount-description{
+    font-size:11px;
+
+    margin-top:5px;
+  }
+
+  .current-balance{
+    margin-top:10px;
+
+    padding:8px 12px;
+  }
+
+  .amount-form{
+    margin-top:10px;
+  }
+
+  .amount-input-wrap{
+    height:46px;
+  }
+
+  .quick-title{
+    margin-top:9px;
+    margin-bottom:5px;
+  }
+
+  .quick-btn{
+    height:32px;
+  }
+
+  .fund-now{
+    height:44px;
+
+    margin-top:11px;
+  }
+
+  .security-note{
+    padding-top:7px;
+  }
+
+  .security-icon{
+    width:24px;
+    height:24px;
+
+    margin-bottom:3px;
+  }
+
+  .security-note strong{
+    font-size:9px;
+  }
+
+  .security-note span{
+    font-size:8px;
+  }
+
+  .payment-screen{
+    height:calc(100dvh - 56px);
+    min-height:calc(100dvh - 56px);
+  }
+
+}
+
+
+/* =====================================================
+   VERY SHORT PHONES
+===================================================== */
+
+@media(max-height:620px){
+
+  .header{
+    height:52px;
+    min-height:52px;
+  }
+
+  .header-title{
+    font-size:18px;
+  }
+
+  .header-help{
+    width:28px;
+    height:28px;
+
+    font-size:15px;
+  }
+
+  .amount-screen{
+    height:calc(100dvh - 52px);
+    min-height:calc(100dvh - 52px);
+
+    padding:
+      9px
+      14px
+      7px;
+  }
+
+  .amount-title{
+    font-size:21px;
+  }
+
+  .amount-description{
+    font-size:10px;
+
+    line-height:1.3;
+  }
+
+  .current-balance{
+    margin-top:7px;
+
+    padding:7px 10px;
+  }
+
+  .balance-value{
+    font-size:17px;
+  }
+
+  .amount-form{
+    margin-top:7px;
+  }
+
+  .amount-label{
+    margin-bottom:4px;
+
+    font-size:10px;
+  }
+
+  .amount-input-wrap{
+    height:42px;
+  }
+
+  .currency{
+    font-size:17px;
+  }
+
+  .amount-input{
+    font-size:16px;
+  }
+
+  .quick-title{
+    margin-top:6px;
+    margin-bottom:4px;
+  }
+
+  .quick-btn{
+    height:29px;
+
+    font-size:9px;
+  }
+
+  .fund-now{
+    height:40px;
+
+    margin-top:8px;
+
+    font-size:12px;
+  }
+
+  .security-note{
+    padding-top:4px;
+  }
+
+  .security-icon{
+    width:21px;
+    height:21px;
+
+    font-size:10px;
+  }
+
+}
+
+
+/* =====================================================
+   DESKTOP
+===================================================== */
+
+@media(min-width:600px){
+
+  body{
+    background:#e9ebee;
+  }
+
+  .page{
+    min-height:100dvh;
+
+    box-shadow:
+      0 0 35px rgba(0,0,0,.08);
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="app">
+
+<div class="page">
+
+
+<!-- ===================================================
+     HEADER
+=================================================== -->
+
+<header class="header">
+
+  <div class="header-left">
+
+    <button
+      class="back-btn"
+      id="backButton"
+      type="button"
+      aria-label="Back"
+    >
+      ‹
+    </button>
+
+    <div class="header-title">
+      Fund Wallet
+    </div>
+
+  </div>
+
+  <button
+    class="header-help"
+    type="button"
+    id="helpButton"
+  >
+    ?
+  </button>
+
+</header>
+
+
+<!-- ===================================================
+     SCREEN 1 — ENTER AMOUNT
+=================================================== -->
+
+<section
+  class="amount-screen"
+  id="amountScreen"
+>
+
+  <div class="amount-top">
+
+    <div class="small-label">
+      Wallet
+    </div>
+
+    <h1 class="amount-title">
+      Fund your account
+    </h1>
+
+    <p class="amount-description">
+      Enter the amount you want to add to your
+      SportyMine wallet and continue to payment.
+    </p>
+
+
+    <div class="current-balance">
+
+      <div class="balance-label">
+        Current balance
+      </div>
+
+      <div class="balance-value">
+        ₦500.00
+      </div>
+
+    </div>
+
+
+    <form
+      class="amount-form"
+      id="amountForm"
+    >
+
+      <label
+        class="amount-label"
+        for="amountInput"
+      >
+        Funding amount
+      </label>
+
+      <div class="amount-input-wrap">
+
+        <span class="currency">
+          ₦
+        </span>
+
+        <input
+          class="amount-input"
+          id="amountInput"
+          type="number"
+          inputmode="numeric"
+          min="1000"
+          step="100"
+          placeholder="Enter amount"
+          autocomplete="off"
+        >
+
+      </div>
+
+
+      <div class="quick-title">
+        Quick amount
+      </div>
+
+      <div class="quick-grid">
+
+        <button
+          type="button"
+          class="quick-btn"
+          data-amount="1000"
+        >
+          ₦1,000
+        </button>
+
+        <button
+          type="button"
+          class="quick-btn"
+          data-amount="2000"
+        >
+          ₦2,000
+        </button>
+
+        <button
+          type="button"
+          class="quick-btn"
+          data-amount="5000"
+        >
+          ₦5,000
+        </button>
+
+        <button
+          type="button"
+          class="quick-btn"
+          data-amount="10000"
+        >
+          ₦10,000
+        </button>
+
+        <button
+          type="button"
+          class="quick-btn"
+          data-amount="20000"
+        >
+          ₦20,000
+        </button>
+
+        <button
+          type="button"
+          class="quick-btn"
+          data-amount="50000"
+        >
+          ₦50,000
+        </button>
+
+      </div>
+
+
+      <button
+        class="fund-now"
+        id="fundNow"
+        type="submit"
+        disabled
+      >
+        FUND NOW
+      </button>
+
+    </form>
+
+  </div>
+
+
+  <div class="security-note">
+
+    <div class="security-icon">
+      ✓
+    </div>
+
+    <strong>
+      Secure payment
+    </strong>
+
+    <span>
+      Your payment details are handled securely.
+    </span>
+
+  </div>
+
+</section>
+
+
+
+<!-- ===================================================
+     SCREEN 2 — REDIRECTING
+=================================================== -->
+
+<section
+  class="redirect-screen hidden"
+  id="redirectScreen"
+>
+
+  <div class="gateway-logo">
+
+    <img
+      src="70443.webp"
+      class="sporty-logo"
+      alt="SportyBet"
+    >
+
+  </div>
+
+  <div class="redirect-title">
+    SportyBet
+  </div>
+
+  <div class="redirect-text">
+    You're being redirected to SportyBet
+  </div>
+
+  <div class="loader"></div>
+
+  <div class="redirect-small">
+    Please wait while we prepare your payment...
+  </div>
+
+</section>
+
+
+
+<!-- ===================================================
+     SCREEN 3 — PAYMENT GATEWAY
+=================================================== -->
+
+<section
+  class="payment-screen hidden"
+  id="paymentScreen"
+>
+
+  <div class="gateway-header">
+
+    <button
+      class="gateway-back"
+      id="gatewayBack"
+      type="button"
+    >
+      ‹
+    </button>
+
+    <div class="gateway-title">
+      Payment details
+    </div>
+
+    <div class="gateway-language">
+      English
+    </div>
+
+  </div>
+
+
+  <div class="payment-body">
+
+
+    <!-- DESTINATION -->
+
+    <div class="destination">
+
+      <div class="destination-brand">
+
+        <div class="destination-logo">
+
+          <img
+            src="70443.webp"
+            class="sporty-logo"
+            alt="SportyBet"
+          >
+
+        </div>
+
+        <div class="destination-brand-name">
+          SportyBet
+        </div>
+
+      </div>
+
+      <div class="destination-powered">
+        SportyMine payment request
+      </div>
+
+    </div>
+
+
+    <div class="payment-card">
+
+
+      <!-- AMOUNT -->
+
+      <div class="amount-section">
+
+        <div class="pay-to">
+          Amount to deposit
+        </div>
+
+        <div
+          class="payment-amount"
+          id="paymentAmount"
+        >
+          ₦0
+        </div>
+
+        <div class="timer">
+
+          <span class="timer-icon">
+            ◷
+          </span>
+
+          <span>
+            <span id="timerMinutes">15</span>:<span id="timerSeconds">00</span>
+            left to complete payment
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- STEPS -->
+
+      <div class="steps-heading">
+        How to make your deposit
+      </div>
+
+
+      <!-- STEP 1 -->
+
+      <div class="step-row">
+
+        <div class="step-number">
+          1
+        </div>
+
+        <div class="step-content">
+
+          <strong>
+            Open your banking app
+          </strong>
+
+          <p>
+            Log in to your bank or payment app.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- STEP 2 -->
+
+      <div class="step-row">
+
+        <div class="step-number">
+          2
+        </div>
+
+        <div class="step-content">
+
+          <strong>
+            Select SportyBet
+          </strong>
+
+          <p>
+            Go to betting payments and select
+            SportyBet as the destination.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- STEP 3 -->
+
+      <div class="step-row">
+
+        <div class="step-number">
+          3
+        </div>
+
+        <div class="step-content">
+
+          <strong>
+            Enter the amount
+          </strong>
+
+          <p>
+            Enter exactly the amount shown above.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- STEP 4 -->
+
+      <div class="step-row">
+
+        <div class="step-number">
+          4
+        </div>
+
+        <div class="step-content">
+
+          <strong>
+            Make the deposit
+          </strong>
+
+          <p>
+            Make the deposit to the SportyBet
+            account number shown below.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- ACCOUNT -->
+
+      <div class="account-box">
+
+        <div class="account-label">
+          SPORTYBET ACCOUNT / USER ID
+        </div>
+
+        <div class="account-row">
+
+          <div class="account-number">
+            8050976449
+          </div>
+
+          <button
+            class="copy-account"
+            id="copyAccount"
+            type="button"
+          >
+            COPY
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- WARNING -->
+
+      <div class="warning">
+
+        Make sure the amount and SportyBet
+        account / user ID are correct before
+        completing your deposit. Do not close
+        this page until your payment has been
+        completed.
+
+      </div>
+
+
+      <!-- PAID -->
+
+      <button
+        class="paid-button"
+        id="paidButton"
+        type="button"
+      >
+        I HAVE PAID
+      </button>
+
+
+    </div>
+
+
+    <div class="gateway-footer">
+
+      This payment page is for your SportyMine
+      funding request. Always confirm the destination
+      and amount before making a payment.
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ===================================================
+     CHECKING OVERLAY
+=================================================== -->
+
+<div
+  class="overlay"
+  id="checkingOverlay"
+>
+
+  <div class="check-modal">
+
+    <div class="check-loader"></div>
+
+    <div class="check-title">
+      Checking payment...
+    </div>
+
+    <div class="check-description">
+      Please wait while we check your funding request.
+      Do not close this page.
+    </div>
+
+    <div
+      class="check-amount"
+      id="checkingAmount"
+    >
+      Amount: ₦0
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- ===================================================
+     FAILURE OVERLAY
+=================================================== -->
+
+<div
+  class="overlay"
+  id="failureOverlay"
+>
+
+  <div class="check-modal">
+
+    <div class="failure-icon">
+      ×
+    </div>
+
+    <div class="failure-title">
+      Funding unsuccessful
+    </div>
+
+    <div class="failure-message">
+
+      Deposit was not made to the SportyBet account.
+      Please make the deposit and try again.
+
+    </div>
+
+    <div class="failure-support">
+
+      If this issue persists,
+      <a
+        href="https://wa.me/2348050976449"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        CONTACT SUPPORT
+      </a>
+
+    </div>
+
+
+    <div class="failure-amount">
+
+      <span>
+        FUNDING AMOUNT
+      </span>
+
+      <strong id="failureAmount">
+        ₦0
+      </strong>
+
+    </div>
+
+
+    <div class="failure-actions">
+
+      <button
+        class="close-btn"
+        id="closeFailure"
+        type="button"
+      >
+        CLOSE
+      </button>
+
+      <button
+        class="try-again"
+        id="tryAgain"
+        type="button"
+      >
+        TRY AGAIN
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- ===================================================
+     TOAST
+=================================================== -->
+
+<div
+  class="toast"
+  id="toast"
+></div>
+
+
+</div>
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const amountScreen =
+  document.getElementById("amountScreen");
+
+const redirectScreen =
+  document.getElementById("redirectScreen");
+
+const paymentScreen =
+  document.getElementById("paymentScreen");
+
+const amountInput =
+  document.getElementById("amountInput");
+
+const fundNow =
+  document.getElementById("fundNow");
+
+const amountForm =
+  document.getElementById("amountForm");
+
+const paymentAmount =
+  document.getElementById("paymentAmount");
+
+const checkingOverlay =
+  document.getElementById("checkingOverlay");
+
+const failureOverlay =
+  document.getElementById("failureOverlay");
+
+const checkingAmount =
+  document.getElementById("checkingAmount");
+
+const failureAmount =
+  document.getElementById("failureAmount");
+
+const toast =
+  document.getElementById("toast");
+
+const paidButton =
+  document.getElementById("paidButton");
+
+const copyAccount =
+  document.getElementById("copyAccount");
+
+const timerMinutes =
+  document.getElementById("timerMinutes");
+
+const timerSeconds =
+  document.getElementById("timerSeconds");
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let selectedAmount = 0;
+
+let timerSecondsLeft = 15 * 60;
+
+let timerInterval = null;
+
+
+/* =====================================================
+   FORMAT NAIRA
+===================================================== */
+
+function formatNaira(amount){
+
+  return "₦" +
+    Number(amount).toLocaleString(
+      "en-NG",
+      {
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+      }
+    );
+
+}
+
+
+/* =====================================================
+   GET AMOUNT
+===================================================== */
+
+function getAmount(){
+
+  const value =
+    Number(amountInput.value);
+
+  if(!Number.isFinite(value)){
+    return 0;
+  }
+
+  return Math.floor(value);
+
+}
+
+
+/* =====================================================
+   VALID AMOUNT
+===================================================== */
+
+function validAmount(amount){
+
+  return amount >= 1000;
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(message){
+
+  toast.textContent =
+    message;
+
+  toast.classList.add(
+    "show"
+  );
+
+  clearTimeout(
+    window.toastTimer
+  );
+
+  window.toastTimer =
+    setTimeout(() => {
+
+      toast.classList.remove(
+        "show"
+      );
+
+    },1800);
+
+}
+
+
+/* =====================================================
+   QUICK AMOUNTS
+===================================================== */
+
+document
+  .querySelectorAll(".quick-btn")
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        const amount =
+          Number(
+            button.dataset.amount
+          );
+
+        amountInput.value =
+          amount;
+
+        document
+          .querySelectorAll(
+            ".quick-btn"
+          )
+          .forEach(btn => {
+
+            btn.classList.remove(
+              "selected"
+            );
+
+          });
+
+        button.classList.add(
+          "selected"
+        );
+
+        updateFundButton();
+
+      }
+    );
+
+  });
+
+
+/* =====================================================
+   AMOUNT INPUT
+===================================================== */
+
+amountInput.addEventListener(
+  "input",
+  () => {
+
+    document
+      .querySelectorAll(
+        ".quick-btn"
+      )
+      .forEach(btn => {
+
+        if(
+          Number(
+            btn.dataset.amount
+          ) !== getAmount()
+        ){
+
+          btn.classList.remove(
+            "selected"
+          );
+
+        }
+
+      });
+
+    updateFundButton();
+
+  }
+);
+
+
+/* =====================================================
+   FUND BUTTON
+===================================================== */
+
+function updateFundButton(){
+
+  const amount =
+    getAmount();
+
+  fundNow.disabled =
+    !validAmount(amount);
+
+}
+
+
+/* =====================================================
+   START PAYMENT
+===================================================== */
+
+amountForm.addEventListener(
+  "submit",
+  event => {
+
+    event.preventDefault();
+
+    const amount =
+      getAmount();
+
+    if(
+      !validAmount(amount)
+    ){
+
+      showToast(
+        "Minimum funding amount is ₦1,000"
+      );
+
+      amountInput.focus();
+
+      return;
+
+    }
+
+    selectedAmount =
+      amount;
+
+
+    try{
+
+      sessionStorage.setItem(
+        "sportymine_fund_amount",
+        String(
+          selectedAmount
+        )
+      );
+
+    }catch(error){}
+
+
+    startRedirect();
+
+  }
+);
+
+
+/* =====================================================
+   REDIRECT
+===================================================== */
+
+function startRedirect(){
+
+  amountScreen.classList.add(
+    "hidden"
+  );
+
+  redirectScreen.classList.remove(
+    "hidden"
+  );
+
+
+  setTimeout(
+    () => {
+
+      redirectScreen.classList.add(
+        "hidden"
+      );
+
+      paymentScreen.classList.remove(
+        "hidden"
+      );
+
+      preparePayment();
+
+    },
+    1800
+  );
+
+}
+
+
+/* =====================================================
+   PAYMENT PREPARATION
+===================================================== */
+
+function preparePayment(){
+
+  paymentAmount.textContent =
+    formatNaira(
+      selectedAmount
+    );
+
+  checkingAmount.textContent =
+    "Amount: " +
+    formatNaira(
+      selectedAmount
+    );
+
+  failureAmount.textContent =
+    formatNaira(
+      selectedAmount
+    );
+
+  startTimer();
+
+}
+
+
+/* =====================================================
+   TIMER
+===================================================== */
+
+function startTimer(){
+
+  clearInterval(
+    timerInterval
+  );
+
+  timerSecondsLeft =
+    15 * 60;
+
+  updateTimer();
+
+  timerInterval =
+    setInterval(
+      () => {
+
+        timerSecondsLeft--;
+
+        updateTimer();
+
+        if(
+          timerSecondsLeft <= 0
+        ){
+
+          clearInterval(
+            timerInterval
+          );
+
+          paidButton.disabled =
+            true;
+
+          paidButton.textContent =
+            "PAYMENT EXPIRED";
+
+          showToast(
+            "This payment request has expired"
+          );
+
+        }
+
+      },
+      1000
+    );
+
+}
+
+
+/* =====================================================
+   UPDATE TIMER
+===================================================== */
+
+function updateTimer(){
+
+  const minutes =
+    Math.floor(
+      timerSecondsLeft / 60
+    );
+
+  const seconds =
+    timerSecondsLeft % 60;
+
+  timerMinutes.textContent =
+    String(
+      minutes
+    ).padStart(
+      2,
+      "0"
+    );
+
+  timerSeconds.textContent =
+    String(
+      seconds
+    ).padStart(
+      2,
+      "0"
+    );
+
+}
+
+
+/* =====================================================
+   COPY ACCOUNT
+===================================================== */
+
+copyAccount.addEventListener(
+  "click",
+  async () => {
+
+    const account =
+      "8050976449";
+
+    try{
+
+      await navigator.clipboard.writeText(
+        account
+      );
+
+      copyAccount.textContent =
+        "COPIED";
+
+      showToast(
+        "SportyBet account / user ID copied"
+      );
+
+      setTimeout(
+        () => {
+
+          copyAccount.textContent =
+            "COPY";
+
+        },
+        1500
+      );
+
+    }catch(error){
+
+      showToast(
+        "Copy failed — copy the account / user ID manually"
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   I HAVE PAID
+===================================================== */
+
+paidButton.addEventListener(
+  "click",
+  () => {
+
+    if(!selectedAmount){
+
+      showToast(
+        "Payment amount is missing"
+      );
+
+      return;
+
+    }
+
+
+    paidButton.disabled =
+      true;
+
+    paidButton.textContent =
+      "CHECKING...";
+
+
+    checkingOverlay.classList.add(
+      "show"
+    );
+
+
+    /*
+      Demo payment verification.
+
+      Replace this timeout with your
+      real backend payment verification
+      when you connect a payment API.
+    */
+
+    setTimeout(
+      () => {
+
+        checkingOverlay.classList.remove(
+          "show"
+        );
+
+        failureOverlay.classList.add(
+          "show"
+        );
+
+        paidButton.disabled =
+          false;
+
+        paidButton.textContent =
+          "I HAVE PAID";
+
+      },
+      3200
+    );
+
+  }
+);
+
+
+/* =====================================================
+   CLOSE FAILURE
+===================================================== */
+
+document
+  .getElementById(
+    "closeFailure"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      failureOverlay.classList.remove(
+        "show"
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   TRY AGAIN
+===================================================== */
+
+document
+  .getElementById(
+    "tryAgain"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      failureOverlay.classList.remove(
+        "show"
+      );
+
+      paidButton.disabled =
+        false;
+
+      paidButton.textContent =
+        "I HAVE PAID";
+
+    }
+  );
+
+
+/* =====================================================
+   PAYMENT BACK
+===================================================== */
+
+document
+  .getElementById(
+    "gatewayBack"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      clearInterval(
+        timerInterval
+      );
+
+      paymentScreen.classList.add(
+        "hidden"
+      );
+
+      amountScreen.classList.remove(
+        "hidden"
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   MAIN BACK
+===================================================== */
+
+document
+  .getElementById(
+    "backButton"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      if(
+        !amountScreen.classList.contains(
+          "hidden"
+        )
+      ){
+
+        window.history.back();
+
+      }
+
+    }
+  );
+
+
+/* =====================================================
+   HELP
+===================================================== */
+
+document
+  .getElementById(
+    "helpButton"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      showToast(
+        "Enter your amount and tap FUND NOW"
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   LOAD PREVIOUS AMOUNT
+===================================================== */
+
+window.addEventListener(
+  "load",
+  () => {
+
+    try{
+
+      const saved =
+        Number(
+          sessionStorage.getItem(
+            "sportymine_fund_amount"
+          )
+        ) || 0;
+
+      if(
+        validAmount(saved)
+      ){
+
+        amountInput.value =
+          saved;
+
+        selectedAmount =
+          saved;
+
+        updateFundButton();
+
+      }
+
+    }catch(error){}
+
+  }
+);
+
+</script>
+
+</body>
+</html>

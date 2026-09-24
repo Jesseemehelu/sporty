@@ -1,0 +1,2652 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+<title>Odds — SportyMine</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html,
+body{
+  width:100%;
+  min-height:100%;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f5f5f5;
+  color:#30343a;
+  padding-bottom:72px;
+}
+
+button,
+a{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+  border:0;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+
+/* =====================================================
+   TOP HEADER
+===================================================== */
+
+.top-header{
+  height:76px;
+  background:#ed132d;
+  color:#fff;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 14px;
+
+  box-shadow:0 2px 5px rgba(0,0,0,.18);
+}
+
+.brand{
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:-1.5px;
+  font-style:italic;
+}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+
+/* SEARCH */
+
+.search{
+  width:34px;
+  height:34px;
+  position:relative;
+}
+
+.search:before{
+  content:"";
+
+  position:absolute;
+
+  width:18px;
+  height:18px;
+
+  border:4px solid #fff;
+  border-radius:50%;
+
+  top:2px;
+  left:1px;
+}
+
+.search:after{
+  content:"";
+
+  position:absolute;
+
+  width:12px;
+  height:4px;
+
+  background:#fff;
+
+  transform:rotate(45deg);
+
+  left:20px;
+  top:22px;
+
+  border-radius:3px;
+}
+
+
+/* BALANCE */
+
+.balance{
+  min-width:145px;
+  height:48px;
+
+  padding:0 11px;
+
+  border:2px solid rgba(255,255,255,.9);
+  border-radius:4px;
+
+  display:flex;
+  align-items:center;
+
+  gap:9px;
+
+  background:rgba(0,0,0,.06);
+}
+
+.balance-icon{
+  width:27px;
+  height:27px;
+
+  border-radius:50%;
+
+  background:#111;
+
+  display:grid;
+  place-items:center;
+
+  font-size:14px;
+}
+
+.balance small{
+  display:block;
+
+  font-size:8px;
+
+  opacity:.85;
+}
+
+.balance strong{
+  display:block;
+
+  font-size:15px;
+
+  margin-top:1px;
+}
+
+
+/* =====================================================
+   CATEGORY BAR
+===================================================== */
+
+.category-bar{
+  height:58px;
+
+  background:#fff;
+
+  border-bottom:1px solid #ddd;
+
+  display:flex;
+  align-items:center;
+
+  overflow-x:auto;
+
+  white-space:nowrap;
+
+  scrollbar-width:none;
+}
+
+.category-bar::-webkit-scrollbar{
+  display:none;
+}
+
+.category{
+  height:100%;
+
+  padding:0 17px;
+
+  display:flex;
+  align-items:center;
+
+  position:relative;
+
+  font-size:16px;
+
+  font-weight:700;
+
+  color:#363a40;
+
+  flex:0 0 auto;
+}
+
+.category.active{
+  color:#25934c;
+}
+
+.category.active:after{
+  content:"";
+
+  position:absolute;
+
+  bottom:0;
+
+  left:12px;
+  right:12px;
+
+  height:3px;
+
+  background:#ed132d;
+}
+
+.category-separator{
+  height:30px;
+  width:1px;
+
+  background:#e3e3e3;
+
+  flex:0 0 auto;
+}
+
+
+/* =====================================================
+   MARKET BAR
+===================================================== */
+
+.market-bar{
+  height:57px;
+
+  background:#fff;
+
+  border-bottom:1px solid #ddd;
+
+  display:flex;
+  align-items:center;
+
+  overflow-x:auto;
+
+  scrollbar-width:none;
+
+  white-space:nowrap;
+}
+
+.market-bar::-webkit-scrollbar{
+  display:none;
+}
+
+.market{
+  height:100%;
+
+  display:flex;
+  align-items:center;
+
+  padding:0 17px;
+
+  font-size:14px;
+
+  font-weight:700;
+
+  color:#3d4147;
+
+  flex:0 0 auto;
+}
+
+.market.active{
+  color:#ed132d;
+}
+
+.market-divider{
+  height:26px;
+  width:1px;
+
+  background:#d8d8d8;
+}
+
+
+/* =====================================================
+   PAGE INFO
+===================================================== */
+
+.page-info{
+  height:43px;
+
+  background:#f0f1f2;
+
+  border-bottom:1px solid #ddd;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 16px;
+}
+
+.page-info-left{
+  font-size:14px;
+
+  font-weight:700;
+
+  color:#555b63;
+}
+
+.page-info-right{
+  display:flex;
+
+  gap:48px;
+
+  padding-right:14px;
+
+  color:#92969c;
+
+  font-size:13px;
+
+  font-weight:700;
+}
+
+
+/* =====================================================
+   PLAN LIST
+===================================================== */
+
+.plan-list{
+  width:100%;
+}
+
+
+/* =====================================================
+   PLAN
+===================================================== */
+
+.plan{
+  position:relative;
+
+  background:#fff;
+
+  border-bottom:1px solid #ddd;
+
+  min-height:136px;
+}
+
+
+/* =====================================================
+   PLAN TOP
+===================================================== */
+
+.plan-top{
+  height:39px;
+
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  padding:0 16px;
+
+  border-bottom:1px solid #eee;
+}
+
+.hot{
+  height:25px;
+
+  padding:0 10px;
+
+  display:flex;
+  align-items:center;
+
+  background:#ed132d;
+
+  color:#fff;
+
+  font-size:11px;
+
+  font-weight:900;
+
+  position:relative;
+
+  clip-path:polygon(
+    0 0,
+    88% 0,
+    100% 50%,
+    88% 100%,
+    0 100%
+  );
+}
+
+.hot:after{
+  content:"🔥";
+
+  margin-left:3px;
+}
+
+.plan-time{
+  font-size:13px;
+
+  font-weight:700;
+
+  color:#33383e;
+}
+
+.plan-id{
+  color:#9a9da2;
+
+  font-size:11px;
+}
+
+.plan-type{
+  color:#92969b;
+
+  font-size:11px;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+}
+
+.chart{
+  margin-left:auto;
+
+  width:25px;
+  height:25px;
+
+  color:#979ba1;
+
+  font-size:20px;
+}
+
+
+/* =====================================================
+   PLAN CONTENT
+===================================================== */
+
+.plan-content{
+  min-height:97px;
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(135px,1fr)
+    330px
+    88px;
+
+  gap:12px;
+
+  align-items:center;
+
+  padding:11px 16px;
+}
+
+.plan-name-area{
+  min-width:0;
+}
+
+.plan-name{
+  font-size:16px;
+
+  font-weight:800;
+
+  color:#33373d;
+
+  line-height:1.25;
+}
+
+.plan-sub{
+  margin-top:7px;
+
+  color:#999da2;
+
+  font-size:12px;
+
+  font-weight:600;
+}
+
+.plan-sub strong{
+  color:#777c82;
+}
+
+
+/* =====================================================
+   ODDS BOXES
+===================================================== */
+
+.odds{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:2px;
+}
+
+.odd{
+  min-height:57px;
+
+  background:#dcefe2;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+
+  align-items:center;
+
+  color:#247b3f;
+
+  border-right:1px solid #fff;
+}
+
+.odd:last-child{
+  border-right:0;
+}
+
+.odd small{
+  font-size:9px;
+
+  color:#6f8f77;
+
+  font-weight:700;
+
+  margin-bottom:4px;
+
+  text-transform:uppercase;
+}
+
+.odd strong{
+  font-size:17px;
+
+  font-weight:900;
+}
+
+
+/* =====================================================
+   ACTIVATE BUTTON
+===================================================== */
+
+.activate{
+  height:43px;
+
+  border-radius:3px;
+
+  background:#ed132d;
+
+  color:#fff;
+
+  font-size:12px;
+
+  font-weight:900;
+
+  box-shadow:
+    0 2px 4px rgba(237,19,45,.2);
+}
+
+.activate:active{
+  transform:scale(.96);
+}
+
+
+/* =====================================================
+   PLAN BOTTOM
+===================================================== */
+
+.plan-bottom{
+  position:absolute;
+
+  left:16px;
+  bottom:5px;
+
+  color:#9a9da2;
+
+  font-size:10px;
+}
+
+
+/* =====================================================
+   POPULAR INDICATOR
+===================================================== */
+
+.popular-line{
+  position:absolute;
+
+  top:39px;
+  left:0;
+
+  width:4px;
+  height:97px;
+
+  background:#ed132d;
+}
+
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+.empty-state{
+  min-height:220px;
+
+  background:#fff;
+
+  border-bottom:1px solid #ddd;
+
+  display:none;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  text-align:center;
+
+  padding:30px 20px;
+}
+
+.empty-icon{
+  width:58px;
+  height:58px;
+
+  border-radius:50%;
+
+  display:grid;
+  place-items:center;
+
+  background:#fff0f2;
+
+  color:#ed132d;
+
+  font-size:25px;
+
+  margin-bottom:13px;
+}
+
+.empty-state strong{
+  font-size:16px;
+
+  color:#333;
+}
+
+.empty-state span{
+  margin-top:6px;
+
+  color:#999;
+
+  font-size:12px;
+}
+
+.empty-state a{
+  margin-top:16px;
+
+  height:38px;
+
+  padding:0 18px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:4px;
+
+  background:#ed132d;
+
+  color:#fff;
+
+  font-size:11px;
+
+  font-weight:900;
+}
+
+
+/* =====================================================
+   BOTTOM NAV
+===================================================== */
+
+.bottom-nav{
+  position:fixed;
+
+  left:0;
+  right:0;
+  bottom:0;
+
+  height:68px;
+
+  background:#050505;
+
+  color:#fff;
+
+  z-index:90;
+
+  display:flex;
+
+  justify-content:space-around;
+
+  align-items:center;
+
+  box-shadow:
+    0 -2px 8px rgba(0,0,0,.22);
+}
+
+.bottom-item{
+  width:25%;
+  height:100%;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  color:#aaa;
+
+  font-size:10px;
+
+  position:relative;
+}
+
+.bottom-icon{
+  font-size:23px;
+
+  line-height:24px;
+
+  margin-bottom:5px;
+}
+
+.bottom-item.active{
+  color:#fff;
+}
+
+.bottom-item.active:after{
+  content:"";
+
+  position:absolute;
+
+  bottom:0;
+
+  left:20%;
+  right:20%;
+
+  height:4px;
+
+  background:#ed132d;
+}
+
+.bottom-item.active .bottom-icon{
+  color:#fff;
+}
+
+
+/* =====================================================
+   ACTIVATION MODAL
+===================================================== */
+
+.modal{
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,.62);
+
+  z-index:200;
+
+  display:none;
+
+  align-items:flex-end;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.sheet{
+  width:100%;
+
+  max-width:620px;
+
+  margin:auto;
+
+  background:#fff;
+
+  border-radius:18px 18px 0 0;
+
+  padding:22px 18px 26px;
+
+  animation:slideUp .25s ease;
+
+  box-shadow:
+    0 -8px 30px rgba(0,0,0,.3);
+}
+
+@keyframes slideUp{
+
+  from{
+    transform:translateY(100%);
+  }
+
+  to{
+    transform:translateY(0);
+  }
+
+}
+
+.sheet-top{
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:17px;
+}
+
+.sheet-title{
+  font-size:19px;
+
+  font-weight:900;
+}
+
+.close{
+  width:34px;
+  height:34px;
+
+  border-radius:50%;
+
+  background:#f0f0f0;
+
+  color:#555;
+
+  font-size:22px;
+}
+
+.modal-icon{
+  width:50px;
+  height:50px;
+
+  background:#fff0f2;
+
+  color:#ed132d;
+
+  border-radius:12px;
+
+  display:grid;
+
+  place-items:center;
+
+  font-size:23px;
+
+  margin-bottom:12px;
+}
+
+.sheet p{
+  color:#777;
+
+  font-size:13px;
+
+  line-height:1.5;
+}
+
+.selected-plan{
+  margin-top:15px;
+
+  padding:13px;
+
+  background:#f5f5f5;
+
+  border:1px solid #e5e5e5;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+}
+
+.selected-plan small{
+  display:block;
+
+  color:#999;
+
+  font-size:9px;
+
+  font-weight:800;
+}
+
+.selected-plan strong{
+  display:block;
+
+  margin-top:4px;
+
+  font-size:16px;
+}
+
+.modal-actions{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:9px;
+
+  margin-top:15px;
+}
+
+.modal-actions a{
+  height:45px;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  border-radius:4px;
+
+  font-size:12px;
+
+  font-weight:900;
+}
+
+.secondary{
+  background:#eee;
+
+  color:#444;
+}
+
+.primary{
+  background:#ed132d;
+
+  color:#fff;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width:700px){
+
+  .top-header{
+    height:76px;
+  }
+
+  .brand{
+    font-size:23px;
+  }
+
+  .balance{
+    min-width:137px;
+  }
+
+  .category{
+    padding:0 16px;
+
+    font-size:15px;
+  }
+
+  .market{
+    padding:0 16px;
+
+    font-size:14px;
+  }
+
+  .plan-content{
+    grid-template-columns:
+      minmax(118px,1fr)
+      270px
+      73px;
+
+    gap:7px;
+
+    padding-left:16px;
+    padding-right:12px;
+  }
+
+  .plan-name{
+    font-size:15px;
+  }
+
+  .odd strong{
+    font-size:15px;
+  }
+
+  .activate{
+    font-size:11px;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:560px){
+
+  .plan-content{
+    grid-template-columns:
+      1fr
+      230px;
+  }
+
+  .activate{
+    grid-column:2;
+
+    width:100%;
+
+    margin-top:-4px;
+  }
+
+  .odds{
+    grid-column:2;
+
+    grid-row:1;
+  }
+
+  .plan-name-area{
+    grid-column:1;
+
+    grid-row:1;
+  }
+
+  .plan{
+    min-height:164px;
+  }
+
+  .plan-bottom{
+    bottom:7px;
+  }
+
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media(max-width:420px){
+
+  .top-header{
+    height:74px;
+
+    padding:0 12px;
+  }
+
+  .brand{
+    font-size:21px;
+  }
+
+  .search{
+    transform:scale(.9);
+  }
+
+  .balance{
+    min-width:128px;
+
+    height:45px;
+
+    padding:0 8px;
+  }
+
+  .balance strong{
+    font-size:14px;
+  }
+
+  .category{
+    padding:0 15px;
+  }
+
+  .market{
+    padding:0 15px;
+  }
+
+  .page-info{
+    padding:0 16px;
+  }
+
+  .page-info-right{
+    gap:25px;
+
+    padding-right:4px;
+  }
+
+  .plan-top{
+    padding:0 12px;
+  }
+
+  .plan-content{
+    padding:9px 12px 15px;
+
+    grid-template-columns:
+      100px
+      1fr;
+
+    gap:6px;
+  }
+
+  .plan-name{
+    font-size:14px;
+  }
+
+  .plan-sub{
+    font-size:10px;
+  }
+
+  .odds{
+    grid-column:2;
+  }
+
+  .odd{
+    min-height:56px;
+  }
+
+  .odd small{
+    font-size:7px;
+  }
+
+  .odd strong{
+    font-size:14px;
+  }
+
+  .activate{
+    grid-column:2;
+
+    height:37px;
+  }
+
+  .plan-bottom{
+    left:12px;
+
+    font-size:9px;
+  }
+
+}
+
+
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
+
+@media(max-width:350px){
+
+  .brand{
+    font-size:19px;
+  }
+
+  .balance{
+    min-width:118px;
+  }
+
+  .balance-icon{
+    display:none;
+  }
+
+  .balance strong{
+    font-size:13px;
+  }
+
+  .category{
+    font-size:14px;
+
+    padding:0 12px;
+  }
+
+  .market{
+    font-size:13px;
+
+    padding:0 12px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     RED HEADER
+===================================================== -->
+
+<header class="top-header">
+
+  <div class="brand">
+    SportyMine
+  </div>
+
+
+  <div class="header-right">
+
+    <div class="search"></div>
+
+
+    <div class="balance">
+
+      <div class="balance-icon">
+        ₦
+      </div>
+
+      <div>
+
+        <small>
+          Wallet Balance
+        </small>
+
+        <strong>
+          ₦500.00
+        </strong>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     CATEGORY BAR
+===================================================== -->
+
+<div class="category-bar">
+
+  <div
+    class="category active"
+    data-filter="all"
+  >
+    Odds
+  </div>
+
+
+  <div class="category-separator"></div>
+
+
+  <div
+    class="category"
+    data-filter="all"
+  >
+    All
+  </div>
+
+
+  <div
+    class="category"
+    data-filter="popular"
+  >
+    Popular
+  </div>
+
+
+  <div
+    class="category"
+    data-filter="starter"
+  >
+    Starter
+  </div>
+
+
+  <div
+    class="category"
+    data-filter="high-return"
+  >
+    High Return
+  </div>
+
+
+  <div
+    class="category"
+    data-filter="my-odds"
+  >
+    My Odds
+  </div>
+
+</div>
+
+
+
+
+
+<!-- =====================================================
+     PAGE INFO
+===================================================== -->
+
+<div class="page-info">
+
+  <div
+    class="page-info-left"
+    id="sectionTitle"
+  >
+    Available Odds
+  </div>
+
+
+  <div class="page-info-right">
+
+    <span>
+      Daily
+    </span>
+
+    <span>
+      Total
+    </span>
+
+  </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     ODDS LIST
+===================================================== -->
+
+<div class="plan-list">
+
+
+  <!-- ===================================================
+       ODD 1
+  ==================================================== -->
+
+  <div
+    class="plan"
+    data-category="starter"
+  >
+
+    <div class="plan-top">
+
+      <div class="hot">
+        HOT
+      </div>
+
+      <div class="plan-time">
+        01
+      </div>
+
+      <div class="plan-id">
+        ID 10001
+      </div>
+
+      <div class="plan-type">
+        SportyMine Earning Odds
+      </div>
+
+      <div class="chart">
+        ↗
+      </div>
+
+    </div>
+
+
+    <div class="plan-content">
+
+      <div class="plan-name-area">
+
+        <div class="plan-name">
+          Odd 1
+        </div>
+
+        <div class="plan-sub">
+          Activation
+          <strong>₦1,500</strong>
+        </div>
+
+      </div>
+
+
+      <div class="odds">
+
+        <div class="odd">
+
+          <small>
+            Daily
+          </small>
+
+          <strong>
+            ₦500
+          </strong>
+
+        </div>
+
+
+        <div class="odd">
+
+          <small>
+            Days
+          </small>
+
+          <strong>
+            60
+          </strong>
+
+        </div>
+
+
+        <div class="odd">
+
+          <small>
+            Total
+          </small>
+
+          <strong>
+            ₦30K
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="activate"
+        data-price="1500"
+        data-name="Odd 1"
+      >
+        Activate
+      </button>
+
+    </div>
+
+
+    <div class="plan-bottom">
+      Earn ₦500 daily for 60 days
+    </div>
+
+  </div>
+
+
+
+  <!-- ===================================================
+       ODD 2
+  ==================================================== -->
+
+  <div
+    class="plan"
+    data-category="starter"
+  >
+
+    <div class="plan-top">
+
+      <div class="hot">
+        HOT
+      </div>
+
+      <div class="plan-time">
+        02
+      </div>
+
+      <div class="plan-id">
+        ID 10002
+      </div>
+
+      <div class="plan-type">
+        SportyMine Earning Odds
+      </div>
+
+      <div class="chart">
+        ↗
+      </div>
+
+    </div>
+
+
+    <div class="plan-content">
+
+      <div class="plan-name-area">
+
+        <div class="plan-name">
+          Odd 2
+        </div>
+
+        <div class="plan-sub">
+          Activation
+          <strong>₦3,000</strong>
+        </div>
+
+      </div>
+
+
+      <div class="odds">
+
+        <div class="odd">
+
+          <small>
+            Daily
+          </small>
+
+          <strong>
+            ₦1K
+          </strong>
+
+        </div>
+
+
+        <div class="odd">
+
+          <small>
+            Days
+          </small>
+
+          <strong>
+            60
+          </strong>
+
+        </div>
+
+
+        <div class="odd">
+
+          <small>
+            Total
+          </small>
+
+          <strong>
+            ₦60K
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="activate"
+        data-price="3000"
+        data-name="Odd 2"
+      >
+        Activate
+      </button>
+
+    </div>
+
+
+    <div class="plan-bottom">
+      Earn ₦1,000 daily for 60 days
+    </div>
+
+  </div>
+
+
+
+  <!-- ===================================================
+       ODD 3
+  ==================================================== -->
+
+  <div
+    class="plan"
+    data-category="popular high-return"
+  >
+
+    <div class="popular-line"></div>
+
+
+    <div class="plan-top">
+
+      <div class="hot">
+        HOT
+      </div>
+
+      <div class="plan-time">
+        03
+      </div>
+
+      <div class="plan-id">
+        ID 10003
+      </div>
+
+      <div class="plan-type">
+        Popular Earning Odd
+      </div>
+
+      <div class="chart">
+        ↗
+      </div>
+
+    </div>
+
+
+    <div class="plan-content">
+
+      <div class="plan-name-area">
+
+        <div class="plan-name">
+          Odd 3 ★
+        </div>
+
+        <div class="plan-sub">
+          Activation
+          <strong>₦5,200</strong>
+        </div>
+
+      </div>
+
+
+      <div class="odds">
+
+        <div class="odd">
+
+          <small>
+            Daily
+          </small>
+
+          <strong>
+            ₦2.2K
+          </strong>
+
+        </div>
+
+
+        <div class="odd">
+
+          <small>
+            Days
+          </small>
+
+          <strong>
+            60
+          </strong>
+
+        </div>
+
+
+        <div class="odd">
+
+          <small>
+            Total
+          </small>
+
+          <strong>
+            ₦132K
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="activate"
+        data-price="5200"
+        data-name="Odd 3"
+      >
+        Activate
+      </button>
+
+    </div>
+
+
+    <div class="plan-bottom">
+      Popular • Earn ₦2,200 daily for 60 days
+    </div>
+
+  </div>
+
+
+
+  <!-- ===================================================
+       ODD 4
+  ==================================================== -->
+
+  <div
+    class="plan"
+    data-category="high-return"
+  >
+
+    <div class="plan-top">
+
+      <div class="hot">
+        HOT
+      </div>
+
+      <div class="plan-time">
+        04
+      </div>
+
+      <div class="plan-id">
+        ID 10004
+      </div>
+
+      <div class="plan-type">
+        SportyMine Earning Odds
+      </div>
+
+      <div class="chart">
+        ↗
+      </div>
+
+    </div>
+
+
+    <div class="plan-content">
+
+      <div class="plan-name-area">
+
+        <div class="plan-name">
+          Odd 4
+        </div>
+
+        <div class="plan-sub">
+          Activation
+          <strong>₦20,400</strong>
+        </div>
+
+      </div>
+
+
+      <div class="odds">
+
+        <div class="odd">
+
+          <small>
+            Daily
+          </small>
+
+          <strong>
+            ₦8.2K
+          </strong>
+
+        </div>
+
+
+        <div class="odd">
+
+          <small>
+            Days
+          </small>
+
+          <strong>
+            65
+          </strong>
+
+        </div>
+
+
+        <div class="odd">
+
+          <small>
+            Total
+          </small>
+
+          <strong>
+            ₦533K
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="activate"
+        data-price="20400"
+        data-name="Odd 4"
+      >
+        Activate
+      </button>
+
+    </div>
+
+
+    <div class="plan-bottom">
+      Earn ₦8,200 daily for 65 days
+    </div>
+
+  </div>
+
+
+
+  <!-- ===================================================
+       ODD 5
+  ==================================================== -->
+
+  <div
+    class="plan"
+    data-category="high-return"
+  >
+
+    <div class="plan-top">
+
+      <div class="hot">
+        HOT
+      </div>
+
+      <div class="plan-time">
+        05
+      </div>
+
+      <div class="plan-id">
+        ID 10005
+      </div>
+
+      <div class="plan-type">
+        SportyMine Earning Odds
+      </div>
+
+      <div class="chart">
+        ↗
+      </div>
+
+    </div>
+
+
+    <div class="plan-content">
+
+      <div class="plan-name-area">
+
+        <div class="plan-name">
+          Odd 5
+        </div>
+
+        <div class="plan-sub">
+          Activation
+          <strong>₦50,000</strong>
+        </div>
+
+      </div>
+
+
+      <div class="odds">
+
+        <div class="odd">
+
+          <small>
+            Daily
+          </small>
+
+          <strong>
+            ₦17.4K
+          </strong>
+
+        </div>
+
+
+        <div class="odd">
+
+          <small>
+            Days
+          </small>
+
+          <strong>
+            70
+          </strong>
+
+        </div>
+
+
+        <div class="odd">
+
+          <small>
+            Total
+          </small>
+
+          <strong>
+            ₦1.218M
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="activate"
+        data-price="50000"
+        data-name="Odd 5"
+      >
+        Activate
+      </button>
+
+    </div>
+
+
+    <div class="plan-bottom">
+      Earn ₦17,400 daily for 70 days
+    </div>
+
+  </div>
+
+
+
+  <!-- ===================================================
+       ODD 6
+  ==================================================== -->
+
+  <div
+    class="plan"
+    data-category="high-return"
+  >
+
+    <div class="plan-top">
+
+      <div class="hot">
+        HOT
+      </div>
+
+      <div class="plan-time">
+        06
+      </div>
+
+      <div class="plan-id">
+        ID 10006
+      </div>
+
+      <div class="plan-type">
+        SportyMine Earning Odds
+      </div>
+
+      <div class="chart">
+        ↗
+      </div>
+
+    </div>
+
+
+    <div class="plan-content">
+
+      <div class="plan-name-area">
+
+        <div class="plan-name">
+          Odd 6
+        </div>
+
+        <div class="plan-sub">
+          Activation
+          <strong>₦110,000</strong>
+        </div>
+
+      </div>
+
+
+      <div class="odds">
+
+        <div class="odd">
+
+          <small>
+            Daily
+          </small>
+
+          <strong>
+            ₦43.5K
+          </strong>
+
+        </div>
+
+
+        <div class="odd">
+
+          <small>
+            Days
+          </small>
+
+          <strong>
+            90
+          </strong>
+
+        </div>
+
+
+        <div class="odd">
+
+          <small>
+            Total
+          </small>
+
+          <strong>
+            ₦3.915M
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="activate"
+        data-price="110000"
+        data-name="Odd 6"
+      >
+        Activate
+      </button>
+
+    </div>
+
+
+    <div class="plan-bottom">
+      Earn ₦43,500 daily for 90 days
+    </div>
+
+  </div>
+
+
+
+  <!-- ===================================================
+       ODD 7
+  ==================================================== -->
+
+  <div
+    class="plan"
+    data-category="high-return"
+  >
+
+    <div class="plan-top">
+
+      <div class="hot">
+        HOT
+      </div>
+
+      <div class="plan-time">
+        07
+      </div>
+
+      <div class="plan-id">
+        ID 10007
+      </div>
+
+      <div class="plan-type">
+        SportyMine Earning Odds
+      </div>
+
+      <div class="chart">
+        ↗
+      </div>
+
+    </div>
+
+
+    <div class="plan-content">
+
+      <div class="plan-name-area">
+
+        <div class="plan-name">
+          Odd 7
+        </div>
+
+        <div class="plan-sub">
+          Activation
+          <strong>₦222,000</strong>
+        </div>
+
+      </div>
+
+
+      <div class="odds">
+
+        <div class="odd">
+
+          <small>
+            Daily
+          </small>
+
+          <strong>
+            ₦97K
+          </strong>
+
+        </div>
+
+
+        <div class="odd">
+
+          <small>
+            Days
+          </small>
+
+          <strong>
+            180
+          </strong>
+
+        </div>
+
+
+        <div class="odd">
+
+          <small>
+            Total
+          </small>
+
+          <strong>
+            ₦17.46M
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="activate"
+        data-price="222000"
+        data-name="Odd 7"
+      >
+        Activate
+      </button>
+
+    </div>
+
+
+    <div class="plan-bottom">
+      Earn ₦97,000 daily for 180 days
+    </div>
+
+  </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     BOTTOM NAVIGATION
+===================================================== -->
+
+<nav class="bottom-nav">
+
+  <a
+    href="dashboard.html"
+    class="bottom-item"
+  >
+
+    <span class="bottom-icon">
+      ⌂
+    </span>
+
+    Home
+
+  </a>
+
+
+  <a
+    href="odds.html"
+    class="bottom-item active"
+  >
+
+    <span class="bottom-icon">
+      ⚡
+    </span>
+
+    Odds
+
+  </a>
+
+
+  <a
+    href="fund.html"
+    class="bottom-item"
+  >
+
+    <span class="bottom-icon">
+      ＋
+    </span>
+
+    Fund
+
+  </a>
+
+
+  <a
+    href="withdraw.html"
+    class="bottom-item"
+  >
+
+    <span class="bottom-icon">
+      ⇩
+    </span>
+
+    Withdraw
+
+  </a>
+
+</nav>
+
+
+
+<!-- =====================================================
+     ACTIVATION MODAL
+===================================================== -->
+
+<div
+  class="modal"
+  id="modal"
+>
+
+  <div class="sheet">
+
+
+    <div class="sheet-top">
+
+      <div class="sheet-title">
+        Activate Odd
+      </div>
+
+
+      <button
+        class="close"
+        id="close"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="modal-icon">
+      ⚡
+    </div>
+
+
+    <p id="modalText">
+      Your current balance is ₦500.00.
+      Fund your wallet to activate this Odd.
+    </p>
+
+
+    <div class="selected-plan">
+
+      <div>
+
+        <small>
+          SELECTED ODD
+        </small>
+
+        <strong id="selectedName">
+          Odd
+        </strong>
+
+      </div>
+
+
+      <div style="text-align:right">
+
+        <small>
+          REQUIRED
+        </small>
+
+        <strong id="selectedPrice">
+          ₦0
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <div class="modal-actions">
+
+      <a
+        class="secondary"
+        href="dashboard.html"
+      >
+        Go back
+      </a>
+
+
+      <a
+        class="primary"
+        href="fund.html"
+      >
+        Fund wallet
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   ACTIVATION MODAL
+===================================================== */
+
+const modal =
+  document.getElementById("modal");
+
+const modalText =
+  document.getElementById("modalText");
+
+const selectedName =
+  document.getElementById("selectedName");
+
+const selectedPrice =
+  document.getElementById("selectedPrice");
+
+
+document
+  .querySelectorAll(".activate")
+  .forEach(button => {
+
+    button.addEventListener("click", function(){
+
+      const price =
+        Number(this.dataset.price);
+
+      const name =
+        this.dataset.name;
+
+      const formatted =
+        price.toLocaleString("en-NG");
+
+
+      selectedName.textContent =
+        name;
+
+
+      selectedPrice.textContent =
+        "₦" + formatted;
+
+
+      modalText.textContent =
+        "Your current balance is ₦500.00. You need ₦"
+        + formatted
+        + " to activate this Odd. Fund your wallet to continue.";
+
+
+      modal.classList.add("show");
+
+    });
+
+  });
+
+
+
+/* =====================================================
+   CLOSE ACTIVATION MODAL
+===================================================== */
+
+document
+  .getElementById("close")
+  .addEventListener("click", function(){
+
+    modal.classList.remove("show");
+
+  });
+
+
+modal.addEventListener("click", function(event){
+
+  if(event.target === modal){
+
+    modal.classList.remove("show");
+
+  }
+
+});
+
+
+
+/* =====================================================
+   ODDS CATEGORY FILTER
+===================================================== */
+
+const categoryButtons =
+  document.querySelectorAll(".category");
+
+const plans =
+  document.querySelectorAll(".plan");
+
+const planList =
+  document.querySelector(".plan-list");
+
+const sectionTitle =
+  document.getElementById("sectionTitle");
+
+
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+const emptyState =
+  document.createElement("div");
+
+emptyState.className =
+  "empty-state";
+
+emptyState.innerHTML = `
+
+  <div class="empty-icon">
+    ⚡
+  </div>
+
+  <strong>
+    No active Odds
+  </strong>
+
+  <span>
+    You have not activated any Odds yet.
+  </span>
+
+  <a href="odds.html">
+    View available Odds
+  </a>
+
+`;
+
+planList.appendChild(emptyState);
+
+
+
+/* =====================================================
+   FILTER FUNCTION
+===================================================== */
+
+function filterOdds(filter){
+
+  let visibleCount = 0;
+
+
+  plans.forEach(plan => {
+
+    const categories =
+      (plan.dataset.category || "")
+      .toLowerCase()
+      .split(" ");
+
+
+    let show = false;
+
+
+    /* ALL ODDS */
+
+    if(
+      filter === "all" ||
+      filter === "odds"
+    ){
+
+      show = true;
+
+    }
+
+
+    /* POPULAR */
+
+    else if(filter === "popular"){
+
+      show =
+        categories.includes("popular");
+
+    }
+
+
+    /* STARTER */
+
+    else if(filter === "starter"){
+
+      show =
+        categories.includes("starter");
+
+    }
+
+
+    /* HIGH RETURN */
+
+    else if(filter === "high-return"){
+
+      show =
+        categories.includes("high-return");
+
+    }
+
+
+    /* MY ODDS */
+
+    else if(filter === "my-odds"){
+
+      /*
+        No real activated-Odds database is
+        connected to this page yet, so My Odds
+        correctly shows the empty state.
+      */
+
+      show = false;
+
+    }
+
+
+    if(show){
+
+      plan.style.display = "";
+
+      visibleCount++;
+
+    }
+
+    else{
+
+      plan.style.display = "none";
+
+    }
+
+  });
+
+
+  /* EMPTY STATE */
+
+  if(visibleCount === 0){
+
+    emptyState.style.display =
+      "flex";
+
+  }
+
+  else{
+
+    emptyState.style.display =
+      "none";
+
+  }
+
+
+  /* SECTION TITLE */
+
+  if(filter === "popular"){
+
+    sectionTitle.textContent =
+      "Popular Odds";
+
+  }
+
+  else if(filter === "starter"){
+
+    sectionTitle.textContent =
+      "Starter Odds";
+
+  }
+
+  else if(filter === "high-return"){
+
+    sectionTitle.textContent =
+      "High Return Odds";
+
+  }
+
+  else if(filter === "my-odds"){
+
+    sectionTitle.textContent =
+      "My Odds";
+
+  }
+
+  else{
+
+    sectionTitle.textContent =
+      "Available Odds";
+
+  }
+
+}
+
+
+
+/* =====================================================
+   CATEGORY BUTTON CLICK
+===================================================== */
+
+categoryButtons.forEach(button => {
+
+  button.addEventListener(
+    "click",
+    function(){
+
+      categoryButtons.forEach(item => {
+
+        item.classList.remove("active");
+
+      });
+
+
+      this.classList.add("active");
+
+
+      const filter =
+        this.dataset.filter || "all";
+
+
+      filterOdds(filter);
+
+    }
+  );
+
+});
+
+
+
+/* =====================================================
+   INITIAL STATE
+===================================================== */
+
+filterOdds("all");
+
+
+
+/* =====================================================
+   MARKET TAB VISUAL STATE
+===================================================== */
+
+document
+  .querySelectorAll(".market")
+  .forEach(item => {
+
+    item.addEventListener(
+      "click",
+      function(){
+
+        document
+          .querySelectorAll(".market")
+          .forEach(x => {
+
+            x.classList.remove("active");
+
+          });
+
+
+        this.classList.add("active");
+
+      }
+    );
+
+  });
+
+</script>
+
+</body>
+</html>

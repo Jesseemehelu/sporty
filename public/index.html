@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SportyMine — Activate Odds, Earn Daily</title><meta name="description" content="SportyMine frontend concept.">
+<style>
+:root{--bg:#f6f8fb;--surface:#fff;--text:#15191f;--muted:#6b7280;--red:#ed1b2f;--red-dark:#cf1023;--green:#18a957;--line:#e8ebef;--shadow:0 16px 40px rgba(18,25,38,.08)}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.5}a{text-decoration:none;color:inherit}button,input{font:inherit}.container{width:min(1100px,calc(100% - 32px));margin:auto}
+.nav{height:72px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;position:sticky;top:0;z-index:10}.nav>.container{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}.brand-mark{width:38px;height:38px;border-radius:11px;background:var(--red);display:grid;place-items:center;color:#fff;font-weight:900;font-size:20px}.nav-actions{display:flex;gap:10px}
+.btn{border:0;border-radius:12px;padding:12px 18px;font-weight:750;cursor:pointer;transition:.18s transform,.18s background}.btn:hover{transform:translateY(-1px)}.btn-red{background:var(--red);color:#fff}.btn-red:hover{background:var(--red-dark)}.btn-light{background:#f1f3f6;color:var(--text)}
+.hero{padding:70px 0 52px}.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:45px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:7px;background:#fff0f2;color:var(--red);padding:7px 11px;border-radius:999px;font-size:13px;font-weight:800;margin-bottom:18px}.hero h1{font-size:clamp(40px,6vw,68px);line-height:1.02;letter-spacing:-2.8px}.hero h1 span{color:var(--red)}.hero p{color:var(--muted);font-size:17px;max-width:590px;margin:20px 0 26px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:var(--shadow)}.card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}.status{font-size:12px;color:var(--green);font-weight:800;background:#eaf9f0;padding:6px 9px;border-radius:999px}.earn-box{background:#f8f9fb;border-radius:18px;padding:20px;margin-bottom:12px}.earn-label{color:var(--muted);font-size:13px}.earn-value{font-size:34px;font-weight:850;margin-top:3px}.earn-value small{font-size:15px;color:var(--muted);font-weight:700}.plan-list{display:grid;gap:10px;margin-top:15px}.plan{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);padding:14px;border-radius:14px}.plan strong{display:block}.plan small{color:var(--muted)}.plan-rate{font-weight:850;color:var(--red)}
+.section{padding:45px 0}.section h2{font-size:32px;letter-spacing:-1px;margin-bottom:8px}.section-sub{color:var(--muted);margin-bottom:24px}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.feature{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}.icon{width:42px;height:42px;border-radius:12px;background:#fff0f2;color:var(--red);display:grid;place-items:center;font-weight:900;margin-bottom:15px}.feature h3{margin-bottom:7px}.feature p{color:var(--muted);font-size:14px}
+.footer{padding:30px 0;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:30px}.notice{font-size:12px;color:var(--muted);margin-top:15px}.auth-wrap{min-height:calc(100vh - 72px);display:grid;place-items:center;padding:35px 0}.auth-card{width:min(460px,100%);background:#fff;border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:var(--shadow)}.auth-card h1{font-size:30px;letter-spacing:-1px}.auth-card>p{color:var(--muted);margin:7px 0 24px}.form-group{margin-bottom:16px}label{display:block;font-size:13px;font-weight:750;margin-bottom:7px}input{width:100%;border:1px solid #dfe3e8;border-radius:12px;padding:13px 14px;outline:none;background:#fff;transition:.15s border,.15s box-shadow}input:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(237,27,47,.09)}.full{width:100%;margin-top:5px}.back{text-align:center;margin-top:17px;font-size:14px;color:var(--muted)}.back a{color:var(--red);font-weight:750}
+@media(max-width:800px){.hero{padding-top:45px}.hero-grid{grid-template-columns:1fr;gap:30px}.features{grid-template-columns:1fr}.nav{height:64px}.hero h1{letter-spacing:-1.8px}}
+</style></head>
+<body>
+<header class="nav"><div class="container"><a class="brand" href="index.html"><span class="brand-mark">S</span>SportyMine</a><div class="nav-actions"><a class="btn btn-light" href="signup.html">Sign up</a></div></div></header>
+<main>
+<section class="hero"><div class="container hero-grid"><div>
+<div class="eyebrow">● SIMPLE DAILY EARNING</div>
+<h1>Activate an <span>Odd.</span><br>Earn every day.</h1>
+<p>Choose an earning plan, activate your Odd, and track your daily returns from one simple dashboard.</p>
+<div class="hero-actions"><a class="btn btn-red" href="signup.html">Get started</a><a class="btn btn-light" href="#how">How it works</a></div>
+<p class="notice"><strong>Demo concept:</strong> This is a frontend-only project. It is not affiliated with, endorsed by, or sponsored by SportyBet.</p>
+</div>
+<div class="hero-card"><div class="card-top"><div><div style="font-weight:850">Your earning overview</div><div class="earn-label">Example dashboard preview</div></div><span class="status">ACTIVE</span></div>
+<div class="earn-box"><div class="earn-label">Estimated daily earning</div><div class="earn-value">₦2,500 <small>/ day</small></div></div>
+<div style="font-size:14px;font-weight:800;margin-top:18px">Available Odds</div>
+<div class="plan-list">
+<div class="plan"><div><strong>Odd 1.5</strong><small>Starter plan</small></div><div class="plan-rate">₦500/day</div></div>
+<div class="plan"><div><strong>Odd 2.0</strong><small>Growth plan</small></div><div class="plan-rate">₦1,200/day</div></div>
+<div class="plan"><div><strong>Odd 3.0</strong><small>Pro plan</small></div><div class="plan-rate">₦2,500/day</div></div>
+</div></div></div></section>
+<section class="section" id="how"><div class="container"><h2>How SportyMine works</h2><p class="section-sub">Three simple steps to get started.</p>
+<div class="features"><article class="feature"><div class="icon">1</div><h3>Create your account</h3><p>Sign up with your name, username and phone number.</p></article>
+<article class="feature"><div class="icon">2</div><h3>Activate an Odd</h3><p>Select an available earning plan and activate it from your account.</p></article>
+<article class="feature"><div class="icon">3</div><h3>Track daily earnings</h3><p>See your active Odd and the daily amount shown on your dashboard.</p></article></div></div></section>
+</main>
+<footer class="footer"><div class="container"><strong>SportyMine</strong> — frontend concept.<div class="notice">All figures shown are examples for the interface. No real deposits, earnings, withdrawals or account creation are processed in this frontend-only version.</div></div></footer>
+</body></html>
