@@ -1058,6 +1058,26 @@ button{
 }
 
 </style>
+<script>
+/*
+  If a user is already logged in,
+  send them straight to the dashboard.
+  pageshow also covers the back button.
+*/
+(function(){
+  function redirectIfLoggedIn(){
+    try{
+      var cur = localStorage.getItem('sportymine_current_user');
+      var users = JSON.parse(localStorage.getItem('sportymine_users')) || {};
+      if(cur && users[cur]){
+        window.location.replace('dashboard.html');
+      }
+    }catch(e){}
+  }
+  redirectIfLoggedIn();
+  window.addEventListener('pageshow', redirectIfLoggedIn);
+})();
+</script>
 </head>
 
 
@@ -1696,3 +1716,4 @@ button{
 
 </body>
 </html>
+

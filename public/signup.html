@@ -556,7 +556,43 @@ document
     }
   );
 
+
+/*
+  If a user is already signed in,
+  send them straight to the dashboard.
+  pageshow also covers the browser
+  back button (cached pages).
+*/
+
+function redirectIfLoggedIn(){
+
+  const currentUser =
+    localStorage.getItem(
+      CURRENT_USER_KEY
+    );
+
+  if(
+    currentUser &&
+    getUsers()[currentUser]
+  ){
+
+    window.location.replace(
+      'dashboard.html'
+    );
+
+  }
+
+}
+
+redirectIfLoggedIn();
+
+window.addEventListener(
+  'pageshow',
+  redirectIfLoggedIn
+);
+
 </script>
 
 </body>
 </html>
+
