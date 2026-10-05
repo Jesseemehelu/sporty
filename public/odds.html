@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-
 <meta charset="utf-8">
 
 <meta
@@ -13,10 +11,6 @@
 <title>Odds — SportyMine</title>
 
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
 
 *{
   box-sizing:border-box;
@@ -61,10 +55,13 @@ a{
   height:76px;
   background:#ed132d;
   color:#fff;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
+
   padding:0 14px;
+
   box-shadow:0 2px 5px rgba(0,0,0,.18);
 }
 
@@ -92,24 +89,34 @@ a{
 
 .search:before{
   content:"";
+
   position:absolute;
+
   width:18px;
   height:18px;
+
   border:4px solid #fff;
   border-radius:50%;
+
   top:2px;
   left:1px;
 }
 
 .search:after{
   content:"";
+
   position:absolute;
+
   width:12px;
   height:4px;
+
   background:#fff;
+
   transform:rotate(45deg);
+
   left:20px;
   top:22px;
+
   border-radius:3px;
 }
 
@@ -119,34 +126,47 @@ a{
 .balance{
   min-width:145px;
   height:48px;
+
   padding:0 11px;
+
   border:2px solid rgba(255,255,255,.9);
   border-radius:4px;
+
   display:flex;
   align-items:center;
+
   gap:9px;
+
   background:rgba(0,0,0,.06);
 }
 
 .balance-icon{
   width:27px;
   height:27px;
+
   border-radius:50%;
+
   background:#111;
+
   display:grid;
   place-items:center;
+
   font-size:14px;
 }
 
 .balance small{
   display:block;
+
   font-size:8px;
+
   opacity:.85;
 }
 
 .balance strong{
   display:block;
+
   font-size:15px;
+
   margin-top:1px;
 }
 
@@ -157,12 +177,18 @@ a{
 
 .category-bar{
   height:58px;
+
   background:#fff;
+
   border-bottom:1px solid #ddd;
+
   display:flex;
   align-items:center;
+
   overflow-x:auto;
+
   white-space:nowrap;
+
   scrollbar-width:none;
 }
 
@@ -172,13 +198,20 @@ a{
 
 .category{
   height:100%;
+
   padding:0 17px;
+
   display:flex;
   align-items:center;
+
   position:relative;
+
   font-size:16px;
+
   font-weight:700;
+
   color:#363a40;
+
   flex:0 0 auto;
 }
 
@@ -188,18 +221,25 @@ a{
 
 .category.active:after{
   content:"";
+
   position:absolute;
+
   bottom:0;
+
   left:12px;
   right:12px;
+
   height:3px;
+
   background:#ed132d;
 }
 
 .category-separator{
   height:30px;
   width:1px;
+
   background:#e3e3e3;
+
   flex:0 0 auto;
 }
 
@@ -210,12 +250,18 @@ a{
 
 .market-bar{
   height:57px;
+
   background:#fff;
+
   border-bottom:1px solid #ddd;
+
   display:flex;
   align-items:center;
+
   overflow-x:auto;
+
   scrollbar-width:none;
+
   white-space:nowrap;
 }
 
@@ -225,12 +271,18 @@ a{
 
 .market{
   height:100%;
+
   display:flex;
   align-items:center;
+
   padding:0 17px;
+
   font-size:14px;
+
   font-weight:700;
+
   color:#3d4147;
+
   flex:0 0 auto;
 }
 
@@ -241,6 +293,7 @@ a{
 .market-divider{
   height:26px;
   width:1px;
+
   background:#d8d8d8;
 }
 
@@ -251,26 +304,37 @@ a{
 
 .page-info{
   height:43px;
+
   background:#f0f1f2;
+
   border-bottom:1px solid #ddd;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
+
   padding:0 16px;
 }
 
 .page-info-left{
   font-size:14px;
+
   font-weight:700;
+
   color:#555b63;
 }
 
 .page-info-right{
   display:flex;
+
   gap:48px;
+
   padding-right:14px;
+
   color:#92969c;
+
   font-size:13px;
+
   font-weight:700;
 }
 
@@ -290,8 +354,11 @@ a{
 
 .plan{
   position:relative;
+
   background:#fff;
+
   border-bottom:1px solid #ddd;
+
   min-height:136px;
 }
 
@@ -302,22 +369,33 @@ a{
 
 .plan-top{
   height:39px;
+
   display:flex;
   align-items:center;
+
   gap:10px;
+
   padding:0 16px;
+
   border-bottom:1px solid #eee;
 }
 
 .hot{
   height:25px;
+
   padding:0 10px;
+
   display:flex;
   align-items:center;
+
   background:#ed132d;
+
   color:#fff;
+
   font-size:11px;
+
   font-weight:900;
+
   position:relative;
 
   clip-path:polygon(
@@ -331,33 +409,44 @@ a{
 
 .hot:after{
   content:"🔥";
+
   margin-left:3px;
 }
 
 .plan-time{
   font-size:13px;
+
   font-weight:700;
+
   color:#33383e;
 }
 
 .plan-id{
   color:#9a9da2;
+
   font-size:11px;
 }
 
 .plan-type{
   color:#92969b;
+
   font-size:11px;
+
   white-space:nowrap;
+
   overflow:hidden;
+
   text-overflow:ellipsis;
 }
 
 .chart{
   margin-left:auto;
+
   width:25px;
   height:25px;
+
   color:#979ba1;
+
   font-size:20px;
 }
 
@@ -389,15 +478,21 @@ a{
 
 .plan-name{
   font-size:16px;
+
   font-weight:800;
+
   color:#33373d;
+
   line-height:1.25;
 }
 
 .plan-sub{
   margin-top:7px;
+
   color:#999da2;
+
   font-size:12px;
+
   font-weight:600;
 }
 
@@ -412,8 +507,10 @@ a{
 
 .odds{
   display:grid;
+
   grid-template-columns:
     repeat(3,1fr);
+
   gap:2px;
 }
 
@@ -423,8 +520,11 @@ a{
   background:#dcefe2;
 
   display:flex;
+
   flex-direction:column;
+
   justify-content:center;
+
   align-items:center;
 
   color:#247b3f;
@@ -438,14 +538,19 @@ a{
 
 .odd small{
   font-size:9px;
+
   color:#6f8f77;
+
   font-weight:700;
+
   margin-bottom:4px;
+
   text-transform:uppercase;
 }
 
 .odd strong{
   font-size:17px;
+
   font-weight:900;
 }
 
@@ -456,10 +561,15 @@ a{
 
 .activate{
   height:43px;
+
   border-radius:3px;
+
   background:#ed132d;
+
   color:#fff;
+
   font-size:12px;
+
   font-weight:900;
 
   box-shadow:
@@ -477,9 +587,12 @@ a{
 
 .plan-bottom{
   position:absolute;
+
   left:16px;
   bottom:5px;
+
   color:#9a9da2;
+
   font-size:10px;
 }
 
@@ -490,291 +603,14 @@ a{
 
 .popular-line{
   position:absolute;
+
   top:39px;
   left:0;
+
   width:4px;
   height:97px;
+
   background:#ed132d;
-}
-
-
-/* =====================================================
-   ODD 4 PROMO HIGHLIGHT
-===================================================== */
-
-.plan.promo-odd4{
-  position:relative;
-
-  background:
-    linear-gradient(
-      135deg,
-      #fffafa 0%,
-      #ffffff 45%,
-      #fff1f3 100%
-    );
-
-  border:2px solid #ed132d;
-
-  box-shadow:
-    0 0 0 2px rgba(237,19,45,.08),
-    0 4px 16px rgba(237,19,45,.20);
-
-  overflow:hidden;
-
-  z-index:2;
-
-  animation:
-    odd4Glow 2.4s ease-in-out infinite;
-}
-
-
-/* LEFT RED HIGHLIGHT */
-
-.plan.promo-odd4:after{
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  width:6px;
-  height:100%;
-  background:#ed132d;
-  z-index:5;
-}
-
-
-/* SHINY LIGHT SWEEP */
-
-.plan.promo-odd4 .plan-content{
-  position:relative;
-  overflow:hidden;
-}
-
-.plan.promo-odd4 .plan-content:after{
-  content:"";
-  position:absolute;
-  top:-20%;
-  left:-80px;
-  width:45px;
-  height:140%;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.85),
-      transparent
-    );
-
-  transform:skewX(-20deg);
-
-  pointer-events:none;
-
-  animation:
-    odd4Shine 2.8s ease-in-out infinite;
-
-  z-index:10;
-}
-
-
-/* BOLDER PLAN HEADER */
-
-.plan.promo-odd4 .plan-top{
-  background:#fff0f2;
-  border-bottom:1px solid #f2cbd0;
-}
-
-.plan.promo-odd4 .plan-time{
-  color:#ed132d;
-  font-weight:900;
-}
-
-.plan.promo-odd4 .plan-type{
-  color:#c90e21;
-  font-weight:900;
-}
-
-
-/* BOLDER ODD NAME */
-
-.plan.promo-odd4 .plan-name{
-  color:#ed132d;
-  font-size:18px;
-  font-weight:950;
-}
-
-
-/* BOLDER ACTIVATION */
-
-.plan.promo-odd4 .plan-sub{
-  color:#666;
-  font-weight:800;
-}
-
-.plan.promo-odd4 .plan-sub strong{
-  color:#ed132d;
-  font-weight:950;
-}
-
-
-/* HIGHLIGHT ODDS */
-
-.plan.promo-odd4 .odd{
-  background:
-    linear-gradient(
-      135deg,
-      #d9f5e1,
-      #c5edd1
-    );
-
-  color:#087b36;
-  font-weight:900;
-
-  border-right:1px solid #fff;
-}
-
-.plan.promo-odd4 .odd small{
-  color:#4c7d5a;
-  font-weight:900;
-}
-
-.plan.promo-odd4 .odd strong{
-  color:#087b36;
-  font-size:19px;
-  font-weight:950;
-}
-
-
-/* MAKE DAILY AMOUNT STAND OUT */
-
-.plan.promo-odd4 .odd:first-child{
-  background:
-    linear-gradient(
-      135deg,
-      #b8edc8,
-      #dcf8e4
-    );
-
-  box-shadow:
-    inset 0 0 0 2px rgba(8,166,60,.13);
-}
-
-.plan.promo-odd4 .odd:first-child strong{
-  color:#078f35;
-  font-size:20px;
-}
-
-
-/* BOLDER ACTIVATE BUTTON */
-
-.plan.promo-odd4 .activate{
-  background:
-    linear-gradient(
-      135deg,
-      #ed132d,
-      #c90e21
-    );
-
-  font-weight:950;
-
-  box-shadow:
-    0 4px 10px rgba(237,19,45,.28);
-
-  position:relative;
-  overflow:hidden;
-  z-index:11;
-}
-
-
-/* SHINY BUTTON SWEEP */
-
-.plan.promo-odd4 .activate:after{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-70px;
-  width:35px;
-  height:100%;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.65),
-      transparent
-    );
-
-  transform:skewX(-20deg);
-
-  animation:
-    buttonShine 2.5s ease-in-out infinite;
-}
-
-
-/* BOLDER BOTTOM TEXT */
-
-.plan.promo-odd4 .plan-bottom{
-  color:#ed132d;
-  font-weight:900;
-}
-
-
-/* =====================================================
-   ODD 4 ANIMATIONS
-===================================================== */
-
-@keyframes odd4Shine{
-
-  0%{
-    left:-80px;
-    opacity:0;
-  }
-
-  15%{
-    opacity:1;
-  }
-
-  55%{
-    left:110%;
-    opacity:1;
-  }
-
-  70%,
-  100%{
-    left:110%;
-    opacity:0;
-  }
-
-}
-
-@keyframes buttonShine{
-
-  0%,
-  35%{
-    left:-70px;
-  }
-
-  70%,
-  100%{
-    left:120%;
-  }
-
-}
-
-@keyframes odd4Glow{
-
-  0%,
-  100%{
-    box-shadow:
-      0 0 0 2px rgba(237,19,45,.07),
-      0 4px 15px rgba(237,19,45,.16);
-  }
-
-  50%{
-    box-shadow:
-      0 0 0 3px rgba(237,19,45,.12),
-      0 5px 21px rgba(237,19,45,.27);
-  }
-
 }
 
 
@@ -784,13 +620,17 @@ a{
 
 .empty-state{
   min-height:220px;
+
   background:#fff;
+
   border-bottom:1px solid #ddd;
 
   display:none;
 
   flex-direction:column;
+
   align-items:center;
+
   justify-content:center;
 
   text-align:center;
@@ -801,12 +641,14 @@ a{
 .empty-icon{
   width:58px;
   height:58px;
+
   border-radius:50%;
 
   display:grid;
   place-items:center;
 
   background:#fff0f2;
+
   color:#ed132d;
 
   font-size:25px;
@@ -816,30 +658,39 @@ a{
 
 .empty-state strong{
   font-size:16px;
+
   color:#333;
 }
 
 .empty-state span{
   margin-top:6px;
+
   color:#999;
+
   font-size:12px;
 }
 
 .empty-state a{
   margin-top:16px;
+
   height:38px;
+
   padding:0 18px;
 
   display:flex;
+
   align-items:center;
+
   justify-content:center;
 
   border-radius:4px;
 
   background:#ed132d;
+
   color:#fff;
 
   font-size:11px;
+
   font-weight:900;
 }
 
@@ -850,6 +701,7 @@ a{
 
 .bottom-nav{
   position:fixed;
+
   left:0;
   right:0;
   bottom:0;
@@ -857,12 +709,15 @@ a{
   height:68px;
 
   background:#050505;
+
   color:#fff;
 
   z-index:90;
 
   display:flex;
+
   justify-content:space-around;
+
   align-items:center;
 
   box-shadow:
@@ -874,11 +729,15 @@ a{
   height:100%;
 
   display:flex;
+
   flex-direction:column;
+
   align-items:center;
+
   justify-content:center;
 
   color:#aaa;
+
   font-size:10px;
 
   position:relative;
@@ -886,7 +745,9 @@ a{
 
 .bottom-icon{
   font-size:23px;
+
   line-height:24px;
+
   margin-bottom:5px;
 }
 
@@ -896,8 +757,11 @@ a{
 
 .bottom-item.active:after{
   content:"";
+
   position:absolute;
+
   bottom:0;
+
   left:20%;
   right:20%;
 
@@ -917,6 +781,7 @@ a{
 
 .modal{
   position:fixed;
+
   inset:0;
 
   background:rgba(0,0,0,.48);
@@ -926,6 +791,7 @@ a{
   display:none;
 
   align-items:flex-end;
+
   justify-content:center;
 
   padding:0;
@@ -937,6 +803,7 @@ a{
 
 .sheet{
   width:100%;
+
   max-width:620px;
 
   margin:0 auto;
@@ -945,10 +812,7 @@ a{
 
   border-radius:18px 18px 0 0;
 
-  padding:
-    0
-    16px
-    22px;
+  padding:0 16px 22px;
 
   box-shadow:
     0 -8px 30px rgba(0,0,0,.28);
@@ -975,6 +839,7 @@ a{
 
 .sheet:before{
   content:"";
+
   display:block;
 
   width:42px;
@@ -992,10 +857,13 @@ a{
 
 .sheet-top{
   display:flex;
+
   justify-content:space-between;
+
   align-items:center;
 
   margin-bottom:14px;
+
   padding-bottom:11px;
 
   border-bottom:1px solid #ededed;
@@ -1003,7 +871,9 @@ a{
 
 .sheet-title{
   font-size:18px;
+
   font-weight:900;
+
   color:#22262b;
 }
 
@@ -1011,6 +881,7 @@ a{
   content:"⚡";
 
   display:inline-flex;
+
   align-items:center;
   justify-content:center;
 
@@ -1022,6 +893,7 @@ a{
   border-radius:7px;
 
   background:#fff0f2;
+
   color:#ed132d;
 
   font-size:14px;
@@ -1036,11 +908,13 @@ a{
   border-radius:50%;
 
   background:#f0f1f2;
+
   color:#555;
 
   font-size:21px;
 
   display:grid;
+
   place-items:center;
 }
 
@@ -1058,6 +932,7 @@ a{
   color:#70757c;
 
   font-size:12px;
+
   line-height:1.45;
 
   margin-bottom:12px;
@@ -1080,6 +955,7 @@ a{
   display:flex;
 
   justify-content:space-between;
+
   align-items:center;
 }
 
@@ -1089,6 +965,7 @@ a{
   color:#92969c;
 
   font-size:8px;
+
   font-weight:800;
 
   letter-spacing:.4px;
@@ -1102,6 +979,7 @@ a{
   font-size:16px;
 
   color:#22262b;
+
   font-weight:900;
 }
 
@@ -1114,7 +992,9 @@ a{
   padding:10px 13px;
 
   display:flex;
+
   justify-content:space-between;
+
   align-items:center;
 
   border-radius:6px;
@@ -1128,6 +1008,7 @@ a{
   color:#777c83;
 
   font-size:10px;
+
   font-weight:700;
 }
 
@@ -1135,6 +1016,7 @@ a{
   color:#ed132d;
 
   font-size:13px;
+
   font-weight:900;
 }
 
@@ -1144,9 +1026,7 @@ a{
 .modal-actions{
   display:grid;
 
-  grid-template-columns:
-    1fr
-    1.4fr;
+  grid-template-columns:1fr 1.4fr;
 
   gap:8px;
 
@@ -1159,294 +1039,29 @@ a{
   display:flex;
 
   justify-content:center;
+
   align-items:center;
 
   border-radius:5px;
 
   font-size:11px;
+
   font-weight:900;
 }
 
 .secondary{
   background:#eceeef;
+
   color:#44484d;
 }
 
 .primary{
   background:#ed132d;
+
   color:#fff;
 
   box-shadow:
     0 4px 10px rgba(237,19,45,.2);
-}
-
-
-/* =====================================================
-   HOLIDAY SEASON PROMO POPUP
-===================================================== */
-
-.promo-overlay{
-  position:fixed;
-  inset:0;
-
-  background:rgba(0,0,0,.52);
-
-  z-index:500;
-
-  display:flex;
-
-  align-items:flex-end;
-  justify-content:center;
-
-  opacity:0;
-  visibility:hidden;
-
-  transition:
-    opacity .25s ease,
-    visibility .25s ease;
-}
-
-.promo-overlay.show{
-  opacity:1;
-  visibility:visible;
-}
-
-.promo-sheet{
-  width:100%;
-  max-width:620px;
-
-  background:#fff;
-
-  border-radius:20px 20px 0 0;
-
-  padding:
-    0
-    20px
-    calc(24px + env(safe-area-inset-bottom));
-
-  text-align:center;
-
-  box-shadow:
-    0 -8px 35px rgba(0,0,0,.28);
-
-  transform:translateY(100%);
-
-  transition:
-    transform .3s cubic-bezier(.22,1,.36,1);
-
-  position:relative;
-}
-
-.promo-overlay.show .promo-sheet{
-  transform:translateY(0);
-}
-
-
-/* PROMO HANDLE */
-
-.promo-handle{
-  width:43px;
-  height:4px;
-
-  background:#aeb1b5;
-
-  border-radius:20px;
-
-  margin:9px auto 17px;
-}
-
-
-/* CLOSE */
-
-.promo-close{
-  position:absolute;
-
-  top:14px;
-  right:16px;
-
-  width:34px;
-  height:34px;
-
-  border-radius:50%;
-
-  background:#f1f2f3;
-
-  color:#96999e;
-
-  font-size:24px;
-  line-height:1;
-
-  display:grid;
-  place-items:center;
-}
-
-.promo-close:active{
-  transform:scale(.94);
-}
-
-
-/* PROMO LABEL */
-
-.promo-label{
-  display:inline-flex;
-
-  align-items:center;
-  justify-content:center;
-
-  padding:6px 13px;
-
-  border-radius:20px;
-
-  background:#fff0f2;
-
-  color:#ed132d;
-
-  font-size:11px;
-  font-weight:900;
-
-  letter-spacing:.4px;
-
-  margin-bottom:11px;
-}
-
-
-/* PROMO TITLE */
-
-.promo-title{
-  font-size:23px;
-  font-weight:900;
-
-  color:#202329;
-
-  line-height:1.18;
-
-  margin:
-    0
-    35px
-    14px;
-}
-
-.promo-daily{
-  display:block;
-
-  margin-top:5px;
-
-  color:#08a63c;
-
-  font-size:.82em;
-  font-weight:900;
-}
-
-
-/* =====================================================
-   SPORTY PROMO IMAGE
-===================================================== */
-
-.promo-image{
-  width:100%;
-
-  max-width:470px;
-
-  height:210px;
-
-  margin:0 auto 13px;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  overflow:hidden;
-
-  border-radius:12px;
-
-  background:#fff;
-}
-
-.promo-loyalty-image{
-  width:100%;
-  height:100%;
-
-  object-fit:contain;
-  object-position:center;
-
-  display:block;
-
-  animation:
-    loyaltyFloat 3s ease-in-out infinite;
-}
-
-@keyframes loyaltyFloat{
-
-  0%,
-  100%{
-    transform:
-      translateY(0)
-      scale(1);
-  }
-
-  50%{
-    transform:
-      translateY(-5px)
-      scale(1.02);
-  }
-
-}
-
-
-/* =====================================================
-   PROMO MESSAGE
-===================================================== */
-
-.promo-message{
-  max-width:520px;
-
-  margin:
-    0
-    auto
-    18px;
-
-  color:#555b62;
-
-  font-size:15px;
-
-  line-height:1.45;
-}
-
-.promo-message strong{
-  color:#ed132d;
-  font-weight:900;
-}
-
-
-/* =====================================================
-   PROMO BUTTON
-===================================================== */
-
-.promo-okay{
-  width:100%;
-  height:52px;
-
-  border-radius:4px;
-
-  background:#08a63c;
-
-  color:#fff;
-
-  font-size:16px;
-  font-weight:900;
-
-  box-shadow:
-    0 3px 8px rgba(8,166,60,.22);
-
-  transition:
-    transform .15s ease,
-    background .15s ease;
-}
-
-.promo-okay:active{
-  transform:scale(.98);
-  background:#078f35;
 }
 
 
@@ -1470,11 +1085,13 @@ a{
 
   .category{
     padding:0 16px;
+
     font-size:15px;
   }
 
   .market{
     padding:0 16px;
+
     font-size:14px;
   }
 
@@ -1527,11 +1144,13 @@ a{
 
   .odds{
     grid-column:2;
+
     grid-row:1;
   }
 
   .plan-name-area{
     grid-column:1;
+
     grid-row:1;
   }
 
@@ -1541,64 +1160,6 @@ a{
 
   .plan-bottom{
     bottom:7px;
-  }
-
-  .plan.promo-odd4{
-    border-width:2px;
-
-    margin-top:3px;
-    margin-bottom:3px;
-  }
-
-  .plan.promo-odd4 .plan-name{
-    font-size:17px;
-  }
-
-  .plan.promo-odd4 .odd strong{
-    font-size:17px;
-  }
-
-  .plan.promo-odd4 .odd:first-child strong{
-    font-size:18px;
-  }
-
-
-  /* PROMO POPUP */
-
-  .promo-sheet{
-    padding:
-      0
-      15px
-      calc(18px + env(safe-area-inset-bottom));
-  }
-
-  .promo-title{
-    font-size:21px;
-
-    margin-left:27px;
-    margin-right:27px;
-  }
-
-  .promo-image{
-    width:100%;
-    max-width:100%;
-    height:180px;
-  }
-
-  .promo-loyalty-image{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    object-position:center;
-  }
-
-  .promo-message{
-    font-size:14px;
-  }
-
-  .promo-okay{
-    height:50px;
-    font-size:15px;
   }
 
 }
@@ -1612,6 +1173,7 @@ a{
 
   .top-header{
     height:74px;
+
     padding:0 12px;
   }
 
@@ -1625,7 +1187,9 @@ a{
 
   .balance{
     min-width:128px;
+
     height:45px;
+
     padding:0 8px;
   }
 
@@ -1647,6 +1211,7 @@ a{
 
   .page-info-right{
     gap:25px;
+
     padding-right:4px;
   }
 
@@ -1655,10 +1220,7 @@ a{
   }
 
   .plan-content{
-    padding:
-      9px
-      12px
-      15px;
+    padding:9px 12px 15px;
 
     grid-template-columns:
       100px
@@ -1693,25 +1255,18 @@ a{
 
   .activate{
     grid-column:2;
+
     height:37px;
   }
 
   .plan-bottom{
     left:12px;
+
     font-size:9px;
   }
 
-  .plan.promo-odd4 .plan-name{
-    font-size:16px;
-  }
 
-  .plan.promo-odd4 .odd strong{
-    font-size:15px;
-  }
-
-  .plan.promo-odd4 .odd:first-child strong{
-    font-size:16px;
-  }
+  /* BET SLIP */
 
   .sheet{
     padding:
@@ -1734,10 +1289,6 @@ a{
 
   .selected-plan strong{
     font-size:15px;
-  }
-
-  .promo-image{
-    height:165px;
   }
 
 }
@@ -1767,30 +1318,19 @@ a{
 
   .category{
     font-size:14px;
+
     padding:0 12px;
   }
 
   .market{
     font-size:13px;
+
     padding:0 12px;
-  }
-
-  .promo-title{
-    font-size:19px;
-  }
-
-  .promo-image{
-    height:150px;
-  }
-
-  .promo-message{
-    font-size:13px;
   }
 
 }
 
 </style>
-
 </head>
 
 
@@ -1807,9 +1347,11 @@ a{
     SportyMine
   </div>
 
+
   <div class="header-right">
 
     <div class="search"></div>
+
 
     <div class="balance">
 
@@ -1836,6 +1378,7 @@ a{
 </header>
 
 
+
 <!-- =====================================================
      CATEGORY BAR
 ===================================================== -->
@@ -1849,7 +1392,9 @@ a{
     Odds
   </div>
 
+
   <div class="category-separator"></div>
+
 
   <div
     class="category"
@@ -1858,12 +1403,14 @@ a{
     All
   </div>
 
+
   <div
     class="category"
     data-filter="popular"
   >
     Popular
   </div>
+
 
   <div
     class="category"
@@ -1872,12 +1419,14 @@ a{
     Starter
   </div>
 
+
   <div
     class="category"
     data-filter="high-return"
   >
     High Return
   </div>
+
 
   <div
     class="category"
@@ -1887,6 +1436,7 @@ a{
   </div>
 
 </div>
+
 
 
 <!-- =====================================================
@@ -1902,6 +1452,7 @@ a{
     Available Odds
   </div>
 
+
   <div class="page-info-right">
 
     <span>
@@ -1915,6 +1466,7 @@ a{
   </div>
 
 </div>
+
 
 
 <!-- =====================================================
@@ -1966,9 +1518,7 @@ a{
 
         <div class="plan-sub">
           Activation
-          <strong>
-            ₦1,500
-          </strong>
+          <strong>₦1,500</strong>
         </div>
 
       </div>
@@ -2010,6 +1560,7 @@ a{
     </div>
 
   </div>
+
 
 
   <!-- ODD 2 -->
@@ -2054,9 +1605,7 @@ a{
 
         <div class="plan-sub">
           Activation
-          <strong>
-            ₦3,000
-          </strong>
+          <strong>₦3,000</strong>
         </div>
 
       </div>
@@ -2098,6 +1647,7 @@ a{
     </div>
 
   </div>
+
 
 
   <!-- ODD 3 -->
@@ -2144,9 +1694,7 @@ a{
 
         <div class="plan-sub">
           Activation
-          <strong>
-            ₦5,200
-          </strong>
+          <strong>₦5,200</strong>
         </div>
 
       </div>
@@ -2190,17 +1738,18 @@ a{
   </div>
 
 
-  <!-- ODD 4 — PROMO -->
+
+  <!-- ODD 4 -->
 
   <div
-    class="plan promo-odd4"
+    class="plan"
     data-category="high-return"
   >
 
     <div class="plan-top">
 
       <div class="hot">
-        PROMO
+        HOT
       </div>
 
       <div class="plan-time">
@@ -2212,7 +1761,7 @@ a{
       </div>
 
       <div class="plan-type">
-        SportyMine Promo Odds
+        SportyMine Earning Odds
       </div>
 
       <div class="chart">
@@ -2232,9 +1781,7 @@ a{
 
         <div class="plan-sub">
           Activation
-          <strong>
-            ₦20,400
-          </strong>
+          <strong>₦20,400</strong>
         </div>
 
       </div>
@@ -2276,6 +1823,7 @@ a{
     </div>
 
   </div>
+
 
 
   <!-- ODD 5 -->
@@ -2320,9 +1868,7 @@ a{
 
         <div class="plan-sub">
           Activation
-          <strong>
-            ₦50,000
-          </strong>
+          <strong>₦50,000</strong>
         </div>
 
       </div>
@@ -2364,6 +1910,7 @@ a{
     </div>
 
   </div>
+
 
 
   <!-- ODD 6 -->
@@ -2408,9 +1955,7 @@ a{
 
         <div class="plan-sub">
           Activation
-          <strong>
-            ₦110,000
-          </strong>
+          <strong>₦110,000</strong>
         </div>
 
       </div>
@@ -2452,6 +1997,7 @@ a{
     </div>
 
   </div>
+
 
 
   <!-- ODD 7 -->
@@ -2496,9 +2042,7 @@ a{
 
         <div class="plan-sub">
           Activation
-          <strong>
-            ₦222,000
-          </strong>
+          <strong>₦222,000</strong>
         </div>
 
       </div>
@@ -2543,6 +2087,7 @@ a{
 
 
 </div>
+
 
 
 <!-- =====================================================
@@ -2609,6 +2154,7 @@ a{
 </nav>
 
 
+
 <!-- =====================================================
      BET SLIP
 ===================================================== -->
@@ -2620,11 +2166,13 @@ a{
 
   <div class="sheet">
 
+
     <div class="sheet-top">
 
       <div class="sheet-title">
-        Odd Slip
+      Odd Slip
       </div>
+
 
       <button
         class="close"
@@ -2695,6 +2243,7 @@ a{
         GO BACK
       </a>
 
+
       <a
         class="primary"
         href="fund.html"
@@ -2709,90 +2258,8 @@ a{
 </div>
 
 
-<!-- =====================================================
-     HOLIDAY SEASON PROMO POPUP
-===================================================== -->
-
-<div
-  class="promo-overlay"
-  id="holidayPromo"
->
-
-  <div class="promo-sheet">
-
-    <div class="promo-handle"></div>
-
-
-    <button
-      class="promo-close"
-      id="promoClose"
-      type="button"
-      aria-label="Close"
-    >
-      ×
-    </button>
-
-
-    <div class="promo-label">
-      🎄 HOLIDAY SEASON PROMO
-    </div>
-
-
-    <div class="promo-title">
-
-      Activate the 4th Odd and Get Upgraded
-      to the 5th Odd
-
-      <span class="promo-daily">
-        (₦17,400 Daily)
-      </span>
-
-    </div>
-
-
-    <!-- =================================================
-         SPORTY PROMO IMAGE
-    ================================================== -->
-
-    <div class="promo-image">
-
-      <img
-        class="promo-loyalty-image"
-        src="/images/sportynew.png"
-        alt="SportyMine Promotion"
-      >
-
-    </div>
-
-
-    <div class="promo-message">
-
-      Activate
-      <strong>Odd 4</strong>
-      during our Holiday Season Promo and get upgraded to
-      <strong>Odd 5</strong>,
-      giving you
-      <strong>₦17,400 daily</strong>
-      for 70 days. 🎁🔥
-
-    </div>
-
-
-    <button
-      class="promo-okay"
-      id="promoOkay"
-      type="button"
-    >
-      OKAY
-    </button>
-
-  </div>
-
-</div>
-
 
 <script>
-
 
 /* =====================================================
    ACTIVATION MODAL
@@ -2834,6 +2301,7 @@ document
         selectedName.textContent =
           name;
 
+
         selectedPrice.textContent =
           "₦" + formatted;
 
@@ -2852,6 +2320,7 @@ document
     );
 
   });
+
 
 
 /* =====================================================
@@ -2890,6 +2359,7 @@ modal.addEventListener(
 );
 
 
+
 /* =====================================================
    ODDS CATEGORY FILTER
 ===================================================== */
@@ -2913,6 +2383,7 @@ const sectionTitle =
   document.getElementById(
     "sectionTitle"
   );
+
 
 
 /* =====================================================
@@ -2952,6 +2423,7 @@ planList.appendChild(
 );
 
 
+
 /* =====================================================
    FILTER FUNCTION
 ===================================================== */
@@ -2974,6 +2446,8 @@ function filterOdds(filter){
     let show = false;
 
 
+    /* ALL */
+
     if(
       filter === "all" ||
       filter === "odds"
@@ -2982,6 +2456,9 @@ function filterOdds(filter){
       show = true;
 
     }
+
+
+    /* POPULAR */
 
     else if(
       filter === "popular"
@@ -2994,6 +2471,9 @@ function filterOdds(filter){
 
     }
 
+
+    /* STARTER */
+
     else if(
       filter === "starter"
     ){
@@ -3005,6 +2485,9 @@ function filterOdds(filter){
 
     }
 
+
+    /* HIGH RETURN */
+
     else if(
       filter === "high-return"
     ){
@@ -3015,6 +2498,9 @@ function filterOdds(filter){
         );
 
     }
+
+
+    /* MY ODDS */
 
     else if(
       filter === "my-odds"
@@ -3044,6 +2530,8 @@ function filterOdds(filter){
   });
 
 
+  /* EMPTY STATE */
+
   if(
     visibleCount === 0
   ){
@@ -3060,6 +2548,8 @@ function filterOdds(filter){
 
   }
 
+
+  /* SECTION TITLE */
 
   if(
     filter === "popular"
@@ -3107,6 +2597,7 @@ function filterOdds(filter){
 }
 
 
+
 /* =====================================================
    CATEGORY BUTTON CLICK
 ===================================================== */
@@ -3150,6 +2641,7 @@ categoryButtons.forEach(
 );
 
 
+
 /* =====================================================
    INITIAL STATE
 ===================================================== */
@@ -3159,120 +2651,43 @@ filterOdds(
 );
 
 
-/* =====================================================
-   HOLIDAY SEASON PROMO
-===================================================== */
-
-const holidayPromo =
-  document.getElementById(
-    "holidayPromo"
-  );
-
-const promoOkay =
-  document.getElementById(
-    "promoOkay"
-  );
-
-const promoClose =
-  document.getElementById(
-    "promoClose"
-  );
-
-
-/* OPEN PROMO */
-
-function openHolidayPromo(){
-
-  holidayPromo.classList.add(
-    "show"
-  );
-
-  document.body.style.overflow =
-    "hidden";
-
-}
-
-
-/* CLOSE PROMO */
-
-function closeHolidayPromo(){
-
-  holidayPromo.classList.remove(
-    "show"
-  );
-
-  document.body.style.overflow =
-    "";
-
-}
-
 
 /* =====================================================
-   SHOW PROMO WHEN PAGE OPENS
+   MARKET TAB VISUAL STATE
 ===================================================== */
 
-window.addEventListener(
-  "load",
-  function(){
+document
+  .querySelectorAll(".market")
+  .forEach(item => {
 
-    setTimeout(
-      openHolidayPromo,
-      350
+    item.addEventListener(
+      "click",
+      function(){
+
+        document
+          .querySelectorAll(
+            ".market"
+          )
+          .forEach(x => {
+
+            x.classList.remove(
+              "active"
+            );
+
+          });
+
+
+        this.classList.add(
+          "active"
+        );
+
+      }
     );
 
-  }
-);
-
-
-/* =====================================================
-   OKAY BUTTON
-===================================================== */
-
-promoOkay.addEventListener(
-  "click",
-  function(){
-
-    closeHolidayPromo();
-
-  }
-);
-
-
-/* =====================================================
-   CLOSE BUTTON
-===================================================== */
-
-promoClose.addEventListener(
-  "click",
-  function(){
-
-    closeHolidayPromo();
-
-  }
-);
-
-
-/* =====================================================
-   CLOSE BY TAPPING OUTSIDE
-===================================================== */
-
-holidayPromo.addEventListener(
-  "click",
-  function(event){
-
-    if(
-      event.target === holidayPromo
-    ){
-
-      closeHolidayPromo();
-
-    }
-
-  }
-);
+  });
 
 </script>
 
 </body>
-
 </html>
+
