@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 
 <meta charset="utf-8">
@@ -237,6 +238,7 @@ a{
 
 .category-separator{
   height:30px;
+
   width:1px;
 
   background:#e3e3e3;
@@ -536,6 +538,7 @@ a{
   position:absolute;
 
   left:16px;
+
   bottom:5px;
 
   color:#9a9da2;
@@ -552,9 +555,11 @@ a{
   position:absolute;
 
   top:39px;
+
   left:0;
 
   width:4px;
+
   height:97px;
 
   background:#ed132d;
@@ -673,6 +678,7 @@ a{
 
 .bottom-item{
   width:25%;
+
   height:100%;
 
   display:flex;
@@ -790,6 +796,7 @@ a{
   display:block;
 
   width:42px;
+
   height:4px;
 
   margin:8px auto 14px;
@@ -830,9 +837,11 @@ a{
   display:inline-flex;
 
   align-items:center;
+
   justify-content:center;
 
   width:28px;
+
   height:28px;
 
   margin-right:8px;
@@ -864,9 +873,6 @@ a{
 
   place-items:center;
 }
-
-
-/* HIDE OLD MODAL ICON */
 
 .modal-icon{
   display:none;
@@ -1123,9 +1129,7 @@ a{
 }
 
 
-/* =====================================================
-   HOW IT WORKS IMAGE
-===================================================== */
+/* HOW IT WORKS IMAGE */
 
 .how-image{
   width:100%;
@@ -1209,14 +1213,18 @@ a{
 
 /* =====================================================
    NEW USER BONUS POPUP
+   DASHBOARD-STYLE DESIGN
 ===================================================== */
 
 .bonus-overlay{
   position:fixed;
 
-  inset:0;
+  left:0;
+  right:0;
+  bottom:0;
+  top:auto;
 
-  background:rgba(0,0,0,.42);
+  background:transparent;
 
   z-index:500;
 
@@ -1226,210 +1234,218 @@ a{
 
   justify-content:center;
 
-  padding:0;
+  padding:0 12px 14px;
+
+  pointer-events:none;
 }
 
 .bonus-overlay.show{
   display:flex;
+
+  animation:bonusBackdrop .35s ease both;
 }
 
 .bonus-popup{
-  width:100%;
+  width:min(620px,100%);
 
-  max-width:560px;
+  margin:auto;
 
   background:#fff;
 
-  border-radius:20px 20px 0 0;
+  border:1px solid rgba(231,234,240,.95);
 
-  padding:
-    0
-    18px
-    22px;
+  border-radius:30px 30px 22px 22px;
+
+  padding:27px 22px 23px;
 
   position:relative;
 
   box-shadow:
-    0 -8px 30px rgba(0,0,0,.25);
+    0 -15px 45px rgba(20,27,38,.16),
+    0 25px 65px rgba(20,27,38,.20);
 
-  animation:bonusSlideUp .3s ease;
-}
+  pointer-events:auto;
 
-@keyframes bonusSlideUp{
-
-  from{
-    transform:translateY(100%);
-
-    opacity:0;
-  }
-
-  to{
-    transform:translateY(0);
-
-    opacity:1;
-  }
-
+  animation:
+    bonusSlideUp
+    .7s
+    cubic-bezier(.16,1,.3,1)
+    both;
 }
 
 
-/* SMALL HANDLE */
+/* DASHBOARD-STYLE HANDLE */
 
 .bonus-popup:before{
   content:"";
 
   display:block;
 
-  width:42px;
-  height:4px;
+  width:46px;
 
-  background:#d1d3d6;
+  height:5px;
 
-  border-radius:10px;
+  margin:-9px auto 18px;
 
-  margin:9px auto 10px;
+  border-radius:20px;
+
+  background:#e4e6ea;
 }
 
 
-/* CLOSE */
+/* =====================================================
+   BONUS TOP
+===================================================== */
 
-.bonus-close{
-  position:absolute;
-
-  top:14px;
-  right:14px;
-
-  width:32px;
-  height:32px;
-
-  border-radius:50%;
-
-  background:#f0f1f2;
-
-  color:#777;
-
-  font-size:23px;
-
-  line-height:30px;
-
+.bonus-top{
   display:flex;
 
   align-items:center;
 
-  justify-content:center;
+  gap:16px;
 }
 
 
-/* BONUS TITLE */
+/* =====================================================
+   BONUS ICON
+===================================================== */
 
-.bonus-title{
-  text-align:center;
+.bonus-icon{
+  width:66px;
+  height:66px;
 
-  font-size:21px;
+  flex-shrink:0;
 
-  font-weight:900;
+  display:grid;
 
-  color:#20242a;
+  place-items:center;
 
-  margin-top:2px;
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff0f2,
+      #ffdfe4
+    );
+
+  color:#ed1b2f;
+
+  font-size:28px;
+
+  font-weight:950;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.8),
+    0 7px 18px rgba(237,27,47,.08);
 }
 
-.bonus-title span{
-  color:#ed132d;
+
+/* =====================================================
+   BONUS TEXT AREA
+===================================================== */
+
+.bonus-heading{
+  flex:1;
+
+  min-width:0;
 }
 
-
-/* BONUS IMAGE */
-
-.bonus-image{
-  width:100%;
-
-  height:150px;
-
-  object-fit:contain;
-
+.bonus-heading small{
   display:block;
 
-  margin:5px auto 2px;
+  color:#737b87;
+
+  font-size:12px;
+
+  font-weight:850;
+
+  margin-bottom:4px;
+
+  letter-spacing:.2px;
+}
+
+.bonus-heading strong{
+  display:block;
+
+  color:#12161d;
+
+  font-size:22px;
+
+  line-height:1.15;
+
+  font-weight:950;
+
+  letter-spacing:-.5px;
 }
 
 
-/* BONUS TEXT */
+/* =====================================================
+   BONUS OFFER TEXT
+===================================================== */
 
 .bonus-text{
+  color:#12161d;
+
+  font-size:19px;
+
+  line-height:1.38;
+
+  font-weight:1000;
+
   text-align:center;
 
-  color:#4d535a;
+  padding:0 4px;
 
-  font-size:14px;
+  margin-top:22px;
 
-  line-height:1.45;
-
-  padding:0 12px;
+  letter-spacing:-.25px;
 }
 
 .bonus-text strong{
-  color:#ed132d;
+  color:#ed1b2f;
 
-  font-weight:900;
+  font-weight:1000;
+
+  display:inline;
 }
 
 
-/* OFFER VALID */
+/* =====================================================
+   OFFER VALID
+===================================================== */
 
 .bonus-valid{
   text-align:center;
 
-  margin-top:8px;
+  margin-top:11px;
 
-  color:#777d84;
+  color:#737b87;
 
   font-size:10px;
 
-  font-weight:800;
+  font-weight:850;
 
   letter-spacing:.6px;
 }
 
 
-/* BONUS BUTTON */
-
-.bonus-button{
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  width:100%;
-
-  height:47px;
-
-  margin-top:13px;
-
-  border-radius:4px;
-
-  background:#0ba33c;
-
-  color:#fff;
-
-  font-size:14px;
-
-  font-weight:900;
-
-  box-shadow:
-    0 3px 8px rgba(11,163,60,.18);
-}
-
-.bonus-button:active{
-  transform:scale(.98);
-}
-
-
 /* =====================================================
-   BONUS CLOSE BUTTON UNDER ACTIVATE OFFER
+   BONUS ACTIONS
 ===================================================== */
 
-.bonus-close-bottom{
+.bonus-actions{
+  display:grid;
+
+  grid-template-columns:1fr 1.35fr;
+
+  gap:9px;
+
+  margin-top:18px;
+}
+
+.bonus-actions a,
+.bonus-actions button{
   display:flex;
 
   align-items:center;
@@ -1438,23 +1454,94 @@ a{
 
   width:100%;
 
-  height:42px;
+  height:52px;
 
-  margin-top:8px;
-
-  border-radius:4px;
-
-  background:#eceeef;
-
-  color:#555a60;
+  border-radius:13px;
 
   font-size:13px;
 
   font-weight:900;
+
+  text-decoration:none;
+
+  transition:
+    transform .15s ease,
+    box-shadow .15s ease;
 }
 
-.bonus-close-bottom:active{
-  transform:scale(.98);
+.bonus-not-now{
+  background:#eceeef;
+
+  color:#44484d;
+
+  box-shadow:
+    0 5px 12px rgba(20,27,38,.06);
+}
+
+.bonus-activate{
+  background:
+    linear-gradient(
+      135deg,
+      #f5253b,
+      #d90f26
+    );
+
+  color:#fff;
+
+  box-shadow:
+    0 12px 25px rgba(237,27,47,.25);
+}
+
+.bonus-actions a:active,
+.bonus-actions button:active{
+  transform:scale(.97);
+}
+
+
+/* =====================================================
+   BONUS ANIMATIONS
+===================================================== */
+
+@keyframes bonusSlideUp{
+
+  0%{
+    opacity:0;
+
+    transform:
+      translateY(120%)
+      scale(.96);
+  }
+
+  55%{
+    opacity:1;
+  }
+
+  78%{
+    transform:
+      translateY(-7px)
+      scale(1);
+  }
+
+  100%{
+    opacity:1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+@keyframes bonusBackdrop{
+
+  from{
+    opacity:0;
+  }
+
+  to{
+    opacity:1;
+  }
+
 }
 
 
@@ -1497,6 +1584,7 @@ a{
     gap:7px;
 
     padding-left:16px;
+
     padding-right:12px;
   }
 
@@ -1577,9 +1665,6 @@ a{
     font-size:23px;
   }
 
-
-  /* HOW IT WORKS IMAGE MOBILE */
-
   .how-image{
     width:100%;
 
@@ -1587,7 +1672,6 @@ a{
 
     object-fit:contain;
   }
-
 
   .how-text{
     padding:
@@ -1612,39 +1696,82 @@ a{
   }
 
 
-  /* NEW USER BONUS MOBILE */
+  /* DASHBOARD-STYLE BONUS MOBILE */
 
-  .bonus-popup{
-    max-width:none;
-
+  .bonus-overlay{
     padding:
       0
-      15px
-      calc(18px + env(safe-area-inset-bottom));
+      8px
+      9px;
   }
 
-  .bonus-title{
+  .bonus-popup{
+    padding:
+      23px
+      17px
+      18px;
+
+    border-radius:
+      27px
+      27px
+      20px
+      20px;
+  }
+
+  .bonus-top{
+    gap:13px;
+  }
+
+  .bonus-icon{
+    width:59px;
+    height:59px;
+
+    border-radius:18px;
+
+    font-size:25px;
+  }
+
+  .bonus-heading small{
+    font-size:11px;
+  }
+
+  .bonus-heading strong{
     font-size:20px;
   }
 
-  .bonus-image{
-    height:135px;
-
-    margin-top:4px;
-  }
-
   .bonus-text{
-    font-size:13px;
+    font-size:17px;
 
-    padding:0 7px;
+    font-weight:1000;
+
+    line-height:1.4;
+
+    padding:0 2px;
+
+    margin-top:19px;
   }
 
-  .bonus-button{
-    height:45px;
+  .bonus-valid{
+    font-size:9px;
   }
 
-  .bonus-close-bottom{
-    height:42px;
+  .bonus-actions{
+    grid-template-columns:
+      1fr
+      1.35fr;
+
+    gap:7px;
+
+    margin-top:15px;
+  }
+
+  .bonus-actions a,
+  .bonus-actions button{
+    height:48px;
+
+    font-size:12px;
+
+    border-radius:12px;
   }
 
 }
@@ -1799,22 +1926,33 @@ a{
 
   /* BONUS */
 
-  .bonus-title{
+  .bonus-heading strong{
     font-size:19px;
   }
 
-  .bonus-image{
-    height:120px;
-  }
-
   .bonus-text{
-    font-size:12px;
+    font-size:16px;
+
+    font-weight:1000;
 
     line-height:1.4;
+
+    margin-top:17px;
   }
 
   .bonus-valid{
     font-size:9px;
+  }
+
+  .bonus-actions{
+    gap:6px;
+  }
+
+  .bonus-actions a,
+  .bonus-actions button{
+    height:45px;
+
+    font-size:11px;
   }
 
 }
@@ -1854,9 +1992,54 @@ a{
     padding:0 12px;
   }
 
+
+  .bonus-popup{
+    padding:
+      21px
+      14px
+      16px;
+  }
+
+  .bonus-top{
+    gap:10px;
+  }
+
+  .bonus-icon{
+    width:54px;
+    height:54px;
+
+    border-radius:17px;
+
+    font-size:23px;
+  }
+
+  .bonus-heading strong{
+    font-size:17px;
+  }
+
+  .bonus-heading small{
+    font-size:10px;
+  }
+
+  .bonus-text{
+    font-size:15px;
+
+    font-weight:1000;
+
+    line-height:1.4;
+  }
+
+  .bonus-actions a,
+  .bonus-actions button{
+    height:43px;
+
+    font-size:10px;
+  }
+
 }
 
 </style>
+
 </head>
 
 
@@ -1873,11 +2056,9 @@ a{
     SportyMine
   </div>
 
-
   <div class="header-right">
 
     <div class="search"></div>
-
 
     <div class="balance">
 
@@ -1904,7 +2085,6 @@ a{
 </header>
 
 
-
 <!-- =====================================================
      CATEGORY BAR
 ===================================================== -->
@@ -1918,9 +2098,7 @@ a{
     Odds
   </div>
 
-
   <div class="category-separator"></div>
-
 
   <div
     class="category"
@@ -1929,14 +2107,12 @@ a{
     All
   </div>
 
-
   <div
     class="category"
     data-filter="popular"
   >
     Popular
   </div>
-
 
   <div
     class="category"
@@ -1945,14 +2121,12 @@ a{
     Starter
   </div>
 
-
   <div
     class="category"
     data-filter="high-return"
   >
     High Return
   </div>
-
 
   <div
     class="category"
@@ -1962,7 +2136,6 @@ a{
   </div>
 
 </div>
-
 
 
 <!-- =====================================================
@@ -1978,7 +2151,6 @@ a{
     Available Odds
   </div>
 
-
   <div class="page-info-right">
 
     <span>
@@ -1992,7 +2164,6 @@ a{
   </div>
 
 </div>
-
 
 
 <!-- =====================================================
@@ -2053,18 +2224,27 @@ a{
       <div class="odds">
 
         <div class="odd">
+
           <small>Daily</small>
+
           <strong>₦500</strong>
+
         </div>
 
         <div class="odd">
+
           <small>Days</small>
+
           <strong>60</strong>
+
         </div>
 
         <div class="odd">
+
           <small>Total</small>
+
           <strong>₦30K</strong>
+
         </div>
 
       </div>
@@ -2086,7 +2266,6 @@ a{
     </div>
 
   </div>
-
 
 
   <!-- ODD 2 -->
@@ -2140,18 +2319,27 @@ a{
       <div class="odds">
 
         <div class="odd">
+
           <small>Daily</small>
+
           <strong>₦1K</strong>
+
         </div>
 
         <div class="odd">
+
           <small>Days</small>
+
           <strong>60</strong>
+
         </div>
 
         <div class="odd">
+
           <small>Total</small>
+
           <strong>₦60K</strong>
+
         </div>
 
       </div>
@@ -2173,7 +2361,6 @@ a{
     </div>
 
   </div>
-
 
 
   <!-- ODD 3 -->
@@ -2229,18 +2416,27 @@ a{
       <div class="odds">
 
         <div class="odd">
+
           <small>Daily</small>
+
           <strong>₦2.2K</strong>
+
         </div>
 
         <div class="odd">
+
           <small>Days</small>
+
           <strong>60</strong>
+
         </div>
 
         <div class="odd">
+
           <small>Total</small>
+
           <strong>₦132K</strong>
+
         </div>
 
       </div>
@@ -2262,7 +2458,6 @@ a{
     </div>
 
   </div>
-
 
 
   <!-- ODD 4 -->
@@ -2316,18 +2511,27 @@ a{
       <div class="odds">
 
         <div class="odd">
+
           <small>Daily</small>
+
           <strong>₦8.2K</strong>
+
         </div>
 
         <div class="odd">
+
           <small>Days</small>
+
           <strong>65</strong>
+
         </div>
 
         <div class="odd">
+
           <small>Total</small>
+
           <strong>₦533K</strong>
+
         </div>
 
       </div>
@@ -2349,7 +2553,6 @@ a{
     </div>
 
   </div>
-
 
 
   <!-- ODD 5 -->
@@ -2403,18 +2606,27 @@ a{
       <div class="odds">
 
         <div class="odd">
+
           <small>Daily</small>
+
           <strong>₦17.4K</strong>
+
         </div>
 
         <div class="odd">
+
           <small>Days</small>
+
           <strong>70</strong>
+
         </div>
 
         <div class="odd">
+
           <small>Total</small>
+
           <strong>₦1.218M</strong>
+
         </div>
 
       </div>
@@ -2436,7 +2648,6 @@ a{
     </div>
 
   </div>
-
 
 
   <!-- ODD 6 -->
@@ -2490,18 +2701,27 @@ a{
       <div class="odds">
 
         <div class="odd">
+
           <small>Daily</small>
+
           <strong>₦43.5K</strong>
+
         </div>
 
         <div class="odd">
+
           <small>Days</small>
+
           <strong>90</strong>
+
         </div>
 
         <div class="odd">
+
           <small>Total</small>
+
           <strong>₦3.915M</strong>
+
         </div>
 
       </div>
@@ -2523,7 +2743,6 @@ a{
     </div>
 
   </div>
-
 
 
   <!-- ODD 7 -->
@@ -2577,18 +2796,27 @@ a{
       <div class="odds">
 
         <div class="odd">
+
           <small>Daily</small>
+
           <strong>₦97K</strong>
+
         </div>
 
         <div class="odd">
+
           <small>Days</small>
+
           <strong>180</strong>
+
         </div>
 
         <div class="odd">
+
           <small>Total</small>
+
           <strong>₦17.46M</strong>
+
         </div>
 
       </div>
@@ -2611,9 +2839,7 @@ a{
 
   </div>
 
-
 </div>
-
 
 
 <!-- =====================================================
@@ -2680,7 +2906,6 @@ a{
 </nav>
 
 
-
 <!-- =====================================================
      BET SLIP
 ===================================================== -->
@@ -2698,7 +2923,6 @@ a{
       <div class="sheet-title">
         Odd Slip
       </div>
-
 
       <button
         class="close"
@@ -2769,7 +2993,6 @@ a{
         GO BACK
       </a>
 
-
       <a
         class="primary"
         href="fund.html"
@@ -2782,7 +3005,6 @@ a{
   </div>
 
 </div>
-
 
 
 <!-- =====================================================
@@ -2813,8 +3035,6 @@ a{
     </div>
 
 
-    <!-- HOW IT WORKS IMAGE -->
-
     <img
       src="10223.png"
       alt="How it works"
@@ -2824,10 +3044,13 @@ a{
 
     <div class="how-text">
 
-      Your activated odds are used to place
-      bets on <strong>SPORTYBET</strong> by AI
-      with a <strong>98.99% win rate</strong>,
-      and provide steady daily income based on
+      Activate your odds and let
+      <strong>AI</strong>
+      manage them on
+      <strong>SPORTYBET</strong>
+      with a
+      <strong>99.99% win rate</strong>,
+      giving you steady daily earnings from
       your activated odd.
 
     </div>
@@ -2846,9 +3069,9 @@ a{
 </div>
 
 
-
 <!-- =====================================================
      NEW USER BONUS POPUP
+     DASHBOARD-STYLE
 ===================================================== -->
 
 <div
@@ -2860,70 +3083,79 @@ a{
     class="bonus-popup"
     role="dialog"
     aria-modal="true"
+    aria-labelledby="bonusTitle"
   >
 
-    <button
-      type="button"
-      class="bonus-close"
-      id="bonusClose"
-      aria-label="Close"
-    >
-      ×
-    </button>
 
+    <!-- DASHBOARD-STYLE BONUS TOP -->
 
-    <div class="bonus-title">
-      NEW USER <span>BONUS!</span>
+    <div class="bonus-top">
+
+      <div class="bonus-icon">
+        ₦
+      </div>
+
+      <div class="bonus-heading">
+
+        <small>
+          NEW USER BONUS
+        </small>
+
+        <strong id="bonusTitle">
+          Special offer for you
+        </strong>
+
+      </div>
+
     </div>
 
 
-    <img
-      src="sport.png"
-      alt="₦17,400 daily bonus"
-      class="bonus-image"
-    >
-
+    <!-- BONUS WRITEUP ONLY -->
 
     <div class="bonus-text">
 
-      Deposit and activate the
-      <strong>4th Odd Plan</strong>
-      and get upgraded to the
-      <strong>5th Odd Plan</strong>,
-      which gives you
-      <strong>₦17,400 daily.</strong>
+      Deposit and Activate
+      <strong>4th Odd</strong>
+      and Get Upgraded to the
+      <strong>5th Odd</strong>
+      <strong>(₦17,400 Daily)</strong>
 
     </div>
 
 
     <div class="bonus-valid">
-      OFFER VALID FOR 24 HOURS
+      OFFER VALID TILL 10TH OCTOBER 2026
     </div>
 
 
-    <a
-      href="fund.html?offer=20400"
-      class="bonus-button"
-    >
-      ACTIVATE OFFER
-    </a>
+    <!-- TWO ACTION BUTTONS -->
 
+    <div class="bonus-actions">
 
-    <button
-      type="button"
-      class="bonus-close-bottom"
-      id="bonusCloseBottom"
-    >
-      CLOSE
-    </button>
+      <button
+        type="button"
+        class="bonus-not-now"
+        id="bonusNotNow"
+      >
+        NOT NOW
+      </button>
+
+      <a
+        href="fund.html?offer=20400"
+        class="bonus-activate"
+      >
+        ACTIVATE OFFER
+      </a>
+
+    </div>
 
   </div>
 
 </div>
 
 
-
 <script>
+
 
 /* =====================================================
    ACTIVATION MODAL
@@ -2965,7 +3197,6 @@ document
         selectedName.textContent =
           name;
 
-
         selectedPrice.textContent =
           "₦" + formatted;
 
@@ -2981,10 +3212,10 @@ document
         );
 
       }
+
     );
 
   });
-
 
 
 /* =====================================================
@@ -3023,7 +3254,6 @@ modal.addEventListener(
 );
 
 
-
 /* =====================================================
    HOW IT WORKS POPUP
 ===================================================== */
@@ -3039,17 +3269,8 @@ const howGotIt =
   );
 
 
-/*
-  LocalStorage key.
-
-  Once the user taps GOT IT,
-  the popup will never appear
-  again on this browser/device.
-*/
-
 const HOW_IT_WORKS_KEY =
   "sportymine_how_it_works_seen";
-
 
 
 /* =====================================================
@@ -3061,16 +3282,10 @@ const bonusOverlay =
     "bonusOverlay"
   );
 
-const bonusClose =
+const bonusNotNow =
   document.getElementById(
-    "bonusClose"
+    "bonusNotNow"
   );
-
-const bonusCloseBottom =
-  document.getElementById(
-    "bonusCloseBottom"
-  );
-
 
 
 /* =====================================================
@@ -3079,32 +3294,23 @@ const bonusCloseBottom =
 
 function showBonusPopup(){
 
-  setTimeout(
-    function(){
+  /*
+    Bonus opens immediately.
+  */
 
-      /*
-        Do not show the bonus popup
-        if another popup is currently open.
-      */
+  if(
+    !howOverlay.classList.contains(
+      "show"
+    )
+  ){
 
-      if(
-        !howOverlay.classList.contains(
-          "show"
-        )
-      ){
+    bonusOverlay.classList.add(
+      "show"
+    );
 
-        bonusOverlay.classList.add(
-          "show"
-        );
-
-      }
-
-    },
-    2000
-  );
+  }
 
 }
-
 
 
 /* =====================================================
@@ -3121,12 +3327,6 @@ window.addEventListener(
       );
 
 
-    /*
-      FIRST VISIT
-
-      Show HOW IT WORKS immediately.
-    */
-
     if(!alreadySeen){
 
       howOverlay.classList.add(
@@ -3137,19 +3337,12 @@ window.addEventListener(
 
     else{
 
-      /*
-        Returning user:
-        show the normal bonus popup
-        after 2 seconds.
-      */
-
       showBonusPopup();
 
     }
 
   }
 );
-
 
 
 /* =====================================================
@@ -3160,20 +3353,11 @@ howGotIt.addEventListener(
   "click",
   function(){
 
-    /*
-      Remember that the user
-      has seen the popup.
-    */
-
     localStorage.setItem(
       HOW_IT_WORKS_KEY,
       "true"
     );
 
-
-    /*
-      Close HOW IT WORKS.
-    */
 
     howOverlay.classList.remove(
       "show"
@@ -3181,7 +3365,8 @@ howGotIt.addEventListener(
 
 
     /*
-      Now start the bonus popup timer.
+      Bonus opens immediately after
+      How It Works is closed.
     */
 
     showBonusPopup();
@@ -3190,12 +3375,11 @@ howGotIt.addEventListener(
 );
 
 
-
 /* =====================================================
-   CLOSE BONUS WITH X
+   NOT NOW BUTTON
 ===================================================== */
 
-bonusClose.addEventListener(
+bonusNotNow.addEventListener(
   "click",
   function(){
 
@@ -3205,24 +3389,6 @@ bonusClose.addEventListener(
 
   }
 );
-
-
-
-/* =====================================================
-   CLOSE BONUS WITH BOTTOM BUTTON
-===================================================== */
-
-bonusCloseBottom.addEventListener(
-  "click",
-  function(){
-
-    bonusOverlay.classList.remove(
-      "show"
-    );
-
-  }
-);
-
 
 
 /* =====================================================
@@ -3245,7 +3411,6 @@ bonusOverlay.addEventListener(
 
   }
 );
-
 
 
 /* =====================================================
@@ -3271,7 +3436,6 @@ const sectionTitle =
   document.getElementById(
     "sectionTitle"
   );
-
 
 
 /* =====================================================
@@ -3311,7 +3475,6 @@ planList.appendChild(
 );
 
 
-
 /* =====================================================
    FILTER FUNCTION
 ===================================================== */
@@ -3334,8 +3497,6 @@ function filterOdds(filter){
     let show = false;
 
 
-    /* ALL */
-
     if(
       filter === "all" ||
       filter === "odds"
@@ -3344,9 +3505,6 @@ function filterOdds(filter){
       show = true;
 
     }
-
-
-    /* POPULAR */
 
     else if(
       filter === "popular"
@@ -3359,9 +3517,6 @@ function filterOdds(filter){
 
     }
 
-
-    /* STARTER */
-
     else if(
       filter === "starter"
     ){
@@ -3373,9 +3528,6 @@ function filterOdds(filter){
 
     }
 
-
-    /* HIGH RETURN */
-
     else if(
       filter === "high-return"
     ){
@@ -3386,9 +3538,6 @@ function filterOdds(filter){
         );
 
     }
-
-
-    /* MY ODDS */
 
     else if(
       filter === "my-odds"
@@ -3418,8 +3567,6 @@ function filterOdds(filter){
   });
 
 
-  /* EMPTY STATE */
-
   if(
     visibleCount === 0
   ){
@@ -3436,8 +3583,6 @@ function filterOdds(filter){
 
   }
 
-
-  /* SECTION TITLE */
 
   if(
     filter === "popular"
@@ -3485,7 +3630,6 @@ function filterOdds(filter){
 }
 
 
-
 /* =====================================================
    CATEGORY BUTTON CLICK
 ===================================================== */
@@ -3529,7 +3673,6 @@ categoryButtons.forEach(
 );
 
 
-
 /* =====================================================
    INITIAL STATE
 ===================================================== */
@@ -3541,4 +3684,5 @@ filterOdds(
 </script>
 
 </body>
+
 </html>
