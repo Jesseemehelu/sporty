@@ -1066,6 +1066,219 @@ a{
 
 
 /* =====================================================
+   NEW USER BONUS POPUP
+===================================================== */
+
+.bonus-overlay{
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,.42);
+
+  z-index:500;
+
+  display:none;
+
+  align-items:flex-end;
+
+  justify-content:center;
+
+  padding:0;
+}
+
+.bonus-overlay.show{
+  display:flex;
+}
+
+.bonus-popup{
+  width:100%;
+
+  max-width:560px;
+
+  background:#fff;
+
+  border-radius:20px 20px 0 0;
+
+  padding:0 18px 22px;
+
+  position:relative;
+
+  box-shadow:
+    0 -8px 30px rgba(0,0,0,.25);
+
+  animation:bonusSlideUp .3s ease;
+}
+
+@keyframes bonusSlideUp{
+
+  from{
+    transform:translateY(100%);
+    opacity:0;
+  }
+
+  to{
+    transform:translateY(0);
+    opacity:1;
+  }
+
+}
+
+
+/* SMALL HANDLE */
+
+.bonus-popup:before{
+  content:"";
+
+  display:block;
+
+  width:42px;
+  height:4px;
+
+  background:#d1d3d6;
+
+  border-radius:10px;
+
+  margin:9px auto 10px;
+}
+
+
+/* CLOSE */
+
+.bonus-close{
+  position:absolute;
+
+  top:14px;
+  right:14px;
+
+  width:32px;
+  height:32px;
+
+  border-radius:50%;
+
+  background:#f0f1f2;
+
+  color:#777;
+
+  font-size:23px;
+
+  line-height:30px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+}
+
+
+/* BONUS TITLE */
+
+.bonus-title{
+  text-align:center;
+
+  font-size:21px;
+
+  font-weight:900;
+
+  color:#20242a;
+
+  margin-top:2px;
+}
+
+.bonus-title span{
+  color:#ed132d;
+}
+
+
+/* BONUS IMAGE */
+
+.bonus-image{
+  width:100%;
+
+  height:150px;
+
+  object-fit:contain;
+
+  display:block;
+
+  margin:5px auto 2px;
+}
+
+
+/* BONUS TEXT */
+
+.bonus-text{
+  text-align:center;
+
+  color:#4d535a;
+
+  font-size:14px;
+
+  line-height:1.45;
+
+  padding:0 12px;
+}
+
+.bonus-text strong{
+  color:#ed132d;
+
+  font-weight:900;
+}
+
+
+/* OFFER VALID */
+
+.bonus-valid{
+  text-align:center;
+
+  margin-top:8px;
+
+  color:#777d84;
+
+  font-size:10px;
+
+  font-weight:800;
+
+  letter-spacing:.6px;
+}
+
+
+/* BONUS BUTTON */
+
+.bonus-button{
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  width:100%;
+
+  height:47px;
+
+  margin-top:13px;
+
+  border-radius:4px;
+
+  background:#0ba33c;
+
+  color:#fff;
+
+  font-size:14px;
+
+  font-weight:900;
+
+  box-shadow:
+    0 3px 8px rgba(11,163,60,.18);
+}
+
+.bonus-button:active{
+  transform:scale(.98);
+}
+
+
+/* =====================================================
    TABLET
 ===================================================== */
 
@@ -1160,6 +1373,38 @@ a{
 
   .plan-bottom{
     bottom:7px;
+  }
+
+
+  /* NEW USER BONUS MOBILE */
+
+  .bonus-popup{
+    max-width:none;
+
+    padding:
+      0
+      15px
+      calc(18px + env(safe-area-inset-bottom));
+  }
+
+  .bonus-title{
+    font-size:20px;
+  }
+
+  .bonus-image{
+    height:135px;
+
+    margin-top:4px;
+  }
+
+  .bonus-text{
+    font-size:13px;
+
+    padding:0 7px;
+  }
+
+  .bonus-button{
+    height:45px;
   }
 
 }
@@ -1289,6 +1534,27 @@ a{
 
   .selected-plan strong{
     font-size:15px;
+  }
+
+
+  /* BONUS */
+
+  .bonus-title{
+    font-size:19px;
+  }
+
+  .bonus-image{
+    height:120px;
+  }
+
+  .bonus-text{
+    font-size:12px;
+
+    line-height:1.4;
+  }
+
+  .bonus-valid{
+    font-size:9px;
   }
 
 }
@@ -2170,7 +2436,7 @@ a{
     <div class="sheet-top">
 
       <div class="sheet-title">
-      Odd Slip
+        Odd Slip
       </div>
 
 
@@ -2252,6 +2518,73 @@ a{
       </a>
 
     </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     NEW USER BONUS POPUP
+===================================================== -->
+
+<div
+  class="bonus-overlay"
+  id="bonusOverlay"
+>
+
+  <div
+    class="bonus-popup"
+    role="dialog"
+    aria-modal="true"
+  >
+
+    <button
+      type="button"
+      class="bonus-close"
+      id="bonusClose"
+      aria-label="Close"
+    >
+      ×
+    </button>
+
+
+    <div class="bonus-title">
+      NEW USER <span>BONUS!</span>
+    </div>
+
+
+    <img
+      src="17400.png"
+      alt="₦17,400 daily bonus"
+      class="bonus-image"
+    >
+
+
+    <div class="bonus-text">
+
+      Deposit and activate the
+      <strong>4th Odd Plan</strong>
+      and get upgraded to the
+      <strong>5th Odd Plan</strong>,
+      which gives you
+      <strong>₦17,400 daily.</strong>
+
+    </div>
+
+
+    <div class="bonus-valid">
+      OFFER VALID FOR 24 HOURS
+    </div>
+
+
+    <a
+      href="fund.html"
+      class="bonus-button"
+    >
+      ACTIVATE OFFER
+    </a>
 
   </div>
 
@@ -2350,6 +2683,82 @@ modal.addEventListener(
     ){
 
       modal.classList.remove(
+        "show"
+      );
+
+    }
+
+  }
+);
+
+
+
+/* =====================================================
+   NEW USER BONUS POPUP
+   SHOWS 2 SECONDS AFTER EVERY PAGE LOAD
+===================================================== */
+
+const bonusOverlay =
+  document.getElementById(
+    "bonusOverlay"
+  );
+
+const bonusClose =
+  document.getElementById(
+    "bonusClose"
+  );
+
+
+/*
+  No localStorage or cookies are used here.
+  Therefore the popup will appear again
+  every time odds.html is loaded.
+*/
+
+window.addEventListener(
+  "load",
+  function(){
+
+    setTimeout(
+      function(){
+
+        bonusOverlay.classList.add(
+          "show"
+        );
+
+      },
+      2000
+    );
+
+  }
+);
+
+
+/* CLOSE BONUS POPUP */
+
+bonusClose.addEventListener(
+  "click",
+  function(){
+
+    bonusOverlay.classList.remove(
+      "show"
+    );
+
+  }
+);
+
+
+/* CLOSE WHEN CLICKING OUTSIDE */
+
+bonusOverlay.addEventListener(
+  "click",
+  function(event){
+
+    if(
+      event.target === bonusOverlay
+    ){
+
+      bonusOverlay.classList.remove(
         "show"
       );
 
@@ -2690,4 +3099,3 @@ document
 
 </body>
 </html>
-
