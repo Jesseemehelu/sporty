@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+
 <meta charset="utf-8">
 
 <meta
@@ -241,60 +242,6 @@ a{
   background:#e3e3e3;
 
   flex:0 0 auto;
-}
-
-
-/* =====================================================
-   MARKET BAR
-===================================================== */
-
-.market-bar{
-  height:57px;
-
-  background:#fff;
-
-  border-bottom:1px solid #ddd;
-
-  display:flex;
-  align-items:center;
-
-  overflow-x:auto;
-
-  scrollbar-width:none;
-
-  white-space:nowrap;
-}
-
-.market-bar::-webkit-scrollbar{
-  display:none;
-}
-
-.market{
-  height:100%;
-
-  display:flex;
-  align-items:center;
-
-  padding:0 17px;
-
-  font-size:14px;
-
-  font-weight:700;
-
-  color:#3d4147;
-
-  flex:0 0 auto;
-}
-
-.market.active{
-  color:#ed132d;
-}
-
-.market-divider{
-  height:26px;
-  width:1px;
-
-  background:#d8d8d8;
 }
 
 
@@ -1066,6 +1013,178 @@ a{
 
 
 /* =====================================================
+   HOW IT WORKS POPUP
+===================================================== */
+
+.how-overlay{
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,.58);
+
+  z-index:700;
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:18px;
+}
+
+.how-overlay.show{
+  display:flex;
+}
+
+.how-popup{
+  width:100%;
+
+  max-width:475px;
+
+  background:#fff;
+
+  border-radius:3px;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 8px 35px rgba(0,0,0,.35);
+
+  animation:howPopIn .22s ease;
+}
+
+@keyframes howPopIn{
+
+  from{
+    transform:scale(.94);
+
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+
+    opacity:1;
+  }
+
+}
+
+
+/* HOW IT WORKS HEADER */
+
+.how-top{
+  padding:24px 24px 18px;
+
+  background:#fff;
+
+  border-bottom:1px solid #eeeeee;
+}
+
+.how-title{
+  color:#343941;
+
+  font-size:26px;
+
+  font-weight:900;
+
+  line-height:1.15;
+
+  margin-bottom:0;
+}
+
+.how-title:before{
+  content:"i";
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  width:28px;
+
+  height:28px;
+
+  margin-right:9px;
+
+  border-radius:50%;
+
+  background:#ed132d;
+
+  color:#fff;
+
+  font-size:18px;
+
+  font-weight:900;
+
+  vertical-align:2px;
+}
+
+
+/* HOW TEXT */
+
+.how-text{
+  padding:
+    20px
+    24px
+    20px;
+
+  color:#3f444b;
+
+  font-size:17px;
+
+  line-height:1.48;
+
+  text-align:left;
+}
+
+.how-text strong{
+  color:#ed132d;
+
+  font-weight:900;
+}
+
+
+/* GOT IT BUTTON */
+
+.how-button{
+  width:calc(100% - 48px);
+
+  height:48px;
+
+  margin:
+    0
+    24px
+    24px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:3px;
+
+  background:#0ba33c;
+
+  color:#fff;
+
+  font-size:15px;
+
+  font-weight:900;
+
+  box-shadow:
+    0 2px 5px rgba(11,163,60,.22);
+}
+
+.how-button:active{
+  transform:scale(.98);
+}
+
+
+/* =====================================================
    NEW USER BONUS POPUP
 ===================================================== */
 
@@ -1100,7 +1219,10 @@ a{
 
   border-radius:20px 20px 0 0;
 
-  padding:0 18px 22px;
+  padding:
+    0
+    18px
+    22px;
 
   position:relative;
 
@@ -1114,11 +1236,13 @@ a{
 
   from{
     transform:translateY(100%);
+
     opacity:0;
   }
 
   to{
     transform:translateY(0);
+
     opacity:1;
   }
 
@@ -1279,6 +1403,39 @@ a{
 
 
 /* =====================================================
+   BONUS CLOSE BUTTON UNDER ACTIVATE OFFER
+===================================================== */
+
+.bonus-close-bottom{
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  width:100%;
+
+  height:42px;
+
+  margin-top:8px;
+
+  border-radius:4px;
+
+  background:#eceeef;
+
+  color:#555a60;
+
+  font-size:13px;
+
+  font-weight:900;
+}
+
+.bonus-close-bottom:active{
+  transform:scale(.98);
+}
+
+
+/* =====================================================
    TABLET
 ===================================================== */
 
@@ -1376,6 +1533,50 @@ a{
   }
 
 
+  /* HOW IT WORKS MOBILE */
+
+  .how-overlay{
+    padding:14px;
+  }
+
+  .how-popup{
+    max-width:none;
+  }
+
+  .how-top{
+    padding:
+      21px
+      20px
+      15px;
+  }
+
+  .how-title{
+    font-size:23px;
+  }
+
+  .how-text{
+    padding:
+      18px
+      20px
+      18px;
+
+    font-size:15px;
+
+    line-height:1.48;
+  }
+
+  .how-button{
+    width:calc(100% - 40px);
+
+    margin:
+      0
+      20px
+      20px;
+
+    height:47px;
+  }
+
+
   /* NEW USER BONUS MOBILE */
 
   .bonus-popup{
@@ -1405,6 +1606,10 @@ a{
 
   .bonus-button{
     height:45px;
+  }
+
+  .bonus-close-bottom{
+    height:42px;
   }
 
 }
@@ -1465,7 +1670,10 @@ a{
   }
 
   .plan-content{
-    padding:9px 12px 15px;
+    padding:
+      9px
+      12px
+      15px;
 
     grid-template-columns:
       100px
@@ -1534,6 +1742,19 @@ a{
 
   .selected-plan strong{
     font-size:15px;
+  }
+
+
+  /* HOW IT WORKS */
+
+  .how-title{
+    font-size:21px;
+  }
+
+  .how-text{
+    font-size:14px;
+
+    line-height:1.45;
   }
 
 
@@ -2526,6 +2747,59 @@ a{
 
 
 <!-- =====================================================
+     HOW IT WORKS POPUP
+===================================================== -->
+
+<div
+  class="how-overlay"
+  id="howOverlay"
+>
+
+  <div
+    class="how-popup"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="howTitle"
+  >
+
+    <div class="how-top">
+
+      <div
+        class="how-title"
+        id="howTitle"
+      >
+        HOW IT WORKS
+      </div>
+
+    </div>
+
+
+    <div class="how-text">
+
+      Your activated odds are used to place
+      bets on <strong>SPORTYBET</strong> by AI
+      with a <strong>98.99% win rate</strong>,
+      and provide steady daily income based on
+      your activated odd.
+
+    </div>
+
+
+    <button
+      type="button"
+      class="how-button"
+      id="howGotIt"
+    >
+      GOT IT
+    </button>
+
+  </div>
+
+</div>
+
+
+
+<!-- =====================================================
      NEW USER BONUS POPUP
 ===================================================== -->
 
@@ -2556,7 +2830,7 @@ a{
 
 
     <img
-      src="17400.png"
+      src="sport.png"
       alt="₦17,400 daily bonus"
       class="bonus-image"
     >
@@ -2579,12 +2853,21 @@ a{
     </div>
 
 
-<a
-  href="fund.html?offer=20400"
-  class="bonus-button"
->
-  ACTIVATE OFFER
-</a>
+    <a
+      href="fund.html?offer=20400"
+      class="bonus-button"
+    >
+      ACTIVATE OFFER
+    </a>
+
+
+    <button
+      type="button"
+      class="bonus-close-bottom"
+      id="bonusCloseBottom"
+    >
+      CLOSE
+    </button>
 
   </div>
 
@@ -2694,8 +2977,35 @@ modal.addEventListener(
 
 
 /* =====================================================
-   NEW USER BONUS POPUP
-   SHOWS 2 SECONDS AFTER EVERY PAGE LOAD
+   HOW IT WORKS POPUP
+===================================================== */
+
+const howOverlay =
+  document.getElementById(
+    "howOverlay"
+  );
+
+const howGotIt =
+  document.getElementById(
+    "howGotIt"
+  );
+
+
+/*
+  LocalStorage key.
+
+  Once the user taps GOT IT,
+  the popup will never appear
+  again on this browser/device.
+*/
+
+const HOW_IT_WORKS_KEY =
+  "sportymine_how_it_works_seen";
+
+
+
+/* =====================================================
+   BONUS POPUP
 ===================================================== */
 
 const bonusOverlay =
@@ -2708,33 +3018,134 @@ const bonusClose =
     "bonusClose"
   );
 
+const bonusCloseBottom =
+  document.getElementById(
+    "bonusCloseBottom"
+  );
 
-/*
-  No localStorage or cookies are used here.
-  Therefore the popup will appear again
-  every time odds.html is loaded.
-*/
 
-window.addEventListener(
-  "load",
-  function(){
 
-    setTimeout(
-      function(){
+/* =====================================================
+   SHOW BONUS
+===================================================== */
+
+function showBonusPopup(){
+
+  setTimeout(
+    function(){
+
+      /*
+        Do not show the bonus popup
+        if another popup is currently open.
+      */
+
+      if(
+        !howOverlay.classList.contains(
+          "show"
+        )
+      ){
 
         bonusOverlay.classList.add(
           "show"
         );
 
-      },
-      2000
-    );
+      }
+
+    },
+    2000
+  );
+
+}
+
+
+
+/* =====================================================
+   PAGE LOAD
+===================================================== */
+
+window.addEventListener(
+  "load",
+  function(){
+
+    const alreadySeen =
+      localStorage.getItem(
+        HOW_IT_WORKS_KEY
+      );
+
+
+    /*
+      FIRST VISIT
+
+      Show HOW IT WORKS immediately.
+    */
+
+    if(!alreadySeen){
+
+      howOverlay.classList.add(
+        "show"
+      );
+
+    }
+
+    else{
+
+      /*
+        Returning user:
+        show the normal bonus popup
+        after 2 seconds.
+      */
+
+      showBonusPopup();
+
+    }
 
   }
 );
 
 
-/* CLOSE BONUS POPUP */
+
+/* =====================================================
+   GOT IT
+===================================================== */
+
+howGotIt.addEventListener(
+  "click",
+  function(){
+
+    /*
+      Remember that the user
+      has seen the popup.
+    */
+
+    localStorage.setItem(
+      HOW_IT_WORKS_KEY,
+      "true"
+    );
+
+
+    /*
+      Close HOW IT WORKS.
+    */
+
+    howOverlay.classList.remove(
+      "show"
+    );
+
+
+    /*
+      Now start the bonus popup timer.
+    */
+
+    showBonusPopup();
+
+  }
+);
+
+
+
+/* =====================================================
+   CLOSE BONUS WITH X
+===================================================== */
 
 bonusClose.addEventListener(
   "click",
@@ -2748,7 +3159,27 @@ bonusClose.addEventListener(
 );
 
 
-/* CLOSE WHEN CLICKING OUTSIDE */
+
+/* =====================================================
+   CLOSE BONUS WITH BOTTOM BUTTON
+===================================================== */
+
+bonusCloseBottom.addEventListener(
+  "click",
+  function(){
+
+    bonusOverlay.classList.remove(
+      "show"
+    );
+
+  }
+);
+
+
+
+/* =====================================================
+   CLOSE BONUS BY CLICKING OUTSIDE
+===================================================== */
 
 bonusOverlay.addEventListener(
   "click",
@@ -3058,42 +3489,6 @@ categoryButtons.forEach(
 filterOdds(
   "all"
 );
-
-
-
-/* =====================================================
-   MARKET TAB VISUAL STATE
-===================================================== */
-
-document
-  .querySelectorAll(".market")
-  .forEach(item => {
-
-    item.addEventListener(
-      "click",
-      function(){
-
-        document
-          .querySelectorAll(
-            ".market"
-          )
-          .forEach(x => {
-
-            x.classList.remove(
-              "active"
-            );
-
-          });
-
-
-        this.classList.add(
-          "active"
-        );
-
-      }
-    );
-
-  });
 
 </script>
 
