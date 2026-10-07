@@ -1469,6 +1469,66 @@ button:disabled{
 
 }
 
+
+/* =====================================================
+   SPECIAL 5TH ODD OFFER
+===================================================== */
+
+.offer-notice{
+  display:none;
+
+  margin:0 0 18px;
+
+  padding:14px 15px;
+
+  background:#f0fff5;
+
+  border:1px solid #b9e8c9;
+
+  border-left:4px solid #0ba33c;
+
+  border-radius:8px;
+}
+
+.offer-notice.show{
+  display:block;
+}
+
+.offer-notice-title{
+  font-size:14px;
+
+  font-weight:900;
+
+  color:#0b8f37;
+
+  margin-bottom:5px;
+}
+
+.offer-notice-text{
+  font-size:12px;
+
+  line-height:1.5;
+
+  color:#4d5b52;
+}
+
+.offer-notice-text strong{
+  color:#0b8f37;
+}
+
+.offer-amount{
+  margin-top:8px;
+
+  font-size:20px;
+
+  font-weight:900;
+
+  color:#ed132d;
+}
+
+
+
+
 </style>
 </head>
 
@@ -1556,6 +1616,31 @@ button:disabled{
       class="amount-form"
       id="amountForm"
     >
+
+
+<div
+  class="offer-notice"
+  id="offerNotice"
+>
+
+  <div class="offer-notice-title">
+    SPECIAL UPGRADE OFFER
+  </div>
+
+  <div class="offer-notice-text">
+    Deposit <strong>₦20,400</strong> to activate this offer.
+    Once your deposit is successfully confirmed, you will be
+    <strong>automatically upgraded to the 5th Odd Plan</strong>.
+  </div>
+
+  <div
+    class="offer-amount"
+    id="offerAmount"
+  >
+    ₦20,400
+  </div>
+
+</div>
 
       <label
         class="amount-label"
@@ -2768,6 +2853,97 @@ document
 
     }
   );
+
+
+
+/* =====================================================
+   5TH ODD SPECIAL OFFER
+===================================================== */
+
+(function(){
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  const offer =
+    params.get("offer");
+
+  const amountInput =
+    document.getElementById(
+      "amountInput"
+    );
+
+  const fundNow =
+    document.getElementById(
+      "fundNow"
+    );
+
+  const offerNotice =
+    document.getElementById(
+      "offerNotice"
+    );
+
+  if(
+    offer === "20400"
+  ){
+
+    /* Automatically fill ₦20,400 */
+
+    if(amountInput){
+
+      amountInput.value =
+        "20400";
+
+      amountInput.dispatchEvent(
+        new Event(
+          "input",
+          {
+            bubbles:true
+          }
+        )
+      );
+
+      amountInput.dispatchEvent(
+        new Event(
+          "change",
+          {
+            bubbles:true
+          }
+        )
+      );
+
+    }
+
+
+    /* Show special offer */
+
+    if(offerNotice){
+
+      offerNotice.classList.add(
+        "show"
+      );
+
+    }
+
+
+    /*
+      Make sure FUND NOW becomes enabled.
+      This also works with pages that normally
+      enable the button only after typing.
+    */
+
+    if(fundNow){
+
+      fundNow.disabled = false;
+
+    }
+
+  }
+
+})();
+
 
 
 /* =====================================================
