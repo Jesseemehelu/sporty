@@ -1,3688 +1,716 @@
 <!doctype html>
+
 <html lang="en">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Odds — SportyMine</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;min-height:100%}
+body{font-family:Arial,Helvetica,sans-serif;background:#f5f5f5;color:#30343a;padding-bottom:72px}
+button,a{font:inherit}
+button{cursor:pointer;border:0}
+a{text-decoration:none;color:inherit}
 
-<meta charset="utf-8">
+/* TOP HEADER */
+.top-header{height:76px;background:#ed132d;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;box-shadow:0 2px 5px rgba(0,0,0,.18)}
+.brand{font-size:25px;font-weight:900;letter-spacing:-1.5px;font-style:italic}
+.header-right{display:flex;align-items:center;gap:13px}
+.search{width:34px;height:34px;position:relative}
+.search:before{content:"";position:absolute;width:18px;height:18px;border:4px solid #fff;border-radius:50%;top:2px;left:1px}
+.search:after{content:"";position:absolute;width:12px;height:4px;background:#fff;transform:rotate(45deg);left:20px;top:22px;border-radius:3px}
+.balance{min-width:145px;height:48px;padding:0 11px;border:2px solid rgba(255,255,255,.9);border-radius:4px;display:flex;align-items:center;gap:9px;background:rgba(0,0,0,.06)}
+.balance-icon{width:27px;height:27px;border-radius:50%;background:#111;display:grid;place-items:center;font-size:14px}
+.balance small{display:block;font-size:8px;opacity:.85}
+.balance strong{display:block;font-size:15px;margin-top:1px}
 
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
->
+/* CATEGORY BAR */
+.category-bar{height:58px;background:#fff;border-bottom:1px solid #ddd;display:flex;align-items:center;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+.category-bar::-webkit-scrollbar{display:none}
+.category{height:100%;padding:0 17px;display:flex;align-items:center;position:relative;font-size:16px;font-weight:700;color:#363a40;flex:0 0 auto}
+.category.active{color:#25934c}
+.category.active:after{content:"";position:absolute;bottom:0;left:12px;right:12px;height:3px;background:#ed132d}
+.category-separator{height:30px;width:1px;background:#e3e3e3;flex:0 0 auto}
 
-<title>Odds — SportyMine</title>
+/* PAGE INFO */
+.page-info{height:43px;background:#f0f1f2;border-bottom:1px solid #ddd;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+.page-info-left{font-size:14px;font-weight:700;color:#555b63}
+.page-info-right{display:flex;gap:48px;padding-right:14px;color:#92969c;font-size:13px;font-weight:700}
 
-<style>
+/* PLAN LIST */
+.plan-list{width:100%}
+.plan{position:relative;background:#fff;border-bottom:1px solid #ddd;min-height:136px}
+.plan-top{height:39px;display:flex;align-items:center;gap:10px;padding:0 16px;border-bottom:1px solid #eee}
+.hot{height:25px;padding:0 10px;display:flex;align-items:center;background:#ed132d;color:#fff;font-size:11px;font-weight:900;position:relative;clip-path:polygon(0 0,88% 0,100% 50%,88% 100%,0 100%)}
+.hot:after{content:"🔥";margin-left:3px}
+.plan-time{font-size:13px;font-weight:700;color:#33383e}
+.plan-id{color:#9a9da2;font-size:11px}
+.plan-type{color:#92969b;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chart{margin-left:auto;width:25px;height:25px;color:#979ba1;font-size:20px}
+.plan-content{min-height:97px;display:grid;grid-template-columns:minmax(135px,1fr) 330px 88px;gap:12px;align-items:center;padding:11px 16px}
+.plan-name-area{min-width:0}
+.plan-name{font-size:16px;font-weight:800;color:#33373d;line-height:1.25}
+.plan-sub{margin-top:7px;color:#999da2;font-size:12px;font-weight:600}
+.plan-sub strong{color:#777c82}
+.odds{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.odd{min-height:57px;background:#dcefe2;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#247b3f;border-right:1px solid #fff}
+.odd:last-child{border-right:0}
+.odd small{font-size:9px;color:#6f8f77;font-weight:700;margin-bottom:4px;text-transform:uppercase}
+.odd strong{font-size:17px;font-weight:900}
+.activate{height:43px;border-radius:3px;background:#ed132d;color:#fff;font-size:12px;font-weight:900;box-shadow:0 2px 4px rgba(237,19,45,.2)}
+.activate:active{transform:scale(.96)}
+.plan-bottom{position:absolute;left:16px;bottom:5px;color:#9a9da2;font-size:10px}
+.popular-line{position:absolute;top:39px;left:0;width:4px;height:97px;background:#ed132d}
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html,
-body{
-  width:100%;
-  min-height:100%;
-}
-
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f5f5f5;
-  color:#30343a;
-  padding-bottom:72px;
-}
-
-button,
-a{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-  border:0;
-}
-
-a{
-  text-decoration:none;
-  color:inherit;
-}
-
-
-/* =====================================================
-   TOP HEADER
-===================================================== */
-
-.top-header{
-  height:76px;
-  background:#ed132d;
-  color:#fff;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  padding:0 14px;
-
-  box-shadow:0 2px 5px rgba(0,0,0,.18);
-}
-
-.brand{
-  font-size:25px;
-  font-weight:900;
-  letter-spacing:-1.5px;
-  font-style:italic;
-}
-
-.header-right{
-  display:flex;
-  align-items:center;
-  gap:13px;
-}
-
-
-/* SEARCH */
-
-.search{
-  width:34px;
-  height:34px;
+/* ODD 3 GOLDEN REFLECTIVE DESIGN */
+.plan:nth-child(3){
   position:relative;
-}
-
-.search:before{
-  content:"";
-
-  position:absolute;
-
-  width:18px;
-  height:18px;
-
-  border:4px solid #fff;
-  border-radius:50%;
-
-  top:2px;
-  left:1px;
-}
-
-.search:after{
-  content:"";
-
-  position:absolute;
-
-  width:12px;
-  height:4px;
-
-  background:#fff;
-
-  transform:rotate(45deg);
-
-  left:20px;
-  top:22px;
-
-  border-radius:3px;
-}
-
-
-/* BALANCE */
-
-.balance{
-  min-width:145px;
-  height:48px;
-
-  padding:0 11px;
-
-  border:2px solid rgba(255,255,255,.9);
-  border-radius:4px;
-
-  display:flex;
-  align-items:center;
-
-  gap:9px;
-
-  background:rgba(0,0,0,.06);
-}
-
-.balance-icon{
-  width:27px;
-  height:27px;
-
-  border-radius:50%;
-
-  background:#111;
-
-  display:grid;
-  place-items:center;
-
-  font-size:14px;
-}
-
-.balance small{
-  display:block;
-
-  font-size:8px;
-
-  opacity:.85;
-}
-
-.balance strong{
-  display:block;
-
-  font-size:15px;
-
-  margin-top:1px;
-}
-
-
-/* =====================================================
-   CATEGORY BAR
-===================================================== */
-
-.category-bar{
-  height:58px;
-
-  background:#fff;
-
-  border-bottom:1px solid #ddd;
-
-  display:flex;
-  align-items:center;
-
-  overflow-x:auto;
-
-  white-space:nowrap;
-
-  scrollbar-width:none;
-}
-
-.category-bar::-webkit-scrollbar{
-  display:none;
-}
-
-.category{
-  height:100%;
-
-  padding:0 17px;
-
-  display:flex;
-  align-items:center;
-
-  position:relative;
-
-  font-size:16px;
-
-  font-weight:700;
-
-  color:#363a40;
-
-  flex:0 0 auto;
-}
-
-.category.active{
-  color:#25934c;
-}
-
-.category.active:after{
-  content:"";
-
-  position:absolute;
-
-  bottom:0;
-
-  left:12px;
-  right:12px;
-
-  height:3px;
-
-  background:#ed132d;
-}
-
-.category-separator{
-  height:30px;
-
-  width:1px;
-
-  background:#e3e3e3;
-
-  flex:0 0 auto;
-}
-
-
-/* =====================================================
-   PAGE INFO
-===================================================== */
-
-.page-info{
-  height:43px;
-
-  background:#f0f1f2;
-
-  border-bottom:1px solid #ddd;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  padding:0 16px;
-}
-
-.page-info-left{
-  font-size:14px;
-
-  font-weight:700;
-
-  color:#555b63;
-}
-
-.page-info-right{
-  display:flex;
-
-  gap:48px;
-
-  padding-right:14px;
-
-  color:#92969c;
-
-  font-size:13px;
-
-  font-weight:700;
-}
-
-
-/* =====================================================
-   PLAN LIST
-===================================================== */
-
-.plan-list{
-  width:100%;
-}
-
-
-/* =====================================================
-   PLAN
-===================================================== */
-
-.plan{
-  position:relative;
-
-  background:#fff;
-
-  border-bottom:1px solid #ddd;
-
-  min-height:136px;
-}
-
-
-/* =====================================================
-   PLAN TOP
-===================================================== */
-
-.plan-top{
-  height:39px;
-
-  display:flex;
-  align-items:center;
-
-  gap:10px;
-
-  padding:0 16px;
-
-  border-bottom:1px solid #eee;
-}
-
-.hot{
-  height:25px;
-
-  padding:0 10px;
-
-  display:flex;
-  align-items:center;
-
-  background:#ed132d;
-
-  color:#fff;
-
-  font-size:11px;
-
-  font-weight:900;
-
-  position:relative;
-
-  clip-path:polygon(
-    0 0,
-    88% 0,
-    100% 50%,
-    88% 100%,
-    0 100%
-  );
-}
-
-.hot:after{
-  content:"🔥";
-
-  margin-left:3px;
-}
-
-.plan-time{
-  font-size:13px;
-
-  font-weight:700;
-
-  color:#33383e;
-}
-
-.plan-id{
-  color:#9a9da2;
-
-  font-size:11px;
-}
-
-.plan-type{
-  color:#92969b;
-
-  font-size:11px;
-
-  white-space:nowrap;
-
   overflow:hidden;
-
-  text-overflow:ellipsis;
+  background:linear-gradient(110deg,#fffdf0 0%,#fff8d8 25%,#fffdf3 45%,#ffedaa 60%,#fff9df 78%,#fffdf5 100%);
+  border-bottom:1px solid #e4c45f;
+  box-shadow:inset 0 0 0 1px rgba(218,165,32,.15);
 }
-
-.chart{
-  margin-left:auto;
-
-  width:25px;
-  height:25px;
-
-  color:#979ba1;
-
-  font-size:20px;
-}
-
-
-/* =====================================================
-   PLAN CONTENT
-===================================================== */
-
-.plan-content{
-  min-height:97px;
-
-  display:grid;
-
-  grid-template-columns:
-    minmax(135px,1fr)
-    330px
-    88px;
-
-  gap:12px;
-
-  align-items:center;
-
-  padding:11px 16px;
-}
-
-.plan-name-area{
-  min-width:0;
-}
-
-.plan-name{
-  font-size:16px;
-
-  font-weight:800;
-
-  color:#33373d;
-
-  line-height:1.25;
-}
-
-.plan-sub{
-  margin-top:7px;
-
-  color:#999da2;
-
-  font-size:12px;
-
-  font-weight:600;
-}
-
-.plan-sub strong{
-  color:#777c82;
-}
-
-
-/* =====================================================
-   ODDS BOXES
-===================================================== */
-
-.odds{
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:2px;
-}
-
-.odd{
-  min-height:57px;
-
-  background:#dcefe2;
-
-  display:flex;
-
-  flex-direction:column;
-
-  justify-content:center;
-
-  align-items:center;
-
-  color:#247b3f;
-
-  border-right:1px solid #fff;
-}
-
-.odd:last-child{
-  border-right:0;
-}
-
-.odd small{
-  font-size:9px;
-
-  color:#6f8f77;
-
-  font-weight:700;
-
-  margin-bottom:4px;
-
-  text-transform:uppercase;
-}
-
-.odd strong{
-  font-size:17px;
-
-  font-weight:900;
-}
-
-
-/* =====================================================
-   ACTIVATE BUTTON
-===================================================== */
-
-.activate{
-  height:43px;
-
-  border-radius:3px;
-
-  background:#ed132d;
-
-  color:#fff;
-
-  font-size:12px;
-
-  font-weight:900;
-
-  box-shadow:
-    0 2px 4px rgba(237,19,45,.2);
-}
-
-.activate:active{
-  transform:scale(.96);
-}
-
-
-/* =====================================================
-   PLAN BOTTOM
-===================================================== */
-
-.plan-bottom{
+.plan:nth-child(3)::after{
+  content:"";
   position:absolute;
-
-  left:16px;
-
-  bottom:5px;
-
-  color:#9a9da2;
-
-  font-size:10px;
-}
-
-
-/* =====================================================
-   POPULAR INDICATOR
-===================================================== */
-
-.popular-line{
-  position:absolute;
-
-  top:39px;
-
-  left:0;
-
-  width:4px;
-
-  height:97px;
-
-  background:#ed132d;
-}
-
-
-/* =====================================================
-   EMPTY STATE
-===================================================== */
-
-.empty-state{
-  min-height:220px;
-
-  background:#fff;
-
-  border-bottom:1px solid #ddd;
-
-  display:none;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  justify-content:center;
-
-  text-align:center;
-
-  padding:30px 20px;
-}
-
-.empty-icon{
-  width:58px;
-  height:58px;
-
-  border-radius:50%;
-
-  display:grid;
-  place-items:center;
-
-  background:#fff0f2;
-
-  color:#ed132d;
-
-  font-size:25px;
-
-  margin-bottom:13px;
-}
-
-.empty-state strong{
-  font-size:16px;
-
-  color:#333;
-}
-
-.empty-state span{
-  margin-top:6px;
-
-  color:#999;
-
-  font-size:12px;
-}
-
-.empty-state a{
-  margin-top:16px;
-
-  height:38px;
-
-  padding:0 18px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  border-radius:4px;
-
-  background:#ed132d;
-
-  color:#fff;
-
-  font-size:11px;
-
-  font-weight:900;
-}
-
-
-/* =====================================================
-   BOTTOM NAV
-===================================================== */
-
-.bottom-nav{
-  position:fixed;
-
-  left:0;
-  right:0;
-  bottom:0;
-
-  height:68px;
-
-  background:#050505;
-
-  color:#fff;
-
-  z-index:90;
-
-  display:flex;
-
-  justify-content:space-around;
-
-  align-items:center;
-
-  box-shadow:
-    0 -2px 8px rgba(0,0,0,.22);
-}
-
-.bottom-item{
-  width:25%;
-
+  top:0;
+  left:-100%;
+  width:55%;
   height:100%;
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  justify-content:center;
-
-  color:#aaa;
-
-  font-size:10px;
-
-  position:relative;
-}
-
-.bottom-icon{
-  font-size:23px;
-
-  line-height:24px;
-
-  margin-bottom:5px;
-}
-
-.bottom-item.active{
-  color:#fff;
-}
-
-.bottom-item.active:after{
-  content:"";
-
-  position:absolute;
-
-  bottom:0;
-
-  left:20%;
-  right:20%;
-
-  height:4px;
-
-  background:#ed132d;
-}
-
-.bottom-item.active .bottom-icon{
-  color:#fff;
-}
-
-
-/* =====================================================
-   BET SLIP ACTIVATION MODAL
-===================================================== */
-
-.modal{
-  position:fixed;
-
-  inset:0;
-
-  background:rgba(0,0,0,.48);
-
-  z-index:200;
-
-  display:none;
-
-  align-items:flex-end;
-
-  justify-content:center;
-
-  padding:0;
-}
-
-.modal.show{
-  display:flex;
-}
-
-.sheet{
-  width:100%;
-
-  max-width:620px;
-
-  margin:0 auto;
-
-  background:#fff;
-
-  border-radius:18px 18px 0 0;
-
-  padding:0 16px 22px;
-
-  box-shadow:
-    0 -8px 30px rgba(0,0,0,.28);
-
-  animation:slideUp .25s ease;
-
-  position:relative;
-}
-
-@keyframes slideUp{
-
-  from{
-    transform:translateY(100%);
-  }
-
-  to{
-    transform:translateY(0);
-  }
-
-}
-
-
-/* BET SLIP HANDLE */
-
-.sheet:before{
-  content:"";
-
-  display:block;
-
-  width:42px;
-
-  height:4px;
-
-  margin:8px auto 14px;
-
-  border-radius:10px;
-
-  background:#d7d8da;
-}
-
-
-/* SHEET HEADER */
-
-.sheet-top{
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  margin-bottom:14px;
-
-  padding-bottom:11px;
-
-  border-bottom:1px solid #ededed;
-}
-
-.sheet-title{
-  font-size:18px;
-
-  font-weight:900;
-
-  color:#22262b;
-}
-
-.sheet-title:before{
-  content:"⚡";
-
-  display:inline-flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  width:28px;
-
-  height:28px;
-
-  margin-right:8px;
-
-  border-radius:7px;
-
-  background:#fff0f2;
-
-  color:#ed132d;
-
-  font-size:14px;
-
-  vertical-align:middle;
-}
-
-.close{
-  width:32px;
-  height:32px;
-
-  border-radius:50%;
-
-  background:#f0f1f2;
-
-  color:#555;
-
-  font-size:21px;
-
-  display:grid;
-
-  place-items:center;
-}
-
-.modal-icon{
-  display:none;
-}
-
-
-/* DESCRIPTION */
-
-.sheet p{
-  color:#70757c;
-
-  font-size:12px;
-
-  line-height:1.45;
-
-  margin-bottom:12px;
-}
-
-
-/* SELECTED ODD */
-
-.selected-plan{
-  margin-top:0;
-
-  padding:13px;
-
-  background:#f7f8f9;
-
-  border:1px solid #e2e4e7;
-
-  border-radius:7px;
-
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-}
-
-.selected-plan small{
-  display:block;
-
-  color:#92969c;
-
-  font-size:8px;
-
-  font-weight:800;
-
-  letter-spacing:.4px;
-}
-
-.selected-plan strong{
-  display:block;
-
-  margin-top:4px;
-
-  font-size:16px;
-
-  color:#22262b;
-
-  font-weight:900;
-}
-
-
-/* CURRENT BALANCE */
-
-.bet-slip-balance{
-  margin-top:9px;
-
-  padding:10px 13px;
-
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  border-radius:6px;
-
-  background:#fff5f6;
-
-  border:1px solid #f5dfe2;
-}
-
-.bet-slip-balance span{
-  color:#777c83;
-
-  font-size:10px;
-
-  font-weight:700;
-}
-
-.bet-slip-balance strong{
-  color:#ed132d;
-
-  font-size:13px;
-
-  font-weight:900;
-}
-
-
-/* ACTIONS */
-
-.modal-actions{
-  display:grid;
-
-  grid-template-columns:1fr 1.4fr;
-
-  gap:8px;
-
-  margin-top:12px;
-}
-
-.modal-actions a{
-  height:44px;
-
-  display:flex;
-
-  justify-content:center;
-
-  align-items:center;
-
-  border-radius:5px;
-
-  font-size:11px;
-
-  font-weight:900;
-}
-
-.secondary{
-  background:#eceeef;
-
-  color:#44484d;
-}
-
-.primary{
-  background:#ed132d;
-
-  color:#fff;
-
-  box-shadow:
-    0 4px 10px rgba(237,19,45,.2);
-}
-
-
-/* =====================================================
-   HOW IT WORKS POPUP
-===================================================== */
-
-.how-overlay{
-  position:fixed;
-
-  inset:0;
-
-  background:rgba(0,0,0,.58);
-
-  z-index:700;
-
-  display:none;
-
-  align-items:center;
-
-  justify-content:center;
-
-  padding:18px;
-}
-
-.how-overlay.show{
-  display:flex;
-}
-
-.how-popup{
-  width:100%;
-
-  max-width:475px;
-
-  background:#fff;
-
-  border-radius:3px;
-
-  overflow:hidden;
-
-  box-shadow:
-    0 8px 35px rgba(0,0,0,.35);
-
-  animation:howPopIn .22s ease;
-}
-
-@keyframes howPopIn{
-
-  from{
-    transform:scale(.94);
-
-    opacity:0;
-  }
-
-  to{
-    transform:scale(1);
-
-    opacity:1;
-  }
-
-}
-
-
-/* HOW IT WORKS HEADER */
-
-.how-top{
-  padding:24px 24px 18px;
-
-  background:#fff;
-
-  border-bottom:1px solid #eeeeee;
-}
-
-.how-title{
-  color:#343941;
-
-  font-size:26px;
-
-  font-weight:900;
-
-  line-height:1.15;
-
-  margin-bottom:0;
-}
-
-.how-title:before{
-  content:"i";
-
-  display:inline-flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  width:28px;
-
-  height:28px;
-
-  margin-right:9px;
-
-  border-radius:50%;
-
-  background:#ed132d;
-
-  color:#fff;
-
-  font-size:18px;
-
-  font-weight:900;
-
-  vertical-align:2px;
-}
-
-
-/* HOW IT WORKS IMAGE */
-
-.how-image{
-  width:100%;
-
-  max-width:100%;
-
-  height:auto;
-
-  max-height:260px;
-
-  object-fit:contain;
-
-  display:block;
-
-  margin:0 auto;
-
-  background:#fff;
-}
-
-
-/* HOW TEXT */
-
-.how-text{
-  padding:
-    20px
-    24px
-    20px;
-
-  color:#3f444b;
-
-  font-size:17px;
-
-  line-height:1.48;
-
-  text-align:left;
-}
-
-.how-text strong{
-  color:#ed132d;
-
-  font-weight:900;
-}
-
-
-/* GOT IT BUTTON */
-
-.how-button{
-  width:calc(100% - 48px);
-
-  height:48px;
-
-  margin:
-    0
-    24px
-    24px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  border-radius:3px;
-
-  background:#0ba33c;
-
-  color:#fff;
-
-  font-size:15px;
-
-  font-weight:900;
-
-  box-shadow:
-    0 2px 5px rgba(11,163,60,.22);
-}
-
-.how-button:active{
-  transform:scale(.98);
-}
-
-
-/* =====================================================
-   NEW USER BONUS POPUP
-   DASHBOARD-STYLE DESIGN
-===================================================== */
-
-.bonus-overlay{
-  position:fixed;
-
-  left:0;
-  right:0;
-  bottom:0;
-  top:auto;
-
-  background:transparent;
-
-  z-index:500;
-
-  display:none;
-
-  align-items:flex-end;
-
-  justify-content:center;
-
-  padding:0 12px 14px;
-
   pointer-events:none;
+  z-index:2;
+  background:linear-gradient(110deg,transparent 0%,rgba(255,255,255,.05) 20%,rgba(255,255,255,.75) 48%,rgba(255,215,0,.28) 58%,transparent 100%);
+  transform:skewX(-20deg);
+  animation:odd3GoldenReflection 3.5s ease-in-out infinite;
+}
+@keyframes odd3GoldenReflection{
+  0%{left:-100%}
+  55%,100%{left:150%}
+}
+.plan:nth-child(3) .plan-top{
+  background:linear-gradient(100deg,#fff4c2,#ffdf70,#fff4c2);
+  border-bottom:1px solid #e6c15b;
+}
+.plan:nth-child(3) .plan-time,
+.plan:nth-child(3) .plan-id,
+.plan:nth-child(3) .plan-type,
+.plan:nth-child(3) .chart{color:#76550a}
+.plan:nth-child(3) .hot{
+  background:linear-gradient(135deg,#fff0a6,#d4a017,#ffe58a);
+  color:#513700;
+  box-shadow:0 2px 7px rgba(184,134,11,.25);
+}
+.plan:nth-child(3) .plan-name{color:#78520a;text-shadow:0 1px 0 rgba(255,255,255,.8)}
+.plan:nth-child(3) .plan-sub{color:#8b6a20}
+.plan:nth-child(3) .plan-sub strong{color:#946600}
+.plan:nth-child(3) .odd{
+  background:linear-gradient(145deg,#fff9d9,#f6df8b,#fff4c2);
+  color:#795300;
+  border-right:1px solid rgba(255,255,255,.8);
+}
+.plan:nth-child(3) .odd small{color:#947522}
+.plan:nth-child(3) .odd strong{color:#795300;text-shadow:0 1px 0 rgba(255,255,255,.8)}
+.plan:nth-child(3) .activate{
+  background:linear-gradient(135deg,#ffe89a 0%,#d5a017 35%,#f8d65c 65%,#bd8707 100%);
+  color:#493000;
+  border:1px solid #c99a20;
+  box-shadow:0 3px 8px rgba(184,134,11,.25),inset 0 1px 0 rgba(255,255,255,.8);
+}
+.plan:nth-child(3) .activate:active{transform:scale(.96);box-shadow:0 1px 4px rgba(184,134,11,.3)}
+.plan:nth-child(3) .plan-bottom{color:#8a6717}
+
+@media(prefers-reduced-motion:reduce){
+  .plan:nth-child(3)::after{animation:none}
 }
 
-.bonus-overlay.show{
-  display:flex;
-
-  animation:bonusBackdrop .35s ease both;
-}
-
-.bonus-popup{
-  width:min(620px,100%);
-
-  margin:auto;
-
-  background:#fff;
-
-  border:1px solid rgba(231,234,240,.95);
-
-  border-radius:30px 30px 22px 22px;
-
-  padding:27px 22px 23px;
-
-  position:relative;
-
-  box-shadow:
-    0 -15px 45px rgba(20,27,38,.16),
-    0 25px 65px rgba(20,27,38,.20);
-
-  pointer-events:auto;
-
-  animation:
-    bonusSlideUp
-    .7s
-    cubic-bezier(.16,1,.3,1)
-    both;
-}
-
-
-/* DASHBOARD-STYLE HANDLE */
-
-.bonus-popup:before{
-  content:"";
-
-  display:block;
-
-  width:46px;
-
-  height:5px;
-
-  margin:-9px auto 18px;
-
-  border-radius:20px;
-
-  background:#e4e6ea;
-}
-
-
-/* =====================================================
-   BONUS TOP
-===================================================== */
-
-.bonus-top{
-  display:flex;
-
-  align-items:center;
-
-  gap:16px;
-}
-
-
-/* =====================================================
-   BONUS ICON
-===================================================== */
-
-.bonus-icon{
-  width:66px;
-  height:66px;
-
-  flex-shrink:0;
-
-  display:grid;
-
-  place-items:center;
-
-  border-radius:20px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #fff0f2,
-      #ffdfe4
-    );
-
-  color:#ed1b2f;
-
-  font-size:28px;
-
-  font-weight:950;
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.8),
-    0 7px 18px rgba(237,27,47,.08);
-}
-
-
-/* =====================================================
-   BONUS TEXT AREA
-===================================================== */
-
-.bonus-heading{
-  flex:1;
-
-  min-width:0;
-}
-
-.bonus-heading small{
-  display:block;
-
-  color:#737b87;
-
-  font-size:12px;
-
-  font-weight:850;
-
-  margin-bottom:4px;
-
-  letter-spacing:.2px;
-}
-
-.bonus-heading strong{
-  display:block;
-
-  color:#12161d;
-
-  font-size:22px;
-
-  line-height:1.15;
-
-  font-weight:950;
-
-  letter-spacing:-.5px;
-}
-
-
-/* =====================================================
-   BONUS OFFER TEXT
-===================================================== */
-
-.bonus-text{
-  color:#12161d;
-
-  font-size:19px;
-
-  line-height:1.38;
-
-  font-weight:1000;
-
-  text-align:center;
-
-  padding:0 4px;
-
-  margin-top:22px;
-
-  letter-spacing:-.25px;
-}
-
-.bonus-text strong{
-  color:#ed1b2f;
-
-  font-weight:1000;
-
-  display:inline;
-}
-
-
-/* =====================================================
-   OFFER VALID
-===================================================== */
-
-.bonus-valid{
-  text-align:center;
-
-  margin-top:11px;
-
-  color:#737b87;
-
-  font-size:10px;
-
-  font-weight:850;
-
-  letter-spacing:.6px;
-}
-
-
-/* =====================================================
-   BONUS ACTIONS
-===================================================== */
-
-.bonus-actions{
-  display:grid;
-
-  grid-template-columns:1fr 1.35fr;
-
-  gap:9px;
-
-  margin-top:18px;
-}
-
-.bonus-actions a,
-.bonus-actions button{
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  width:100%;
-
-  height:52px;
-
-  border-radius:13px;
-
-  font-size:13px;
-
-  font-weight:900;
-
-  text-decoration:none;
-
-  transition:
-    transform .15s ease,
-    box-shadow .15s ease;
-}
-
-.bonus-not-now{
-  background:#eceeef;
-
-  color:#44484d;
-
-  box-shadow:
-    0 5px 12px rgba(20,27,38,.06);
-}
-
-.bonus-activate{
-  background:
-    linear-gradient(
-      135deg,
-      #f5253b,
-      #d90f26
-    );
-
-  color:#fff;
-
-  box-shadow:
-    0 12px 25px rgba(237,27,47,.25);
-}
-
-.bonus-actions a:active,
-.bonus-actions button:active{
-  transform:scale(.97);
-}
-
-
-/* =====================================================
-   BONUS ANIMATIONS
-===================================================== */
-
+/* EMPTY STATE */
+.empty-state{min-height:220px;background:#fff;border-bottom:1px solid #ddd;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 20px}
+.empty-icon{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#fff0f2;color:#ed132d;font-size:25px;margin-bottom:13px}
+.empty-state strong{font-size:16px;color:#333}
+.empty-state span{margin-top:6px;color:#999;font-size:12px}
+.empty-state a{margin-top:16px;height:38px;padding:0 18px;display:flex;align-items:center;justify-content:center;border-radius:4px;background:#ed132d;color:#fff;font-size:11px;font-weight:900}
+
+/* BOTTOM NAVIGATION */
+.bottom-nav{position:fixed;left:0;right:0;bottom:0;height:68px;background:#050505;color:#fff;z-index:90;display:flex;justify-content:space-around;align-items:center;box-shadow:0 -2px 8px rgba(0,0,0,.22)}
+.bottom-item{width:25%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#aaa;font-size:10px;position:relative}
+.bottom-icon{font-size:23px;line-height:24px;margin-bottom:5px}
+.bottom-item.active{color:#fff}
+.bottom-item.active:after{content:"";position:absolute;bottom:0;left:20%;right:20%;height:4px;background:#ed132d}
+.bottom-item.active .bottom-icon{color:#fff}
+
+/* ACTIVATION MODAL */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.48);z-index:600;display:none;align-items:flex-end;justify-content:center;padding:0}
+.modal.show{display:flex}
+.sheet{width:100%;max-width:620px;margin:0 auto;background:#fff;border-radius:18px 18px 0 0;padding:0 16px 22px;box-shadow:0 -8px 30px rgba(0,0,0,.28);animation:slideUp .25s ease;position:relative}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.sheet:before{content:"";display:block;width:42px;height:4px;margin:8px auto 14px;border-radius:10px;background:#d7d8da}
+.sheet-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:11px;border-bottom:1px solid #ededed}
+.sheet-title{font-size:18px;font-weight:900;color:#22262b}
+.sheet-title:before{content:"⚡";display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;margin-right:8px;border-radius:7px;background:#fff0f2;color:#ed132d;font-size:14px;vertical-align:middle}
+.close{width:32px;height:32px;border-radius:50%;background:#f0f1f2;color:#555;font-size:21px;display:grid;place-items:center}
+.modal-icon{display:none}
+.sheet p{color:#70757c;font-size:12px;line-height:1.45;margin-bottom:12px}
+.selected-plan{margin-top:0;padding:13px;background:#f7f8f9;border:1px solid #e2e4e7;border-radius:7px;display:flex;justify-content:space-between;align-items:center}
+.selected-plan small{display:block;color:#92969c;font-size:8px;font-weight:800;letter-spacing:.4px}
+.selected-plan strong{display:block;margin-top:4px;font-size:16px;color:#22262b;font-weight:900}
+.bet-slip-balance{margin-top:9px;padding:10px 13px;display:flex;justify-content:space-between;align-items:center;border-radius:6px;background:#fff5f6;border:1px solid #f5dfe2}
+.bet-slip-balance span{color:#777c83;font-size:10px;font-weight:700}
+.bet-slip-balance strong{color:#ed132d;font-size:13px;font-weight:900}
+.modal-actions{display:grid;grid-template-columns:1fr 1.4fr;gap:8px;margin-top:12px}
+.modal-actions a{height:44px;display:flex;justify-content:center;align-items:center;border-radius:5px;font-size:11px;font-weight:900}
+.secondary{background:#eceeef;color:#44484d}
+.primary{background:#ed132d;color:#fff;box-shadow:0 4px 10px rgba(237,19,45,.2)}
+
+/* HOW IT WORKS POPUP */
+.how-overlay{position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:700;display:none;align-items:center;justify-content:center;padding:18px}
+.how-overlay.show{display:flex}
+.how-popup{width:100%;max-width:475px;background:#fff;border-radius:3px;overflow:hidden;box-shadow:0 8px 35px rgba(0,0,0,.35);animation:howPopIn .22s ease}
+@keyframes howPopIn{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+.how-top{padding:24px 24px 18px;background:#fff;border-bottom:1px solid #eee}
+.how-title{color:#343941;font-size:26px;font-weight:900;line-height:1.15;margin-bottom:0}
+.how-title:before{content:"i";display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;margin-right:9px;border-radius:50%;background:#ed132d;color:#fff;font-size:18px;font-weight:900;vertical-align:2px}
+.how-image{width:100%;max-width:100%;height:auto;max-height:260px;object-fit:contain;display:block;margin:0 auto;background:#fff}
+.how-text{padding:20px 24px;color:#3f444b;font-size:17px;line-height:1.48;text-align:left}
+.how-text strong{color:#ed132d;font-weight:900}
+.how-button{width:calc(100% - 48px);height:48px;margin:0 24px 24px;display:flex;align-items:center;justify-content:center;border-radius:3px;background:#0ba33c;color:#fff;font-size:15px;font-weight:900;box-shadow:0 2px 5px rgba(11,163,60,.22)}
+.how-button:active{transform:scale(.98)}
+
+/* NEW USER BONUS POPUP */
+.bonus-overlay{position:fixed;left:0;right:0;bottom:0;top:auto;background:transparent;z-index:500;display:none;align-items:flex-end;justify-content:center;padding:0 12px 14px;pointer-events:none}
+.bonus-overlay.show{display:flex;animation:bonusBackdrop .35s ease both}
+.bonus-popup{width:min(620px,100%);margin:auto;background:#fff;border:1px solid rgba(231,234,240,.95);border-radius:30px 30px 22px 22px;padding:27px 22px 23px;position:relative;box-shadow:0 -15px 45px rgba(20,27,38,.16),0 25px 65px rgba(20,27,38,.20);pointer-events:auto;animation:bonusSlideUp .7s cubic-bezier(.16,1,.3,1) both}
+.bonus-popup:before{content:"";display:block;width:46px;height:5px;margin:-9px auto 18px;border-radius:20px;background:#e4e6ea}
+.bonus-top{display:flex;align-items:center;gap:16px}
+.bonus-icon{width:66px;height:66px;flex-shrink:0;display:grid;place-items:center;border-radius:20px;background:linear-gradient(145deg,#fff0f2,#ffdfe4);color:#ed1b2f;font-size:28px;font-weight:950;box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 7px 18px rgba(237,27,47,.08)}
+.bonus-heading{flex:1;min-width:0}
+.bonus-heading small{display:block;color:#737b87;font-size:12px;font-weight:850;margin-bottom:4px;letter-spacing:.2px}
+.bonus-heading strong{display:block;color:#12161d;font-size:22px;line-height:1.15;font-weight:950;letter-spacing:-.5px}
+.bonus-text{color:#12161d;font-size:19px;line-height:1.38;font-weight:1000;text-align:center;padding:0 4px;margin-top:22px;letter-spacing:-.25px}
+.bonus-text strong{color:#ed1b2f;font-weight:1000;display:inline}
+.bonus-valid{text-align:center;margin-top:11px;color:#737b87;font-size:10px;font-weight:850;letter-spacing:.6px}
+.bonus-actions{display:grid;grid-template-columns:1fr 1.35fr;gap:9px;margin-top:18px}
+.bonus-actions a,.bonus-actions button{display:flex;align-items:center;justify-content:center;width:100%;height:52px;border-radius:13px;font-size:13px;font-weight:900;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
+.bonus-not-now{background:#eceeef;color:#44484d;box-shadow:0 5px 12px rgba(20,27,38,.06)}
+.bonus-activate{background:linear-gradient(135deg,#f5253b,#d90f26);color:#fff;box-shadow:0 12px 25px rgba(237,27,47,.25)}
+.bonus-actions a:active,.bonus-actions button:active{transform:scale(.97)}
 @keyframes bonusSlideUp{
-
-  0%{
-    opacity:0;
-
-    transform:
-      translateY(120%)
-      scale(.96);
-  }
-
-  55%{
-    opacity:1;
-  }
-
-  78%{
-    transform:
-      translateY(-7px)
-      scale(1);
-  }
-
-  100%{
-    opacity:1;
-
-    transform:
-      translateY(0)
-      scale(1);
-  }
-
+  0%{opacity:0;transform:translateY(120%) scale(.96)}
+  55%{opacity:1}
+  78%{transform:translateY(-7px) scale(1)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
 }
+@keyframes bonusBackdrop{from{opacity:0}to{opacity:1}}
 
-@keyframes bonusBackdrop{
-
-  from{
-    opacity:0;
-  }
-
-  to{
-    opacity:1;
-  }
-
-}
-
-
-/* =====================================================
-   TABLET
-===================================================== */
-
+/* TABLET */
 @media(max-width:700px){
-
-  .top-header{
-    height:76px;
-  }
-
-  .brand{
-    font-size:23px;
-  }
-
-  .balance{
-    min-width:137px;
-  }
-
-  .category{
-    padding:0 16px;
-
-    font-size:15px;
-  }
-
-  .market{
-    padding:0 16px;
-
-    font-size:14px;
-  }
-
-  .plan-content{
-    grid-template-columns:
-      minmax(118px,1fr)
-      270px
-      73px;
-
-    gap:7px;
-
-    padding-left:16px;
-
-    padding-right:12px;
-  }
-
-  .plan-name{
-    font-size:15px;
-  }
-
-  .odd strong{
-    font-size:15px;
-  }
-
-  .activate{
-    font-size:11px;
-  }
-
+  .top-header{height:76px}
+  .brand{font-size:23px}
+  .balance{min-width:137px}
+  .category{padding:0 16px;font-size:15px}
+  .plan-content{grid-template-columns:minmax(118px,1fr) 270px 73px;gap:7px;padding-left:16px;padding-right:12px}
+  .plan-name{font-size:15px}
+  .odd strong{font-size:15px}
+  .activate{font-size:11px}
 }
 
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
+/* MOBILE */
 @media(max-width:560px){
-
-  .plan-content{
-    grid-template-columns:
-      1fr
-      230px;
-  }
-
-  .activate{
-    grid-column:2;
-
-    width:100%;
-
-    margin-top:-4px;
-  }
-
-  .odds{
-    grid-column:2;
-
-    grid-row:1;
-  }
-
-  .plan-name-area{
-    grid-column:1;
-
-    grid-row:1;
-  }
-
-  .plan{
-    min-height:164px;
-  }
-
-  .plan-bottom{
-    bottom:7px;
-  }
-
-
-  /* HOW IT WORKS MOBILE */
-
-  .how-overlay{
-    padding:14px;
-  }
-
-  .how-popup{
-    max-width:none;
-  }
-
-  .how-top{
-    padding:
-      21px
-      20px
-      15px;
-  }
-
-  .how-title{
-    font-size:23px;
-  }
-
-  .how-image{
-    width:100%;
-
-    max-height:220px;
-
-    object-fit:contain;
-  }
-
-  .how-text{
-    padding:
-      18px
-      20px
-      18px;
-
-    font-size:15px;
-
-    line-height:1.48;
-  }
-
-  .how-button{
-    width:calc(100% - 40px);
-
-    margin:
-      0
-      20px
-      20px;
-
-    height:47px;
-  }
-
-
-  /* DASHBOARD-STYLE BONUS MOBILE */
-
-  .bonus-overlay{
-    padding:
-      0
-      8px
-      9px;
-  }
-
-  .bonus-popup{
-    padding:
-      23px
-      17px
-      18px;
-
-    border-radius:
-      27px
-      27px
-      20px
-      20px;
-  }
-
-  .bonus-top{
-    gap:13px;
-  }
-
-  .bonus-icon{
-    width:59px;
-    height:59px;
-
-    border-radius:18px;
-
-    font-size:25px;
-  }
-
-  .bonus-heading small{
-    font-size:11px;
-  }
-
-  .bonus-heading strong{
-    font-size:20px;
-  }
-
-  .bonus-text{
-    font-size:17px;
-
-    font-weight:1000;
-
-    line-height:1.4;
-
-    padding:0 2px;
-
-    margin-top:19px;
-  }
-
-  .bonus-valid{
-    font-size:9px;
-  }
-
-  .bonus-actions{
-    grid-template-columns:
-      1fr
-      1.35fr;
-
-    gap:7px;
-
-    margin-top:15px;
-  }
-
-  .bonus-actions a,
-  .bonus-actions button{
-    height:48px;
-
-    font-size:12px;
-
-    border-radius:12px;
-  }
-
+  .plan-content{grid-template-columns:1fr 230px}
+  .activate{grid-column:2;width:100%;margin-top:-4px}
+  .odds{grid-column:2;grid-row:1}
+  .plan-name-area{grid-column:1;grid-row:1}
+  .plan{min-height:164px}
+  .plan-bottom{bottom:7px}
+  .how-overlay{padding:14px}
+  .how-popup{max-width:none}
+  .how-top{padding:21px 20px 15px}
+  .how-title{font-size:23px}
+  .how-image{width:100%;max-height:220px;object-fit:contain}
+  .how-text{padding:18px 20px;font-size:15px;line-height:1.48}
+  .how-button{width:calc(100% - 40px);margin:0 20px 20px;height:47px}
+  .bonus-overlay{padding:0 8px 9px}
+  .bonus-popup{padding:23px 17px 18px;border-radius:27px 27px 20px 20px}
+  .bonus-top{gap:13px}
+  .bonus-icon{width:59px;height:59px;border-radius:18px;font-size:25px}
+  .bonus-heading small{font-size:11px}
+  .bonus-heading strong{font-size:20px}
+  .bonus-text{font-size:17px;line-height:1.4;padding:0 2px;margin-top:19px}
+  .bonus-valid{font-size:9px}
+  .bonus-actions{grid-template-columns:1fr 1.35fr;gap:7px;margin-top:15px}
+  .bonus-actions a,.bonus-actions button{height:48px;font-size:12px;border-radius:12px}
 }
 
-
-/* =====================================================
-   SMALL PHONES
-===================================================== */
-
+/* SMALL PHONES */
 @media(max-width:420px){
-
-  .top-header{
-    height:74px;
-
-    padding:0 12px;
-  }
-
-  .brand{
-    font-size:21px;
-  }
-
-  .search{
-    transform:scale(.9);
-  }
-
-  .balance{
-    min-width:128px;
-
-    height:45px;
-
-    padding:0 8px;
-  }
-
-  .balance strong{
-    font-size:14px;
-  }
-
-  .category{
-    padding:0 15px;
-  }
-
-  .market{
-    padding:0 15px;
-  }
-
-  .page-info{
-    padding:0 16px;
-  }
-
-  .page-info-right{
-    gap:25px;
-
-    padding-right:4px;
-  }
-
-  .plan-top{
-    padding:0 12px;
-  }
-
-  .plan-content{
-    padding:
-      9px
-      12px
-      15px;
-
-    grid-template-columns:
-      100px
-      1fr;
-
-    gap:6px;
-  }
-
-  .plan-name{
-    font-size:14px;
-  }
-
-  .plan-sub{
-    font-size:10px;
-  }
-
-  .odds{
-    grid-column:2;
-  }
-
-  .odd{
-    min-height:56px;
-  }
-
-  .odd small{
-    font-size:7px;
-  }
-
-  .odd strong{
-    font-size:14px;
-  }
-
-  .activate{
-    grid-column:2;
-
-    height:37px;
-  }
-
-  .plan-bottom{
-    left:12px;
-
-    font-size:9px;
-  }
-
-
-  /* BET SLIP */
-
-  .sheet{
-    padding:
-      0
-      13px
-      calc(18px + env(safe-area-inset-bottom));
-  }
-
-  .sheet-title{
-    font-size:17px;
-  }
-
-  .sheet p{
-    font-size:11px;
-  }
-
-  .selected-plan{
-    padding:11px;
-  }
-
-  .selected-plan strong{
-    font-size:15px;
-  }
-
-
-  /* HOW IT WORKS */
-
-  .how-title{
-    font-size:21px;
-  }
-
-  .how-image{
-    max-height:190px;
-  }
-
-  .how-text{
-    font-size:14px;
-
-    line-height:1.45;
-  }
-
-
-  /* BONUS */
-
-  .bonus-heading strong{
-    font-size:19px;
-  }
-
-  .bonus-text{
-    font-size:16px;
-
-    font-weight:1000;
-
-    line-height:1.4;
-
-    margin-top:17px;
-  }
-
-  .bonus-valid{
-    font-size:9px;
-  }
-
-  .bonus-actions{
-    gap:6px;
-  }
-
-  .bonus-actions a,
-  .bonus-actions button{
-    height:45px;
-
-    font-size:11px;
-  }
-
+  .top-header{height:74px;padding:0 12px}
+  .brand{font-size:21px}
+  .search{transform:scale(.9)}
+  .balance{min-width:128px;height:45px;padding:0 8px}
+  .balance strong{font-size:14px}
+  .category{padding:0 15px}
+  .page-info{padding:0 16px}
+  .page-info-right{gap:25px;padding-right:4px}
+  .plan-top{padding:0 12px}
+  .plan-content{padding:9px 12px 15px;grid-template-columns:100px 1fr;gap:6px}
+  .plan-name{font-size:14px}
+  .plan-sub{font-size:10px}
+  .odds{grid-column:2}
+  .odd{min-height:56px}
+  .odd small{font-size:7px}
+  .odd strong{font-size:14px}
+  .activate{grid-column:2;height:37px}
+  .plan-bottom{left:12px;font-size:9px}
+  .sheet{padding:0 13px calc(18px + env(safe-area-inset-bottom))}
+  .sheet-title{font-size:17px}
+  .sheet p{font-size:11px}
+  .selected-plan{padding:11px}
+  .selected-plan strong{font-size:15px}
+  .how-title{font-size:21px}
+  .how-image{max-height:190px}
+  .how-text{font-size:14px;line-height:1.45}
+  .bonus-heading strong{font-size:19px}
+  .bonus-text{font-size:16px;line-height:1.4;margin-top:17px}
+  .bonus-valid{font-size:9px}
+  .bonus-actions{gap:6px}
+  .bonus-actions a,.bonus-actions button{height:45px;font-size:11px}
 }
 
-
-/* =====================================================
-   VERY SMALL PHONES
-===================================================== */
-
+/* VERY SMALL PHONES */
 @media(max-width:350px){
-
-  .brand{
-    font-size:19px;
-  }
-
-  .balance{
-    min-width:118px;
-  }
-
-  .balance-icon{
-    display:none;
-  }
-
-  .balance strong{
-    font-size:13px;
-  }
-
-  .category{
-    font-size:14px;
-
-    padding:0 12px;
-  }
-
-  .market{
-    font-size:13px;
-
-    padding:0 12px;
-  }
-
-
-  .bonus-popup{
-    padding:
-      21px
-      14px
-      16px;
-  }
-
-  .bonus-top{
-    gap:10px;
-  }
-
-  .bonus-icon{
-    width:54px;
-    height:54px;
-
-    border-radius:17px;
-
-    font-size:23px;
-  }
-
-  .bonus-heading strong{
-    font-size:17px;
-  }
-
-  .bonus-heading small{
-    font-size:10px;
-  }
-
-  .bonus-text{
-    font-size:15px;
-
-    font-weight:1000;
-
-    line-height:1.4;
-  }
-
-  .bonus-actions a,
-  .bonus-actions button{
-    height:43px;
-
-    font-size:10px;
-  }
-
+  .brand{font-size:19px}
+  .balance{min-width:118px}
+  .balance-icon{display:none}
+  .balance strong{font-size:13px}
+  .category{font-size:14px;padding:0 12px}
+  .bonus-popup{padding:21px 14px 16px}
+  .bonus-top{gap:10px}
+  .bonus-icon{width:54px;height:54px;border-radius:17px;font-size:23px}
+  .bonus-heading strong{font-size:17px}
+  .bonus-heading small{font-size:10px}
+  .bonus-text{font-size:15px;line-height:1.4}
+  .bonus-actions a,.bonus-actions button{height:43px;font-size:10px}
 }
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<!-- =====================================================
-     RED HEADER
-===================================================== -->
-
+</style></head><body>
 <header class="top-header">
-
-  <div class="brand">
-    SportyMine
-  </div>
-
+  <div class="brand">SportyMine</div>
   <div class="header-right">
-
     <div class="search"></div>
-
     <div class="balance">
-
-      <div class="balance-icon">
-        ₦
-      </div>
-
+      <div class="balance-icon">₦</div>
       <div>
-
-        <small>
-          Wallet Balance
-        </small>
-
-        <strong>
-          ₦500.00
-        </strong>
-
+        <small>Wallet Balance</small>
+        <strong>₦500.00</strong>
       </div>
-
     </div>
-
   </div>
-
-</header>
-
-
-<!-- =====================================================
-     CATEGORY BAR
-===================================================== -->
-
-<div class="category-bar">
-
-  <div
-    class="category active"
-    data-filter="all"
-  >
-    Odds
-  </div>
-
+</header><div class="category-bar">
+  <div class="category active" data-filter="all">Odds</div>
   <div class="category-separator"></div>
-
-  <div
-    class="category"
-    data-filter="all"
-  >
-    All
-  </div>
-
-  <div
-    class="category"
-    data-filter="popular"
-  >
-    Popular
-  </div>
-
-  <div
-    class="category"
-    data-filter="starter"
-  >
-    Starter
-  </div>
-
-  <div
-    class="category"
-    data-filter="high-return"
-  >
-    High Return
-  </div>
-
-  <div
-    class="category"
-    data-filter="my-odds"
-  >
-    My Odds
-  </div>
-
-</div>
-
-
-<!-- =====================================================
-     PAGE INFO
-===================================================== -->
-
-<div class="page-info">
-
-  <div
-    class="page-info-left"
-    id="sectionTitle"
-  >
-    Available Odds
-  </div>
-
+  <div class="category" data-filter="all">All</div>
+  <div class="category" data-filter="popular">Popular</div>
+  <div class="category" data-filter="starter">Starter</div>
+  <div class="category" data-filter="high-return">High Return</div>
+  <div class="category" data-filter="my-odds">My Odds</div>
+</div><div class="page-info">
+  <div class="page-info-left" id="sectionTitle">Available Odds</div>
   <div class="page-info-right">
-
-    <span>
-      Daily
-    </span>
-
-    <span>
-      Total
-    </span>
-
+    <span>Daily</span>
+    <span>Total</span>
   </div>
-
-</div>
-
-
-<!-- =====================================================
-     ODDS LIST
-===================================================== -->
-
-<div class="plan-list">
-
-
-  <!-- ODD 1 -->
-
-  <div
-    class="plan"
-    data-category="starter"
-  >
-
+</div><div class="plan-list">  <!-- ODD 1 -->  <div class="plan" data-category="starter">
     <div class="plan-top">
-
-      <div class="hot">
-        HOT
-      </div>
-
-      <div class="plan-time">
-        01
-      </div>
-
-      <div class="plan-id">
-        ID 10001
-      </div>
-
-      <div class="plan-type">
-        SportyMine Earning Odds
-      </div>
-
-      <div class="chart">
-        ↗
-      </div>
-
+      <div class="hot">HOT</div>
+      <div class="plan-time">01</div>
+      <div class="plan-id">ID 10001</div>
+      <div class="plan-type">SportyMine Earning Odds</div>
+      <div class="chart">↗</div>
     </div>
-
-
     <div class="plan-content">
-
       <div class="plan-name-area">
-
-        <div class="plan-name">
-          Odd 1
-        </div>
-
-        <div class="plan-sub">
-          Activation
-          <strong>₦1,500</strong>
-        </div>
-
+        <div class="plan-name">Odd 1</div>
+        <div class="plan-sub">Activation <strong>₦1,500</strong></div>
       </div>
-
-
       <div class="odds">
-
-        <div class="odd">
-
-          <small>Daily</small>
-
-          <strong>₦500</strong>
-
-        </div>
-
-        <div class="odd">
-
-          <small>Days</small>
-
-          <strong>60</strong>
-
-        </div>
-
-        <div class="odd">
-
-          <small>Total</small>
-
-          <strong>₦30K</strong>
-
-        </div>
-
+        <div class="odd"><small>Daily</small><strong>₦500</strong></div>
+        <div class="odd"><small>Days</small><strong>60</strong></div>
+        <div class="odd"><small>Total</small><strong>₦30K</strong></div>
       </div>
-
-
-      <button
-        class="activate"
-        data-price="1500"
-        data-name="Odd 1"
-      >
-        Activate
-      </button>
-
+      <button class="activate" data-price="1500" data-name="Odd 1">Activate</button>
     </div>
-
-
-    <div class="plan-bottom">
-      Earn ₦500 daily for 60 days
-    </div>
-
-  </div>
-
-
-  <!-- ODD 2 -->
-
-  <div
-    class="plan"
-    data-category="starter"
-  >
-
+    <div class="plan-bottom">Earn ₦500 daily for 60 days</div>
+  </div>  <!-- ODD 2 -->  <div class="plan" data-category="starter">
     <div class="plan-top">
-
-      <div class="hot">
-        HOT
-      </div>
-
-      <div class="plan-time">
-        02
-      </div>
-
-      <div class="plan-id">
-        ID 10002
-      </div>
-
-      <div class="plan-type">
-        SportyMine Earning Odds
-      </div>
-
-      <div class="chart">
-        ↗
-      </div>
-
+      <div class="hot">HOT</div>
+      <div class="plan-time">02</div>
+      <div class="plan-id">ID 10002</div>
+      <div class="plan-type">SportyMine Earning Odds</div>
+      <div class="chart">↗</div>
     </div>
-
-
     <div class="plan-content">
-
       <div class="plan-name-area">
-
-        <div class="plan-name">
-          Odd 2
-        </div>
-
-        <div class="plan-sub">
-          Activation
-          <strong>₦3,000</strong>
-        </div>
-
+        <div class="plan-name">Odd 2</div>
+        <div class="plan-sub">Activation <strong>₦3,000</strong></div>
       </div>
-
-
       <div class="odds">
-
-        <div class="odd">
-
-          <small>Daily</small>
-
-          <strong>₦1K</strong>
-
-        </div>
-
-        <div class="odd">
-
-          <small>Days</small>
-
-          <strong>60</strong>
-
-        </div>
-
-        <div class="odd">
-
-          <small>Total</small>
-
-          <strong>₦60K</strong>
-
-        </div>
-
+        <div class="odd"><small>Daily</small><strong>₦1K</strong></div>
+        <div class="odd"><small>Days</small><strong>60</strong></div>
+        <div class="odd"><small>Total</small><strong>₦60K</strong></div>
       </div>
-
-
-      <button
-        class="activate"
-        data-price="3000"
-        data-name="Odd 2"
-      >
-        Activate
-      </button>
-
+      <button class="activate" data-price="3000" data-name="Odd 2">Activate</button>
     </div>
-
-
-    <div class="plan-bottom">
-      Earn ₦1,000 daily for 60 days
-    </div>
-
-  </div>
-
-
-  <!-- ODD 3 -->
-
-  <div
-    class="plan"
-    data-category="popular high-return"
-  >
-
+    <div class="plan-bottom">Earn ₦1,000 daily for 60 days</div>
+  </div>  <!-- ODD 3: GOLDEN REFLECTIVE -->  <div class="plan" data-category="popular high-return">
     <div class="popular-line"></div>
-
     <div class="plan-top">
-
-      <div class="hot">
-        HOT
-      </div>
-
-      <div class="plan-time">
-        03
-      </div>
-
-      <div class="plan-id">
-        ID 10003
-      </div>
-
-      <div class="plan-type">
-        Popular Earning Odd
-      </div>
-
-      <div class="chart">
-        ↗
-      </div>
-
+      <div class="hot">HOT</div>
+      <div class="plan-time">03</div>
+      <div class="plan-id">ID 10003</div>
+      <div class="plan-type">Popular Earning Odd</div>
+      <div class="chart">↗</div>
     </div>
-
-
     <div class="plan-content">
-
       <div class="plan-name-area">
-
-        <div class="plan-name">
-          Odd 3 ★
-        </div>
-
-        <div class="plan-sub">
-          Activation
-          <strong>₦5,200</strong>
-        </div>
-
+        <div class="plan-name">Odd 3 ★</div>
+        <div class="plan-sub">Activation <strong>₦5,200</strong></div>
       </div>
-
-
       <div class="odds">
-
-        <div class="odd">
-
-          <small>Daily</small>
-
-          <strong>₦2.2K</strong>
-
-        </div>
-
-        <div class="odd">
-
-          <small>Days</small>
-
-          <strong>60</strong>
-
-        </div>
-
-        <div class="odd">
-
-          <small>Total</small>
-
-          <strong>₦132K</strong>
-
-        </div>
-
+        <div class="odd"><small>Daily</small><strong>₦2.2K</strong></div>
+        <div class="odd"><small>Days</small><strong>60</strong></div>
+        <div class="odd"><small>Total</small><strong>₦132K</strong></div>
       </div>
-
-
-      <button
-        class="activate"
-        data-price="5200"
-        data-name="Odd 3"
-      >
-        Activate
-      </button>
-
+      <button class="activate" data-price="5200" data-name="Odd 3">Activate</button>
     </div>
-
-
-    <div class="plan-bottom">
-      Popular • Earn ₦2,200 daily for 60 days
-    </div>
-
-  </div>
-
-
-  <!-- ODD 4 -->
-
-  <div
-    class="plan"
-    data-category="high-return"
-  >
-
+    <div class="plan-bottom">Popular • Earn ₦2,200 daily for 60 days</div>
+  </div>  <!-- ODD 4 -->  <div class="plan" data-category="high-return">
     <div class="plan-top">
-
-      <div class="hot">
-        HOT
-      </div>
-
-      <div class="plan-time">
-        04
-      </div>
-
-      <div class="plan-id">
-        ID 10004
-      </div>
-
-      <div class="plan-type">
-        SportyMine Earning Odds
-      </div>
-
-      <div class="chart">
-        ↗
-      </div>
-
+      <div class="hot">HOT</div>
+      <div class="plan-time">04</div>
+      <div class="plan-id">ID 10004</div>
+      <div class="plan-type">SportyMine Earning Odds</div>
+      <div class="chart">↗</div>
     </div>
-
-
     <div class="plan-content">
-
       <div class="plan-name-area">
-
-        <div class="plan-name">
-          Odd 4
-        </div>
-
-        <div class="plan-sub">
-          Activation
-          <strong>₦20,400</strong>
-        </div>
-
+        <div class="plan-name">Odd 4</div>
+        <div class="plan-sub">Activation <strong>₦20,400</strong></div>
       </div>
-
-
       <div class="odds">
-
-        <div class="odd">
-
-          <small>Daily</small>
-
-          <strong>₦8.2K</strong>
-
-        </div>
-
-        <div class="odd">
-
-          <small>Days</small>
-
-          <strong>65</strong>
-
-        </div>
-
-        <div class="odd">
-
-          <small>Total</small>
-
-          <strong>₦533K</strong>
-
-        </div>
-
+        <div class="odd"><small>Daily</small><strong>₦8.2K</strong></div>
+        <div class="odd"><small>Days</small><strong>65</strong></div>
+        <div class="odd"><small>Total</small><strong>₦533K</strong></div>
       </div>
-
-
-      <button
-        class="activate"
-        data-price="20400"
-        data-name="Odd 4"
-      >
-        Activate
-      </button>
-
+      <button class="activate" data-price="20400" data-name="Odd 4">Activate</button>
     </div>
-
-
-    <div class="plan-bottom">
-      Earn ₦8,200 daily for 65 days
-    </div>
-
-  </div>
-
-
-  <!-- ODD 5 -->
-
-  <div
-    class="plan"
-    data-category="high-return"
-  >
-
+    <div class="plan-bottom">Earn ₦8,200 daily for 65 days</div>
+  </div>  <!-- ODD 5 -->  <div class="plan" data-category="high-return">
     <div class="plan-top">
-
-      <div class="hot">
-        HOT
-      </div>
-
-      <div class="plan-time">
-        05
-      </div>
-
-      <div class="plan-id">
-        ID 10005
-      </div>
-
-      <div class="plan-type">
-        SportyMine Earning Odds
-      </div>
-
-      <div class="chart">
-        ↗
-      </div>
-
+      <div class="hot">HOT</div>
+      <div class="plan-time">05</div>
+      <div class="plan-id">ID 10005</div>
+      <div class="plan-type">SportyMine Earning Odds</div>
+      <div class="chart">↗</div>
     </div>
-
-
     <div class="plan-content">
-
       <div class="plan-name-area">
-
-        <div class="plan-name">
-          Odd 5
-        </div>
-
-        <div class="plan-sub">
-          Activation
-          <strong>₦50,000</strong>
-        </div>
-
+        <div class="plan-name">Odd 5</div>
+        <div class="plan-sub">Activation <strong>₦50,000</strong></div>
       </div>
-
-
       <div class="odds">
-
-        <div class="odd">
-
-          <small>Daily</small>
-
-          <strong>₦17.4K</strong>
-
-        </div>
-
-        <div class="odd">
-
-          <small>Days</small>
-
-          <strong>70</strong>
-
-        </div>
-
-        <div class="odd">
-
-          <small>Total</small>
-
-          <strong>₦1.218M</strong>
-
-        </div>
-
+        <div class="odd"><small>Daily</small><strong>₦17.4K</strong></div>
+        <div class="odd"><small>Days</small><strong>70</strong></div>
+        <div class="odd"><small>Total</small><strong>₦1.218M</strong></div>
       </div>
-
-
-      <button
-        class="activate"
-        data-price="50000"
-        data-name="Odd 5"
-      >
-        Activate
-      </button>
-
+      <button class="activate" data-price="50000" data-name="Odd 5">Activate</button>
     </div>
-
-
-    <div class="plan-bottom">
-      Earn ₦17,400 daily for 70 days
-    </div>
-
-  </div>
-
-
-  <!-- ODD 6 -->
-
-  <div
-    class="plan"
-    data-category="high-return"
-  >
-
+    <div class="plan-bottom">Earn ₦17,400 daily for 70 days</div>
+  </div>  <!-- ODD 6 -->  <div class="plan" data-category="high-return">
     <div class="plan-top">
-
-      <div class="hot">
-        HOT
-      </div>
-
-      <div class="plan-time">
-        06
-      </div>
-
-      <div class="plan-id">
-        ID 10006
-      </div>
-
-      <div class="plan-type">
-        SportyMine Earning Odds
-      </div>
-
-      <div class="chart">
-        ↗
-      </div>
-
+      <div class="hot">HOT</div>
+      <div class="plan-time">06</div>
+      <div class="plan-id">ID 10006</div>
+      <div class="plan-type">SportyMine Earning Odds</div>
+      <div class="chart">↗</div>
     </div>
-
-
     <div class="plan-content">
-
       <div class="plan-name-area">
-
-        <div class="plan-name">
-          Odd 6
-        </div>
-
-        <div class="plan-sub">
-          Activation
-          <strong>₦110,000</strong>
-        </div>
-
+        <div class="plan-name">Odd 6</div>
+        <div class="plan-sub">Activation <strong>₦110,000</strong></div>
       </div>
-
-
       <div class="odds">
-
-        <div class="odd">
-
-          <small>Daily</small>
-
-          <strong>₦43.5K</strong>
-
-        </div>
-
-        <div class="odd">
-
-          <small>Days</small>
-
-          <strong>90</strong>
-
-        </div>
-
-        <div class="odd">
-
-          <small>Total</small>
-
-          <strong>₦3.915M</strong>
-
-        </div>
-
+        <div class="odd"><small>Daily</small><strong>₦43.5K</strong></div>
+        <div class="odd"><small>Days</small><strong>90</strong></div>
+        <div class="odd"><small>Total</small><strong>₦3.915M</strong></div>
       </div>
-
-
-      <button
-        class="activate"
-        data-price="110000"
-        data-name="Odd 6"
-      >
-        Activate
-      </button>
-
+      <button class="activate" data-price="110000" data-name="Odd 6">Activate</button>
     </div>
-
-
-    <div class="plan-bottom">
-      Earn ₦43,500 daily for 90 days
-    </div>
-
-  </div>
-
-
-  <!-- ODD 7 -->
-
-  <div
-    class="plan"
-    data-category="high-return"
-  >
-
+    <div class="plan-bottom">Earn ₦43,500 daily for 90 days</div>
+  </div>  <!-- ODD 7 -->  <div class="plan" data-category="high-return">
     <div class="plan-top">
-
-      <div class="hot">
-        HOT
-      </div>
-
-      <div class="plan-time">
-        07
-      </div>
-
-      <div class="plan-id">
-        ID 10007
-      </div>
-
-      <div class="plan-type">
-        SportyMine Earning Odds
-      </div>
-
-      <div class="chart">
-        ↗
-      </div>
-
+      <div class="hot">HOT</div>
+      <div class="plan-time">07</div>
+      <div class="plan-id">ID 10007</div>
+      <div class="plan-type">SportyMine Earning Odds</div>
+      <div class="chart">↗</div>
     </div>
-
-
     <div class="plan-content">
-
       <div class="plan-name-area">
-
-        <div class="plan-name">
-          Odd 7
-        </div>
-
-        <div class="plan-sub">
-          Activation
-          <strong>₦222,000</strong>
-        </div>
-
+        <div class="plan-name">Odd 7</div>
+        <div class="plan-sub">Activation <strong>₦222,000</strong></div>
       </div>
-
-
       <div class="odds">
-
-        <div class="odd">
-
-          <small>Daily</small>
-
-          <strong>₦97K</strong>
-
-        </div>
-
-        <div class="odd">
-
-          <small>Days</small>
-
-          <strong>180</strong>
-
-        </div>
-
-        <div class="odd">
-
-          <small>Total</small>
-
-          <strong>₦17.46M</strong>
-
-        </div>
-
+        <div class="odd"><small>Daily</small><strong>₦97K</strong></div>
+        <div class="odd"><small>Days</small><strong>180</strong></div>
+        <div class="odd"><small>Total</small><strong>₦17.46M</strong></div>
       </div>
-
-
-      <button
-        class="activate"
-        data-price="222000"
-        data-name="Odd 7"
-      >
-        Activate
-      </button>
-
+      <button class="activate" data-price="222000" data-name="Odd 7">Activate</button>
     </div>
-
-
-    <div class="plan-bottom">
-      Earn ₦97,000 daily for 180 days
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- =====================================================
-     BOTTOM NAVIGATION
-===================================================== -->
-
-<nav class="bottom-nav">
-
-  <a
-    href="dashboard.html"
-    class="bottom-item"
-  >
-
-    <span class="bottom-icon">
-      ⌂
-    </span>
-
-    Home
-
+    <div class="plan-bottom">Earn ₦97,000 daily for 180 days</div>
+  </div></div><!-- BOTTOM NAVIGATION --><nav class="bottom-nav">
+  <a href="dashboard.html" class="bottom-item">
+    <span class="bottom-icon">⌂</span>Home
   </a>
-
-
-  <a
-    href="odds.html"
-    class="bottom-item active"
-  >
-
-    <span class="bottom-icon">
-      ⚡
-    </span>
-
-    Odds
-
+  <a href="odds.html" class="bottom-item active">
+    <span class="bottom-icon">⚡</span>Odds
   </a>
-
-
-  <a
-    href="fund.html"
-    class="bottom-item"
-  >
-
-    <span class="bottom-icon">
-      ＋
-    </span>
-
-    Fund
-
+  <a href="fund.html" class="bottom-item">
+    <span class="bottom-icon">＋</span>Fund
   </a>
-
-
-  <a
-    href="withdraw.html"
-    class="bottom-item"
-  >
-
-    <span class="bottom-icon">
-      ⇩
-    </span>
-
-    Withdraw
-
+  <a href="withdraw.html" class="bottom-item">
+    <span class="bottom-icon">⇩</span>Withdraw
   </a>
-
-</nav>
-
-
-<!-- =====================================================
-     BET SLIP
-===================================================== -->
-
-<div
-  class="modal"
-  id="modal"
->
-
+</nav><!-- ACTIVATION MODAL --><div class="modal" id="modal">
   <div class="sheet">
-
-
     <div class="sheet-top">
+      <div class="sheet-title">Odd Slip</div>
+      <button class="close" id="close" type="button">×</button>
+    </div><p id="modalText">Your current balance is ₦500.00. Fund your wallet to activate this Odd.</p>
 
-      <div class="sheet-title">
-        Odd Slip
-      </div>
-
-      <button
-        class="close"
-        id="close"
-        type="button"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <p id="modalText">
-      Your current balance is ₦500.00.
-      Fund your wallet to activate this Odd.
-    </p>
-
-
-    <div class="selected-plan">
-
-      <div>
-
-        <small>
-          SELECTED ODD
-        </small>
-
-        <strong id="selectedName">
-          Odd
-        </strong>
-
-      </div>
-
-
-      <div style="text-align:right">
-
-        <small>
-          ACTIVATION
-        </small>
-
-        <strong id="selectedPrice">
-          ₦0
-        </strong>
-
-      </div>
-
-    </div>
-
-
-    <div class="bet-slip-balance">
-
-      <span>
-        Current wallet balance
-      </span>
-
-      <strong>
-        ₦500.00
-      </strong>
-
-    </div>
-
-
-    <div class="modal-actions">
-
-      <a
-        class="secondary"
-        href="dashboard.html"
-      >
-        GO BACK
-      </a>
-
-      <a
-        class="primary"
-        href="fund.html"
-      >
-        FUND WALLET
-      </a>
-
-    </div>
-
+<div class="selected-plan">
+  <div>
+    <small>SELECTED ODD</small>
+    <strong id="selectedName">Odd</strong>
   </div>
-
+  <div style="text-align:right">
+    <small>ACTIVATION</small>
+    <strong id="selectedPrice">₦0</strong>
+  </div>
 </div>
 
+<div class="bet-slip-balance">
+  <span>Current wallet balance</span>
+  <strong>₦500.00</strong>
+</div>
 
-<!-- =====================================================
-     HOW IT WORKS POPUP
-===================================================== -->
+<div class="modal-actions">
+  <a class="secondary" href="dashboard.html">GO BACK</a>
+  <a class="primary" href="fund.html">FUND WALLET</a>
+</div>
 
-<div
-  class="how-overlay"
-  id="howOverlay"
->
-
-  <div
-    class="how-popup"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="howTitle"
-  >
-
+  </div>
+</div><!-- HOW IT WORKS POPUP --><div class="how-overlay" id="howOverlay">
+  <div class="how-popup" role="dialog" aria-modal="true" aria-labelledby="howTitle">
     <div class="how-top">
+      <div class="how-title" id="howTitle">HOW IT WORKS</div>
+    </div><img src="10223.png" alt="How it works" class="how-image">
 
-      <div
-        class="how-title"
-        id="howTitle"
-      >
-        HOW IT WORKS
-      </div>
-
-    </div>
-
-
-    <img
-      src="10223.png"
-      alt="How it works"
-      class="how-image"
-    >
-
-
-    <div class="how-text">
-
-      Activate your odds and let
-      <strong>AI</strong>
-      manage them on
-      <strong>SPORTYBET</strong>
-      with a
-      <strong>99.99% win rate</strong>,
-      giving you steady daily earnings from
-      your activated odd.
-
-    </div>
-
-
-    <button
-      type="button"
-      class="how-button"
-      id="howGotIt"
-    >
-      GOT IT
-    </button>
-
-  </div>
-
+<div class="how-text">
+  Activate your odds and let
+  <strong>AI</strong>
+  manage them on
+  <strong>SPORTYBET</strong>
+  with a
+  <strong>99.99% win rate</strong>,
+  giving you steady daily earnings from
+  your activated odd.
 </div>
 
+<button type="button" class="how-button" id="howGotIt">GOT IT</button>
 
-<!-- =====================================================
-     NEW USER BONUS POPUP
-     DASHBOARD-STYLE
-===================================================== -->
-
-<div
-  class="bonus-overlay"
-  id="bonusOverlay"
->
-
-  <div
-    class="bonus-popup"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="bonusTitle"
-  >
-
-
-    <!-- DASHBOARD-STYLE BONUS TOP -->
-
+  </div>
+</div><!-- NEW USER BONUS POPUP --><div class="bonus-overlay" id="bonusOverlay">
+  <div class="bonus-popup" role="dialog" aria-modal="true" aria-labelledby="bonusTitle">
     <div class="bonus-top">
-
-      <div class="bonus-icon">
-        ₦
-      </div>
-
+      <div class="bonus-icon">₦</div>
       <div class="bonus-heading">
-
-        <small>
-          NEW USER BONUS
-        </small>
-
-        <strong id="bonusTitle">
-          Special offer for you
-        </strong>
-
+        <small>NEW USER BONUS</small>
+        <strong id="bonusTitle">Special offer for you</strong>
       </div>
-
-    </div>
-
-
-    <!-- BONUS WRITEUP ONLY -->
-
-    <div class="bonus-text">
-
-      Deposit and Activate
-      <strong>4th Odd</strong>
-      and Get Upgraded to the
-      <strong>5th Odd</strong>
-      <strong>(₦17,400 Daily)</strong>
-
-    </div>
-
-
-    <div class="bonus-valid">
-      OFFER VALID TILL 10TH OCTOBER 2026
-    </div>
-
-
-    <!-- TWO ACTION BUTTONS -->
-
-    <div class="bonus-actions">
-
-      <button
-        type="button"
-        class="bonus-not-now"
-        id="bonusNotNow"
-      >
-        NOT NOW
-      </button>
-
-      <a
-        href="fund.html?offer=20400"
-        class="bonus-activate"
-      >
-        ACTIVATE OFFER
-      </a>
-
-    </div>
-
-  </div>
-
+    </div><div class="bonus-text">
+  Deposit and Activate
+  <strong>3rd Odd</strong>
+  and Get Upgraded to the
+  <strong>5th Odd</strong>
+  <strong>(₦17,400 Daily)</strong>
 </div>
 
+<div class="bonus-valid">OFFER VALID TILL 10TH OCTOBER 2026</div>
 
-<script>
+<div class="bonus-actions">
+  <button type="button" class="bonus-not-now" id="bonusNotNow">NOT NOW</button>
+  <button type="button" class="bonus-activate" id="bonusActivateOffer">ACTIVATE OFFER</button>
+</div>
 
+  </div>
+</div><script>
+/* ACTIVATION MODAL */
+const modal = document.getElementById("modal");
+const modalText = document.getElementById("modalText");
+const selectedName = document.getElementById("selectedName");
+const selectedPrice = document.getElementById("selectedPrice");
 
-/* =====================================================
-   ACTIVATION MODAL
-===================================================== */
+function openActivationModal(name, price) {
+  const formatted = Number(price).toLocaleString("en-NG");
 
-const modal =
-  document.getElementById("modal");
+  selectedName.textContent = name;
+  selectedPrice.textContent = "₦" + formatted;
 
-const modalText =
-  document.getElementById("modalText");
+  modalText.textContent =
+    "Your current balance is ₦500.00. You need ₦" +
+    formatted +
+    " to activate this Odd. Fund your wallet to continue.";
 
-const selectedName =
-  document.getElementById("selectedName");
-
-const selectedPrice =
-  document.getElementById("selectedPrice");
-
-
-document
-  .querySelectorAll(".activate")
-  .forEach(button => {
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        const price =
-          Number(
-            this.dataset.price
-          );
-
-        const name =
-          this.dataset.name;
-
-        const formatted =
-          price.toLocaleString("en-NG");
-
-
-        selectedName.textContent =
-          name;
-
-        selectedPrice.textContent =
-          "₦" + formatted;
-
-
-        modalText.textContent =
-          "Your current balance is ₦500.00. You need ₦"
-          + formatted
-          + " to activate this Odd. Fund your wallet to continue.";
-
-
-        modal.classList.add(
-          "show"
-        );
-
-      }
-
-    );
-
-  });
-
-
-/* =====================================================
-   CLOSE BET SLIP
-===================================================== */
-
-document
-  .getElementById("close")
-  .addEventListener(
-    "click",
-    function(){
-
-      modal.classList.remove(
-        "show"
-      );
-
-    }
-  );
-
-
-modal.addEventListener(
-  "click",
-  function(event){
-
-    if(
-      event.target === modal
-    ){
-
-      modal.classList.remove(
-        "show"
-      );
-
-    }
-
-  }
-);
-
-
-/* =====================================================
-   HOW IT WORKS POPUP
-===================================================== */
-
-const howOverlay =
-  document.getElementById(
-    "howOverlay"
-  );
-
-const howGotIt =
-  document.getElementById(
-    "howGotIt"
-  );
-
-
-const HOW_IT_WORKS_KEY =
-  "sportymine_how_it_works_seen";
-
-
-/* =====================================================
-   BONUS POPUP
-===================================================== */
-
-const bonusOverlay =
-  document.getElementById(
-    "bonusOverlay"
-  );
-
-const bonusNotNow =
-  document.getElementById(
-    "bonusNotNow"
-  );
-
-
-/* =====================================================
-   SHOW BONUS
-===================================================== */
-
-function showBonusPopup(){
-
-  /*
-    Bonus opens immediately.
-  */
-
-  if(
-    !howOverlay.classList.contains(
-      "show"
-    )
-  ){
-
-    bonusOverlay.classList.add(
-      "show"
-    );
-
-  }
-
+  modal.classList.add("show");
 }
 
+/* NORMAL ODD ACTIVATION BUTTONS */
+document.querySelectorAll(".activate").forEach(button => {
+  button.addEventListener("click", function() {
+    openActivationModal(this.dataset.name, this.dataset.price);
+  });
+});
 
-/* =====================================================
-   PAGE LOAD
-===================================================== */
+/* CLOSE ACTIVATION MODAL */
+document.getElementById("close").addEventListener("click", function() {
+  modal.classList.remove("show");
+});
 
-window.addEventListener(
-  "load",
-  function(){
-
-    const alreadySeen =
-      localStorage.getItem(
-        HOW_IT_WORKS_KEY
-      );
-
-
-    if(!alreadySeen){
-
-      howOverlay.classList.add(
-        "show"
-      );
-
-    }
-
-    else{
-
-      showBonusPopup();
-
-    }
-
+modal.addEventListener("click", function(event) {
+  if (event.target === modal) {
+    modal.classList.remove("show");
   }
-);
+});
 
+/* HOW IT WORKS POPUP */
+const howOverlay = document.getElementById("howOverlay");
+const howGotIt = document.getElementById("howGotIt");
+const HOW_IT_WORKS_KEY = "sportymine_how_it_works_seen";
 
-/* =====================================================
-   GOT IT
-===================================================== */
+/* BONUS POPUP */
+const bonusOverlay = document.getElementById("bonusOverlay");
+const bonusNotNow = document.getElementById("bonusNotNow");
+const bonusActivateOffer = document.getElementById("bonusActivateOffer");
 
-howGotIt.addEventListener(
-  "click",
-  function(){
+function showBonusPopup() {
+  if (!howOverlay.classList.contains("show")) {
+    bonusOverlay.classList.add("show");
+  }
+}
 
-    localStorage.setItem(
-      HOW_IT_WORKS_KEY,
-      "true"
-    );
+/* PAGE LOAD */
+window.addEventListener("load", function() {
+  const alreadySeen = localStorage.getItem(HOW_IT_WORKS_KEY);
 
-
-    howOverlay.classList.remove(
-      "show"
-    );
-
-
-    /*
-      Bonus opens immediately after
-      How It Works is closed.
-    */
-
+  if (!alreadySeen) {
+    howOverlay.classList.add("show");
+  } else {
     showBonusPopup();
-
   }
-);
+});
 
+/* GOT IT */
+howGotIt.addEventListener("click", function() {
+  localStorage.setItem(HOW_IT_WORKS_KEY, "true");
+  howOverlay.classList.remove("show");
+  showBonusPopup();
+});
 
-/* =====================================================
-   NOT NOW BUTTON
-===================================================== */
+/* NOT NOW */
+bonusNotNow.addEventListener("click", function() {
+  bonusOverlay.classList.remove("show");
+});
 
-bonusNotNow.addEventListener(
-  "click",
-  function(){
+/* ACTIVATE OFFER: OPEN ODD 3 ACTIVATION POPUP */
+bonusActivateOffer.addEventListener("click", function() {
+  bonusOverlay.classList.remove("show");
+  openActivationModal("Odd 3", 5200);
+});
 
-    bonusOverlay.classList.remove(
-      "show"
-    );
-
+/* CLOSE BONUS BY CLICKING OUTSIDE */
+bonusOverlay.addEventListener("click", function(event) {
+  if (event.target === bonusOverlay) {
+    bonusOverlay.classList.remove("show");
   }
-);
+});
 
+/* CATEGORY FILTERS */
+const categoryButtons = document.querySelectorAll(".category");
+const plans = document.querySelectorAll(".plan");
+const planList = document.querySelector(".plan-list");
+const sectionTitle = document.getElementById("sectionTitle");
 
-/* =====================================================
-   CLOSE BONUS BY CLICKING OUTSIDE
-===================================================== */
-
-bonusOverlay.addEventListener(
-  "click",
-  function(event){
-
-    if(
-      event.target === bonusOverlay
-    ){
-
-      bonusOverlay.classList.remove(
-        "show"
-      );
-
-    }
-
-  }
-);
-
-
-/* =====================================================
-   ODDS CATEGORY FILTER
-===================================================== */
-
-const categoryButtons =
-  document.querySelectorAll(
-    ".category"
-  );
-
-const plans =
-  document.querySelectorAll(
-    ".plan"
-  );
-
-const planList =
-  document.querySelector(
-    ".plan-list"
-  );
-
-const sectionTitle =
-  document.getElementById(
-    "sectionTitle"
-  );
-
-
-/* =====================================================
-   EMPTY STATE
-===================================================== */
-
-const emptyState =
-  document.createElement(
-    "div"
-  );
-
-emptyState.className =
-  "empty-state";
-
+/* EMPTY STATE */
+const emptyState = document.createElement("div");
+emptyState.className = "empty-state";
 emptyState.innerHTML = `
-
-  <div class="empty-icon">
-    ⚡
-  </div>
-
-  <strong>
-    No active Odds
-  </strong>
-
-  <span>
-    You have not activated any Odds yet.
-  </span>
-
-  <a href="odds.html">
-    View available Odds
-  </a>
-
+  <div class="empty-icon">⚡</div>
+  <strong>No active Odds</strong>
+  <span>You have not activated any Odds yet.</span>
+  <a href="odds.html">View available Odds</a>
 `;
+planList.appendChild(emptyState);
 
-planList.appendChild(
-  emptyState
-);
-
-
-/* =====================================================
-   FILTER FUNCTION
-===================================================== */
-
-function filterOdds(filter){
-
+/* FILTER FUNCTION */
+function filterOdds(filter) {
   let visibleCount = 0;
 
-
   plans.forEach(plan => {
-
-    const categories =
-      (
-        plan.dataset.category || ""
-      )
-      .toLowerCase()
-      .split(" ");
-
-
+    const categories = (plan.dataset.category || "").toLowerCase().split(" ");
     let show = false;
 
-
-    if(
-      filter === "all" ||
-      filter === "odds"
-    ){
-
+    if (filter === "all" || filter === "odds") {
       show = true;
-
-    }
-
-    else if(
-      filter === "popular"
-    ){
-
-      show =
-        categories.includes(
-          "popular"
-        );
-
-    }
-
-    else if(
-      filter === "starter"
-    ){
-
-      show =
-        categories.includes(
-          "starter"
-        );
-
-    }
-
-    else if(
-      filter === "high-return"
-    ){
-
-      show =
-        categories.includes(
-          "high-return"
-        );
-
-    }
-
-    else if(
-      filter === "my-odds"
-    ){
-
+    } else if (filter === "popular") {
+      show = categories.includes("popular");
+    } else if (filter === "starter") {
+      show = categories.includes("starter");
+    } else if (filter === "high-return") {
+      show = categories.includes("high-return");
+    } else if (filter === "my-odds") {
       show = false;
-
     }
 
+    plan.style.display = show ? "" : "none";
 
-    if(show){
-
-      plan.style.display =
-        "";
-
-      visibleCount++;
-
-    }
-
-    else{
-
-      plan.style.display =
-        "none";
-
-    }
-
+    if (show) visibleCount++;
   });
 
+  emptyState.style.display = visibleCount === 0 ? "flex" : "none";
 
-  if(
-    visibleCount === 0
-  ){
-
-    emptyState.style.display =
-      "flex";
-
+  if (filter === "popular") {
+    sectionTitle.textContent = "Popular Odds";
+  } else if (filter === "starter") {
+    sectionTitle.textContent = "Starter Odds";
+  } else if (filter === "high-return") {
+    sectionTitle.textContent = "High Return Odds";
+  } else if (filter === "my-odds") {
+    sectionTitle.textContent = "My Odds";
+  } else {
+    sectionTitle.textContent = "Available Odds";
   }
-
-  else{
-
-    emptyState.style.display =
-      "none";
-
-  }
-
-
-  if(
-    filter === "popular"
-  ){
-
-    sectionTitle.textContent =
-      "Popular Odds";
-
-  }
-
-  else if(
-    filter === "starter"
-  ){
-
-    sectionTitle.textContent =
-      "Starter Odds";
-
-  }
-
-  else if(
-    filter === "high-return"
-  ){
-
-    sectionTitle.textContent =
-      "High Return Odds";
-
-  }
-
-  else if(
-    filter === "my-odds"
-  ){
-
-    sectionTitle.textContent =
-      "My Odds";
-
-  }
-
-  else{
-
-    sectionTitle.textContent =
-      "Available Odds";
-
-  }
-
 }
 
+/* CATEGORY BUTTON CLICK */
+categoryButtons.forEach(button => {
+  button.addEventListener("click", function() {
+    categoryButtons.forEach(item => item.classList.remove("active"));
+    this.classList.add("active");
 
-/* =====================================================
-   CATEGORY BUTTON CLICK
-===================================================== */
+    const filter = this.dataset.filter || "all";
+    filterOdds(filter);
+  });
+});
 
-categoryButtons.forEach(
-  button => {
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        categoryButtons.forEach(
-          item => {
-
-            item.classList.remove(
-              "active"
-            );
-
-          }
-        );
-
-
-        this.classList.add(
-          "active"
-        );
-
-
-        const filter =
-          this.dataset.filter ||
-          "all";
-
-
-        filterOdds(
-          filter
-        );
-
-      }
-    );
-
-  }
-);
-
-
-/* =====================================================
-   INITIAL STATE
-===================================================== */
-
-filterOdds(
-  "all"
-);
-
-</script>
-
-</body>
-
+/* INITIAL STATE */
+filterOdds("all");
+</script></body>
 </html>
